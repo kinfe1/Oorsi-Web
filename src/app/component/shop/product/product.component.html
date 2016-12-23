@@ -2,8 +2,8 @@
 <div class="shop-bar space-top-half">
   <!-- .column -->
   <div class="column">
-    <form method="get" class="search-box">
-      <input type="text" class="form-control" placeholder="Search shop">
+    <form class="search-box" (ngSubmit)="onSearch()">
+      <input type="text" class="form-control" placeholder="Search OOrsi shop" [(ngModel)]="searchString" name="s">
       <button type="submit">
                   <i class="material-icons search"></i>
                 </button>
@@ -15,5 +15,5 @@
 <!-- .shop-bar -->
 
 <div class="row padding-top">
-  <oorsi-web-product-list></oorsi-web-product-list>
+  <router-outlet></router-outlet>
 </div>

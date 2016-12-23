@@ -2,7 +2,7 @@
   <div class="shop-item">
     <div class="shop-thumbnail">
       <span class="shop-label text-danger" *ngIf="onSale">Sale</span>
-      <a href="shop-single.html" class="item-link"></a>
+      <a routerLink="/shop/sku/{{product.sku}}" class="item-link"></a>
       <div class="square" style="background-image:url({{product.image}})">
         <img src="{{product.image}}" class="product-image img img-responsive" alt="Shop item">
       </div>

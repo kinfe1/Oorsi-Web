@@ -1,0 +1,10 @@
+{
+    "/oorsi-api": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/oorsi": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    }
+}
