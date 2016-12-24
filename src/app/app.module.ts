@@ -1,3 +1,4 @@
+import { WishlistService } from './service/wishlist.service';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { AUTH_PROVIDERS, AuthConfigConsts, AuthHttp, IAuthConfig, provideAuth } from 'angular2-jwt';
 import { ProductService } from './service/product/product.service';
@@ -21,13 +22,16 @@ import { LoginComponent } from './component/user/login/login.component';
 import { RegisterComponent } from './component/user/register/register.component';
 import { AuthService } from './service/auth/auth.service';
 import { LogoutComponent } from './component/user/login/logout.component';
+import { WishlistComponent } from './component/wishlist/wishlist.component';
+import { WishlistItemComponent } from './component/wishlist/wishlist-item.component';
+
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/news", pathMatch: "full" },
     { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "sku/:sku", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [AuthService] },
     { path: 'friends', component: FriendshipComponent, canActivate: [AuthService] },
-    { path: 'wishlist', component: ProductListComponent, canActivate: [AuthService] },
+    { path: 'wishlist', component: WishlistComponent, canActivate: [AuthService] },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
     { path: 'register', component: RegisterComponent },
@@ -47,6 +51,8 @@ const appRoutes: Routes = [
         LoginComponent,
         RegisterComponent,
         LogoutComponent,
+        WishlistComponent,
+        WishlistItemComponent,
 
     ],
     imports: [
@@ -55,7 +61,7 @@ const appRoutes: Routes = [
         HttpModule,
         RouterModule.forRoot(appRoutes)
     ],
-    providers: [ProductService, AuthService],
+    providers: [ProductService, AuthService, WishlistService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
