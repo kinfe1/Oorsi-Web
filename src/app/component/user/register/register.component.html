@@ -1,7 +1,7 @@
 <div class="col-md-6 col-md-offset-3">
   <h3>Register</h3>
   <div class="inner">
-    <form method="post" class="login-form row">
+    <form class="login-form row" #f="ngForm" (ngSubmit)="onSubmit(f)">
       <input type="text" class="form-control col-sm-6" placeholder="First Name" required ngModel name="firstName">
       <input type="text" class="form-control col-sm-6" placeholder="Last Name" required ngModel name="lastName">
       <input type="email" class="form-control" placeholder="E-mail" required ngModel name="email">

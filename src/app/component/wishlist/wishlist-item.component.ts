@@ -1,28 +1,27 @@
 import { WishListProduct } from './../../model/wishlistproduct';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'oorsi-web-wishlist-item',
   templateUrl: './wishlist-item.component.html',
   styleUrls: ['./wishlist-item.component.css']
 })
-export class WishlistItemComponent implements OnInit, OnChanges {
+export class WishlistItemComponent implements OnInit {
 
-  @Input() wishlistProduct: WishListProduct = { product: { name: "Abebe beso bela" } };
+  @Input() wishlistProduct: WishListProduct;
 
-  test: string = "This works";
+  @Output() onDeleteWishlistProduct = new EventEmitter<WishListProduct>();
 
   constructor() {
-
-    this.wishlistProduct = { product: { name: "Abebe beso bela" } }
   }
 
   ngOnInit() {
-    console.log(this.wishlistProduct.product.largeImage);
   }
 
-  ngOnChanges() {
-    console.log(this.wishlistProduct.product.name);
+  onDelete(wishlistProduct: WishListProduct) {
+    this.onDeleteWishlistProduct.emit(wishlistProduct);
   }
+
+
 
 }

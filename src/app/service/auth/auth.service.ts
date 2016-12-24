@@ -59,6 +59,29 @@ export class AuthService implements CanActivate {
             });
     }
 
+    register(loginFormValue): Observable<boolean> {
+        return this.http.post('/oorsi-api/register', loginFormValue)
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let token = response.json() && response.json().token;
+                if (token) {
+
+
+                    // store username and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', token);
+
+                    this.isLoggedIn.emit(this.canActivate());
+
+                    // return true to indicate successful login
+                    return true;
+                } else {
+                    this.isLoggedIn.emit(this.canActivate());
+                    // return false to indicate failed login
+                    return false;
+                }
+            });
+    }
+
     logout(): void {
         // clear token remove user from local storage to log user out
         localStorage.removeItem('currentUser');

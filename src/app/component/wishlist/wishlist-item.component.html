@@ -1,10 +1,13 @@
 <div class="item">
-  <a class="item-thumb">
+  <a routerLink="/shop/sku/{{wishlistProduct?.product.sku}}" class="item-thumb">
     <img src="{{wishlistProduct?.product.largeImage}}" alt="Item">
   </a>
   <div class="item-details">
-    <h3 class="item-title"><a>{{wishlistProduct?.product.name}}</a></h3>
-    <h4 class="item-price">{{wishlistProduct?.product.salePrice}}</h4>
+    <a routerLink="/shop/sku/{{wishlistProduct?.product.sku}}">
+      <h3 class="item-title"><a>{{wishlistProduct?.product.name}}</a></h3>
+    </a>
+    <label class=" item-price">{{wishlistProduct?.product.salePrice}}</label>
+    <label class=" item-price" *ngIf="wishlistProduct?.product.regularPrice!=wishlistProduct?.product.salePrice">{{wishlistProduct?.product.regularPrice}}</label>
   </div>
   <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDelete(wishlistProduct)">
     <i class="material-icons delete"></i>

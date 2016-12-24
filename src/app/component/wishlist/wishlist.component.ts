@@ -17,7 +17,7 @@ export class WishlistComponent implements OnInit {
     constructor(private wishlistService: WishlistService) { }
 
     ngOnInit() {
-       
+
         this.wishlistService.getWishList()
             .subscribe(
             data => {
@@ -25,6 +25,10 @@ export class WishlistComponent implements OnInit {
             }
 
             )
+    }
+
+    onDeleteWishlistProduct(wishlistProduct: WishListProduct) {
+        this.wishlistService.deleteWishListProduct(wishlistProduct).subscribe(data => this.wishlistProducts.splice(this.wishlistProducts.indexOf(wishlistProduct), 1));
     }
 
 

@@ -1,5 +1,5 @@
 <div class="col-sm-8 padding-bottom-2x padding-top-2x col-sm-offset-2">
   <div class="shopping-cart">
-    <oorsi-web-wishlist-item *ngFor="let wishlistProduct of wishlistProducts" [wishlistProduct]="wishlistProduct"></oorsi-web-wishlist-item>
+    <oorsi-web-wishlist-item *ngFor="let wishlistProduct of wishlistProducts" [wishlistProduct]="wishlistProduct" (onDeleteWishlistProduct)="onDeleteWishlistProduct($event)"></oorsi-web-wishlist-item>
   </div>
 </div>
