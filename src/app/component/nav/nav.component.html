@@ -1,11 +1,11 @@
 <header class="navbar navbar-sticky">
 
   <!-- Site Logo -->
-  <a href="index.html" class="site-logo visible-desktop">
+  <a routerLinl="/" class="site-logo visible-desktop">
     <span>OOrsi</span>
   </a>
   <!-- site-logo.visible-desktop -->
-  <a href="index.html" class="site-logo visible-mobile">
+  <a routerLinl="/" class="site-logo visible-mobile">
     <span>OOrsi</span>
   </a>
   <!-- site-logo.visible-mobile -->
@@ -15,19 +15,22 @@
   <!-- Control the position of navigation via modifier classes: "text-left, text-center, text-right" -->
   <nav class="main-navigation text-center">
     <ul class="menu">
-      <li routerLinkActive="current-menu-item">
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
         <a routerLink="/news">News Feed</a>
       </li>
       <li routerLinkActive="current-menu-item">
         <a routerLink="/shop">Shop</a>
       </li>
-      <li routerLinkActive="current-menu-item">
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
         <a routerLink="/friends">Friends</a>
       </li>
-      <li routerLinkActive="current-menu-item">
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/logout">Logout</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
         <a routerLink="/login">Login</a>
       </li>
-      <li routerLinkActive="current-menu-item">
+      <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
         <a routerLink="/register">Register</a>
       </li>
     </ul>
@@ -38,7 +41,7 @@
   <!-- Toolbar -->
   <div class="toolbar">
     <div class="inner">
-      <a><i class="material-icons favorite_border"></i></a>
+      <a routerLink="/wishlist"><i class="material-icons favorite_border"></i></a>
       <a><i class="material-icons person"></i></a>
       <div class="cart-btn">
         <a href="shopping-cart.html">
