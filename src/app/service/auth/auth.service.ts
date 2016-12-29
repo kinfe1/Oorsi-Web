@@ -1,8 +1,9 @@
 import { Observable, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { CanActivate, Router } from '@angular/router';
-import { Http, Jsonp, Response } from '@angular/http';
+import { Http, Jsonp, Response, Headers } from '@angular/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { OORSI_API_ENDPOINT } from '../../const';
 
 
 @Injectable()
@@ -37,7 +38,7 @@ export class AuthService implements CanActivate {
     }
 
     login(username: string, password: string): Observable<boolean> {
-        return this.http.post('/oorsi-api/login', { username: username, password: password })
+        return this.http.post(OORSI_API_ENDPOINT + 'login', { username: username, password: password })
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let token = response.json() && response.json().token;
@@ -60,7 +61,7 @@ export class AuthService implements CanActivate {
     }
 
     register(loginFormValue): Observable<boolean> {
-        return this.http.post('/oorsi-api/register', loginFormValue)
+        return this.http.post(OORSI_API_ENDPOINT + 'register', loginFormValue)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let token = response.json() && response.json().token;
@@ -88,8 +89,8 @@ export class AuthService implements CanActivate {
         this.isLoggedIn.emit(this.canActivate());
     }
 
-    getAuthHeader() {
-        return { "jwt-token": localStorage.getItem('currentuser') }
+    addAuthHeader(headers: Headers): void {
+        headers.append("jwt-token", localStorage.getItem('currentUser'));
     }
 
 

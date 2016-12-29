@@ -2887,7 +2887,7 @@ input[type="button"].btn-block {
 .cart-dropdown .cart-item .item-thumb,
 .cart-dropdown .cart-item .item-details {
   display: table-cell;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .cart-dropdown .cart-item .item-thumb {

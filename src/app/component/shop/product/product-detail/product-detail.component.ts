@@ -23,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
                     .subscribe(
                     data => {
                         this.product = data.json();
+                        this.loadRelatedProducts();
                     }
                     )
             }
@@ -36,6 +37,16 @@ export class ProductDetailComponent implements OnInit {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+    }
+
+    private loadRelatedProducts() {
+        if (this.product) {
+            if (this.product.frequentlyPurchasedWith.length > 0)
+                this.productService.getProducts(this.product.frequentlyPurchasedWith).subscribe(data => this.product.frequentlyPurchasedWith = data.json());
+            if (this.product.relatedProducts.length > 0)
+                this.productService.getProducts(this.product.relatedProducts).subscribe(data => this.product.relatedProducts = data.json());
+        }
+
     }
 
 }

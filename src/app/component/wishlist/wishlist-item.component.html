@@ -4,7 +4,7 @@
   </a>
   <div class="item-details">
     <a routerLink="/shop/sku/{{wishlistProduct?.product.sku}}">
-      <h3 class="item-title"><a>{{wishlistProduct?.product.name}}</a></h3>
+      <h4 class="item-title"><a>{{wishlistProduct?.product.name}}</a></h4>
     </a>
     <label class=" item-price">{{wishlistProduct?.product.salePrice}}</label>
     <label class=" item-price" *ngIf="wishlistProduct?.product.regularPrice!=wishlistProduct?.product.salePrice">{{wishlistProduct?.product.regularPrice}}</label>

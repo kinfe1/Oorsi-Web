@@ -1,5 +1,6 @@
+import { OORSI_API_ENDPOINT } from './../../const';
 import { Observable } from 'rxjs/Rx';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../../model/product';
 
@@ -12,13 +13,26 @@ export class ProductService {
     public search(s: string): Observable<any> {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('/oorsi-api/product/search?s=' + s + '&page=1', headers);
+        return this.http.get(OORSI_API_ENDPOINT + 'product/search?s=' + s + '&page=1', headers);
     }
 
     public getProduct(sku: string): Observable<any> {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('/oorsi-api/product/sku/' + sku, headers);
+        return this.http.get(OORSI_API_ENDPOINT + 'product/sku/' + sku, headers);
+    }
+
+    public getProducts(products: Product[]): Observable<any> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        let params: URLSearchParams = new URLSearchParams();
+
+        for (let product of products) {
+            params.append('sku', '' + product.sku);
+        }
+
+        return this.http.get(OORSI_API_ENDPOINT + 'product/list', { headers: headers, search: params });
     }
 
 

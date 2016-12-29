@@ -10,7 +10,6 @@ import { WishlistService } from '../../service/wishlist.service';
 })
 export class WishlistComponent implements OnInit {
 
-    products: Product[] = []
 
     wishlistProducts: WishListProduct[] = []
 

@@ -128,12 +128,7 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane transition fade in active" id="description">
       <div class="row space-top">
-        <div class="col-md-6 space-bottom">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe src="https://player.vimeo.com/video/105829213?color=77cde3&amp;title=0&amp;byline=0&amp;portrait=0" allowfullscreen=""></iframe>
-          </div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-8 col-md-offset-2">
           <p>{{product?.longDescription}}</p>
         </div>
       </div>
@@ -302,123 +297,20 @@
   </div>
   <!-- .tab-content -->
 </section>
-<section class="container padding-top padding-bottom">
+<section class="container padding-top padding-bottom" *ngIf="product?.frequentlyPurchasedWith.length!=0">
   <hr>
-  <h3 class="padding-top">You May Also Like</h3>
+  <h3 class="padding-top">Frequently Purchsed With</h3>
   <div class="row padding-top">
-    <div class="col-lg-3 col-sm-6">
-      <div class="shop-item">
-        <div class="shop-thumbnail">
-          <span class="shop-label text-danger">Sale</span>
-          <a class="item-link"></a>
-          <img src="img/shop/th05.jpg" alt="Shop item">
-          <div class="shop-item-tools">
-            <a class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist">
-              <i class="material-icons favorite_border"></i>
-            </a>
-            <a class="add-to-cart">
-              <em>Add to Cart</em>
-              <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"
-                  stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="shop-item-details">
-          <h3 class="shop-item-title"><a>Wall Clock</a></h3>
-          <span class="shop-item-price">
-                <span class="old-price">$69.00</span> $48.00
-          </span>
-        </div>
-      </div>
-      <!-- .shop-item -->
-    </div>
-    <!-- .col-lg-3.col-sm-6 -->
-    <div class="col-lg-3 col-sm-6">
-      <div class="shop-item">
-        <div class="shop-thumbnail">
-          <a class="item-link"></a>
-          <img src="img/shop/th06.jpg" alt="Shop item">
-          <div class="shop-item-tools">
-            <a class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist">
-              <i class="material-icons favorite_border"></i>
-            </a>
-            <a class="add-to-cart">
-              <em>Add to Cart</em>
-              <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"
-                  stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="shop-item-details">
-          <h3 class="shop-item-title"><a>LED Lighting</a></h3>
-          <span class="shop-item-price">
-                $130.00
-              </span>
-        </div>
-      </div>
-      <!-- .shop-item -->
-    </div>
-    <!-- .col-lg-3.col-sm-6 -->
-    <div class="col-lg-3 col-sm-6">
-      <div class="shop-item">
-        <div class="shop-thumbnail">
-          <a class="item-link"></a>
-          <img src="img/shop/th04.jpg" alt="Shop item">
-          <div class="shop-item-tools">
-            <a class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist">
-              <i class="material-icons favorite_border"></i>
-            </a>
-            <a class="add-to-cart">
-              <em>Add to Cart</em>
-              <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"
-                  stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="shop-item-details">
-          <h3 class="shop-item-title"><a>Alarm Clock</a></h3>
-          <span class="shop-item-price">
-                $178.00
-              </span>
-        </div>
-      </div>
-      <!-- .shop-item -->
-    </div>
-    <!-- .col-lg-3.col-sm-6 -->
-    <div class="col-lg-3 col-sm-6">
-      <div class="shop-item">
-        <div class="shop-thumbnail">
-          <a class="item-link"></a>
-          <img src="img/shop/th08.jpg" alt="Shop item">
-          <div class="shop-item-tools">
-            <a class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wishlist">
-              <i class="material-icons favorite_border"></i>
-            </a>
-            <a class="add-to-cart">
-              <em>Add to Cart</em>
-              <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
-                <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"
-                  stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="shop-item-details">
-          <h3 class="shop-item-title"><a>Hook Basket</a></h3>
-          <span class="shop-item-price">
-                $112.35
-              </span>
-        </div>
-      </div>
-      <!-- .shop-item -->
-    </div>
-    <!-- .col-lg-3.col-sm-6 -->
+    <oorsi-web-product-item *ngFor="let p of product?.frequentlyPurchasedWith; let i = index" [product]="p" [index]="i"></oorsi-web-product-item>
+  </div>
+  <!-- .row -->
+</section>
+
+<section class="container padding-top padding-bottom" *ngIf="product?.relatedProducts.length!=0">
+  <hr>
+  <h3 class="padding-top">Related Products</h3>
+  <div class="row padding-top">
+    <oorsi-web-product-item *ngFor="let p of product?.relatedProducts; let i = index" [product]="p" [index]="i"></oorsi-web-product-item>
   </div>
   <!-- .row -->
 </section>

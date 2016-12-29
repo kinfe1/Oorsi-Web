@@ -24,6 +24,8 @@ import { AuthService } from './service/auth/auth.service';
 import { LogoutComponent } from './component/user/login/logout.component';
 import { WishlistComponent } from './component/wishlist/wishlist.component';
 import { WishlistItemComponent } from './component/wishlist/wishlist-item.component';
+import { NewsFeedItemComponent } from './component/news-feed/news-feed-item/news-feed-item.component';
+import { NewsFeedService } from './service/news-feed/news-feed.service';
 
 
 const appRoutes: Routes = [
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
         LogoutComponent,
         WishlistComponent,
         WishlistItemComponent,
+        NewsFeedItemComponent,
 
     ],
     imports: [
@@ -61,7 +64,7 @@ const appRoutes: Routes = [
         HttpModule,
         RouterModule.forRoot(appRoutes)
     ],
-    providers: [ProductService, AuthService, WishlistService],
+    providers: [ProductService, AuthService, WishlistService, NewsFeedService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
