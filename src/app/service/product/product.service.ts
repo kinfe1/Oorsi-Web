@@ -19,7 +19,7 @@ export class ProductService {
     public getProduct(sku: string): Observable<any> {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.get(OORSI_API_ENDPOINT + 'product/sku/' + sku, headers);
+        return this.http.get(OORSI_API_ENDPOINT + 'product/sku/' + sku, headers).map((response: Response) => response.json());
     }
 
     public getProducts(products: Product[]): Observable<any> {

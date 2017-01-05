@@ -4399,7 +4399,7 @@ input[type="button"].btn-block {
 }
 
 .shopping-cart .item .item-title {
-  font-size: 22px;
+  /*font-size: 22px;*/
   font-weight: normal;
   margin-bottom: 12px;
 }

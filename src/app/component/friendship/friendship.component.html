@@ -1,3 +1,19 @@
-<p>
-  friendship works!
-</p>
+<!-- Shop Bar -->
+<div class="shop-bar space-top-half">
+    <!-- .column -->
+    <div class="column">
+        <form class="search-box" (ngSubmit)="onSearch()">
+            <input type="text" class="form-control" placeholder="Search OOrsi Friends" [(ngModel)]="searchString" name="s">
+            <button type="submit">
+                  <i class="material-icons search"></i>
+                </button>
+        </form>
+        <!-- form.search-box -->
+    </div>
+    <!-- .column -->
+</div>
+<!-- .shop-bar -->
+
+<div class="row padding-top">
+    <router-outlet></router-outlet>
+</div>

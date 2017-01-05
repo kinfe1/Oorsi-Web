@@ -5,35 +5,36 @@
 
     <!-- Cart -->
     <div class="col-sm-8 padding-bottom-2x" *ngFor="let user of users">
-      <h3 class="toolbar-title">{{user.firstName}} {{user.lastName}}</h3>
-      <p class="text-sm">
-        <span class="text-gray">Currently</span> {{user.cartProducts.length}} items
-        <span class="text-gray"> in cart</span>
-      </p>
-      <div class="shopping-cart">
-        <!-- Item -->
-        <div class="item" *ngFor="let cartProduct of user.cartProducts">
-          <a routerLink="/product/{{cartProduct.product.productID}}" class="item-thumb">
-            <img src="{{cartProduct.product.largeImage}}" alt="Item">
-          </a>
-          <div class="item-details">
-            <h3 class="item-title"><a routerLink="/product/{{cartProduct.product.productID}}">{{cartProduct.product.name}}</a></h3>
-            <h4 class="item-price">{{cartProduct.product.salePrice}}</h4>
-            <div class="count-input">
-              <a class="incr-btn" data-action="decrease" href="#">–</a>
-              <input class="quantity" type="text" value="1">
-              <a class="incr-btn" data-action="increase" href="#">+</a>
+      <div *ngIf="user.cartProducts.length > 0">
+        <h3 class="toolbar-title">{{user.firstName}} {{user.lastName}}</h3>
+        <p class="text-sm">
+          <span class="text-gray">Currently</span> {{user.cartProducts.length}} items
+          <span class="text-gray"> in cart</span>
+        </p>
+        <div class="shopping-cart">
+          <!-- Item -->
+          <div class="item" *ngFor="let cartProduct of user.cartProducts">
+            <a routerLink="/product/{{cartProduct.product.productID}}" class="item-thumb">
+              <img src="{{cartProduct.product.largeImage}}" alt="Item">
+            </a>
+            <div class="item-details">
+              <h5 class="item-title"><a routerLink="/product/{{cartProduct.product.productID}}">{{cartProduct.product.name}}</a></h5>
+              <h6 class="item-price">{{cartProduct.product.salePrice}}</h6>
+              <div class="count-input">
+                <a class="incr-btn" data-action="decrease" href="#">–</a>
+                <input class="quantity" type="text" value="1">
+                <a class="incr-btn" data-action="increase" href="#">+</a>
+              </div>
             </div>
+            <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDeleteCartProduct(cartProduct)">
+              <i class="material-icons remove_shopping_cart"></i>
+            </a>
           </div>
-          <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDeleteCartProduct(cartProduct)">
-            <i class="material-icons remove_shopping_cart"></i>
-          </a>
+          <!-- .item -->
+
         </div>
-        <!-- .item -->
-
+        <!-- .shopping-cart -->
       </div>
-      <!-- .shopping-cart -->
-
     </div>
     <!-- .col-sm-8 -->
 

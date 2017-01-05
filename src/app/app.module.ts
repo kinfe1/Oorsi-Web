@@ -1,3 +1,4 @@
+import { FriendSearchComponent } from './component/friendship/friend-search/friend-search.component';
 import { WishlistService } from './service/wishlist.service';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { AUTH_PROVIDERS, AuthConfigConsts, AuthHttp, IAuthConfig, provideAuth } from 'angular2-jwt';
@@ -28,13 +29,14 @@ import { NewsFeedItemComponent } from './component/news-feed/news-feed-item/news
 import { NewsFeedService } from './service/news-feed/news-feed.service';
 import { CartService } from './service/cart/cart.service';
 import { CartComponent } from './component/cart/cart.component';
+import { FriendshipService } from './service/friendship/friendship.service';
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/news", pathMatch: "full" },
     { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [AuthService] },
-    { path: 'friends', component: FriendshipComponent, canActivate: [AuthService] },
+    { path: 'friends', component: FriendshipComponent, canActivate: [AuthService], children: [{ path: "search", component: FriendSearchComponent }] },
     { path: 'wishlist', component: WishlistComponent, canActivate: [AuthService] },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
         WishlistItemComponent,
         NewsFeedItemComponent,
         CartComponent,
+        FriendSearchComponent,
 
     ],
     imports: [
@@ -68,7 +71,7 @@ const appRoutes: Routes = [
         HttpModule,
         RouterModule.forRoot(appRoutes)
     ],
-    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService],
+    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

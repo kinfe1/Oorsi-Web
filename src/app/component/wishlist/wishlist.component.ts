@@ -10,17 +10,18 @@ import { WishlistService } from '../../service/wishlist.service';
 })
 export class WishlistComponent implements OnInit {
 
+    loading: boolean = true;
 
     wishlistProducts: WishListProduct[] = []
 
     constructor(private wishlistService: WishlistService) { }
 
     ngOnInit() {
-
         this.wishlistService.getWishList()
             .subscribe(
             data => {
                 this.wishlistProducts = data.json();
+                this.loading = false;
             }
 
             )
