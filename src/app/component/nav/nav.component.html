@@ -44,50 +44,12 @@
       <a routerLink="/wishlist"><i class="material-icons favorite_border"></i></a>
       <a><i class="material-icons person"></i></a>
       <div class="cart-btn">
-        <a href="shopping-cart.html">
+        <a routerLink="/cart">
           <i>
                 <span class="material-icons shopping_basket"></span>
-                <span class="count">2</span>
+                                <span class="count">{{cartSize}}</span>
               </i>
         </a>
-        <!-- Cart Dropdown -->
-        <div class="cart-dropdown">
-          <div class="cart-item">
-            <a href="shop-single.html" class="item-thumb">
-              <img src="img/cart/item01.jpg" alt="Item">
-            </a>
-            <div class="item-details">
-              <h3 class="item-title"><a href="shop-single.html">Concrete Lamp</a></h3>
-              <h4 class="item-price">1 x $85.90</h4>
-            </div>
-            <a class="close-btn">
-              <i class="material-icons close"></i>
-            </a>
-          </div>
-          <!-- .cart-item -->
-          <div class="cart-item">
-            <a href="shop-single.html" class="item-thumb">
-              <img src="img/cart/item02.jpg" alt="Item">
-            </a>
-            <div class="item-details">
-              <h3 class="item-title"><a href="shop-single.html">Storage Box</a></h3>
-              <h4 class="item-price">2 x $38.00</h4>
-            </div>
-            <a class="close-btn">
-              <i class="material-icons close"></i>
-            </a>
-          </div>
-          <!-- .cart-item -->
-          <div class="cart-subtotal">
-            <div class="column">
-              <span>Subtotal:</span>
-            </div>
-            <div class="column">
-              <span class="amount">$161.90</span>
-            </div>
-          </div>
-        </div>
-        <!-- .cart-dropdown -->
       </div>
       <!-- .cart-btn -->
     </div>

@@ -1,3 +1,4 @@
+import { Product } from './../model/product';
 import { WishListProduct } from './../model/wishlistproduct';
 import { AuthService } from './auth/auth.service';
 import { Injectable } from '@angular/core';
@@ -24,6 +25,10 @@ export class WishlistService {
         searchParams.set('sku', '' + wishlistProduct.product.sku);
 
         return this.http.delete(OORSI_API_ENDPOINT + 'wishlist/delete', { headers: headers, search: searchParams });
+    }
+
+    addProductToWishlist(product: Product) {
+
     }
 
 

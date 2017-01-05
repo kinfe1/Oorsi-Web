@@ -3867,6 +3867,7 @@ input[type="button"].btn-block {
   -webkit-transition: background-color 0.3s;
   -o-transition: background-color 0.3s;
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .add-to-cart:hover {

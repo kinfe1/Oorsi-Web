@@ -26,17 +26,20 @@ import { WishlistComponent } from './component/wishlist/wishlist.component';
 import { WishlistItemComponent } from './component/wishlist/wishlist-item.component';
 import { NewsFeedItemComponent } from './component/news-feed/news-feed-item/news-feed-item.component';
 import { NewsFeedService } from './service/news-feed/news-feed.service';
+import { CartService } from './service/cart/cart.service';
+import { CartComponent } from './component/cart/cart.component';
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/news", pathMatch: "full" },
-    { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "sku/:sku", component: ProductDetailComponent }] },
+    { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [AuthService] },
     { path: 'friends', component: FriendshipComponent, canActivate: [AuthService] },
     { path: 'wishlist', component: WishlistComponent, canActivate: [AuthService] },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'cart', component: CartComponent, canActivate: [AuthService] },
 ];
 
 
@@ -56,6 +59,7 @@ const appRoutes: Routes = [
         WishlistComponent,
         WishlistItemComponent,
         NewsFeedItemComponent,
+        CartComponent,
 
     ],
     imports: [
@@ -64,7 +68,7 @@ const appRoutes: Routes = [
         HttpModule,
         RouterModule.forRoot(appRoutes)
     ],
-    providers: [ProductService, AuthService, WishlistService, NewsFeedService],
+    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

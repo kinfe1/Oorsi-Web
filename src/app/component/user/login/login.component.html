@@ -16,7 +16,12 @@
   </form>
   <!-- .login-form -->
 
-  <a href="#" class="social-signup-btn ssb-facebook">
+  <a class="social-signup-btn ssb-facebook" (click)="onFacebookLoginClick()">
+    <i class="socicon-facebook"></i>
+    <span>Login with Facebook</span>
+  </a>
+
+   <a class="btn btn-primary" (click)="statusChangeCallback()">
     <i class="socicon-facebook"></i>
     <span>Login with Facebook</span>
   </a>

@@ -1,15 +1,18 @@
 import { AuthService } from './../../service/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { CartService } from '../../service/cart/cart.service';
 
 @Component({
   selector: 'oorsi-web-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnChanges {
+
+  cartSize: number = 0;
 
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private cartService: CartService) {
 
   }
 
@@ -17,11 +20,15 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.loggedIn = this.authService.canActivate();
-    console.log('NavComponent.ngOnInit');
     this.authService.isLoggedIn.subscribe(i => {
-      console.log("eventemmiter " + i)
       this.loggedIn = i;
     })
+  }
+
+  ngOnChanges() {
+    if (this.loggedIn) {
+      this.cartService.getCartSize().subscribe(data => this.cartSize = data);
+    }
   }
 
 

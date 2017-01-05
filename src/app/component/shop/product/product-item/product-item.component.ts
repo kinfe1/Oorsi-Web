@@ -1,5 +1,9 @@
+import { CartService } from './../../../../service/cart/cart.service';
+import { WishlistService } from '../../../../service/wishlist.service';
 import { ProductService } from './../../../../service/product/product.service';
 import { Component, Input } from '@angular/core';
+import { Product } from '../../../../model/product';
+import { ADD_TO_CART, ADDED_TO_CART } from '../../../../const';
 
 @Component({
   selector: 'oorsi-web-product-item',
@@ -12,7 +16,17 @@ export class ProductItemComponent {
 
   @Input() index: number;
 
-  constructor() { }
+  addToCartButton = ADD_TO_CART;
+
+  constructor(private wishlistService: WishlistService, private cartService: CartService) { }
+
+  addToWishlist(product: Product) {
+    this.wishlistService.addProductToWishlist(product);
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addProductToCart(product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+  }
 
 
 }

@@ -1,3 +1,5 @@
+import { ADDED_TO_CART, ADD_TO_CART } from './../../../../const';
+import { CartService } from './../../../../service/cart/cart.service';
 import { ProductService } from './../../../../service/product/product.service';
 import { Subscription } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
@@ -13,9 +15,11 @@ export class ProductDetailComponent implements OnInit {
 
     product: Product;
 
+    addToCartButton: string = ADD_TO_CART;
+
     private subscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private productService: ProductService) {
+    constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService) {
 
         this.subscription = this.route.params.subscribe(
             (param: any) => {
@@ -49,4 +53,7 @@ export class ProductDetailComponent implements OnInit {
 
     }
 
+    addToCart(product: Product) {
+        this.cartService.addProductToCart(product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+    }
 }
