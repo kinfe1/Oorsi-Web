@@ -1,10 +1,4 @@
-<div class="col-sm-8 padding-bottom-2x padding-top-2x col-sm-offset-2 page-preloading" [ngClass]="{'page-preloading': loading}">
-  <!-- Page Pre-Loader -->
-  <div class="page-preloader">
-    <div class="preloader">
-      <img src="img/preloader.gif" alt="Preloader">
-    </div>
-  </div><!-- .page-preloader -->
+<div class="col-sm-8 padding-bottom-2x padding-top-2x col-sm-offset-2">
   <div class="shopping-cart">
     <oorsi-web-wishlist-item *ngFor="let wishlistProduct of wishlistProducts" [wishlistProduct]="wishlistProduct" (onDeleteWishlistProduct)="onDeleteWishlistProduct($event)"></oorsi-web-wishlist-item>
   </div>

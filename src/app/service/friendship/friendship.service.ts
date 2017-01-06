@@ -15,7 +15,7 @@ export class FriendshipService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     this.authService.addAuthHeader(headers);
-    return this.http.get(OORSI_API_ENDPOINT + 'friends/search?s=' + s).map((response: Response) => response.json());
+    return this.http.get(OORSI_API_ENDPOINT + 'friends/search?s=' + s, { headers: headers }).map((response: Response) => response.json());
   }
 
 }

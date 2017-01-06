@@ -1,0 +1,14 @@
+<div class="item">
+  <a routerLink="/shop/sku/{{wishlistProduct?.product.sku}}" class="item-thumb">
+    <img alt="Item">
+  </a>
+  <div class="item-details">
+    <a routerLink="/u/">
+      <h4 class="item-title"><a>{{user.firstName}} {{user.lastName}}</a></h4>
+    </a>
+
+  </div>
+  <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDelete(wishlistProduct)">
+    <i class="material-icons delete"></i>
+  </a>
+</div>

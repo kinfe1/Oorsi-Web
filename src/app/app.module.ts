@@ -30,6 +30,7 @@ import { NewsFeedService } from './service/news-feed/news-feed.service';
 import { CartService } from './service/cart/cart.service';
 import { CartComponent } from './component/cart/cart.component';
 import { FriendshipService } from './service/friendship/friendship.service';
+import { FriendsItemComponent } from './component/friendship/friends-item/friends-item.component';
 
 
 const appRoutes: Routes = [
@@ -63,6 +64,7 @@ const appRoutes: Routes = [
         NewsFeedItemComponent,
         CartComponent,
         FriendSearchComponent,
+        FriendsItemComponent,
 
     ],
     imports: [

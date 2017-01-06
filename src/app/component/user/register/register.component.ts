@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
 
 
     this.authService.register(ngForm.value).subscribe(result => {
-      console.log(result);
       if (result === true) {
         // login successful
         this.router.navigate(['/']);

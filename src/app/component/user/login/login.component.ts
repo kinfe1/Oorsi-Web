@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
   onLogin(ngForm: NgForm) {
 
     this.authService.login(ngForm.value.email, ngForm.value.password).subscribe(result => {
-      console.log(result);
       if (result === true) {
         // login successful
         this.router.navigate(['/']);
