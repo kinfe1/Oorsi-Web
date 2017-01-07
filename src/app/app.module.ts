@@ -31,13 +31,14 @@ import { CartService } from './service/cart/cart.service';
 import { CartComponent } from './component/cart/cart.component';
 import { FriendshipService } from './service/friendship/friendship.service';
 import { FriendsItemComponent } from './component/friendship/friends-item/friends-item.component';
+import { FriendListComponent } from './component/friendship/friend-list/friend-list.component';
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/news", pathMatch: "full" },
     { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [AuthService] },
-    { path: 'friends', component: FriendshipComponent, canActivate: [AuthService], children: [{ path: "search", component: FriendSearchComponent }] },
+    { path: 'friends', component: FriendshipComponent, canActivate: [AuthService], children: [{ path: "", component: FriendListComponent }, { path: "search", component: FriendSearchComponent }] },
     { path: 'wishlist', component: WishlistComponent, canActivate: [AuthService] },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
         CartComponent,
         FriendSearchComponent,
         FriendsItemComponent,
+        FriendListComponent,
 
     ],
     imports: [

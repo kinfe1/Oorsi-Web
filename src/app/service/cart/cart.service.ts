@@ -45,7 +45,7 @@ export class CartService {
 
     if (null != product.productId) {
       searchParams.set('productId', '' + product.productId);
-    }else{
+    } else {
       searchParams.set('retailer', '' + product.retailer);
       searchParams.set('sku', '' + product.sku);
     }
@@ -54,7 +54,7 @@ export class CartService {
       searchParams.set('to', '' + to);
     }
 
-    return this.http.post(OORSI_API_ENDPOINT + 'cart/add', undefined, { headers: headers, search: searchParams });
+    return this.http.post(OORSI_API_ENDPOINT + 'cart/add', undefined, { headers: headers, search: searchParams }).map((response: Response) => response.json());
   }
 
 

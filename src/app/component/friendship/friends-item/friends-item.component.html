@@ -8,7 +8,10 @@
     </a>
 
   </div>
-  <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDelete(wishlistProduct)">
+  <!--<a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDelete(wishlistProduct)">
     <i class="material-icons delete"></i>
-  </a>
+  </a>-->
+
+  <button type="submit" class="btn follow-button" (click)="onFollow(user)" [class.btn-primary]="!following" [class.btn-success]="following">{{followButtonText}}</button>
+
 </div>
