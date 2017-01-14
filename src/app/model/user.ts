@@ -4,6 +4,7 @@ export class User {
     userID: string;
     firstName: string;
     lastName: string;
+    email: string;
     cartProducts: CartProduct[] = [];
 
     constructor(obj) {

@@ -46,7 +46,7 @@ export class CartService {
     if (null != product.productId) {
       searchParams.set('productId', '' + product.productId);
     } else {
-      searchParams.set('retailer', '' + product.retailer);
+      searchParams.set('retailer', '' + product.retailerId);
       searchParams.set('sku', '' + product.sku);
     }
 

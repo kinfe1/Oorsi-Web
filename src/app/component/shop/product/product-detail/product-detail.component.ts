@@ -1,3 +1,4 @@
+import { WishlistService } from '../../../../service/wishlist.service';
 import { ADDED_TO_CART, ADD_TO_CART } from './../../../../const';
 import { CartService } from './../../../../service/cart/cart.service';
 import { ProductService } from './../../../../service/product/product.service';
@@ -19,24 +20,32 @@ export class ProductDetailComponent implements OnInit {
 
     private subscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService) {
-
-        this.subscription = this.route.params.subscribe(
-            (param: any) => {
-                this.productService.getProduct(param['sku'])
-                    .subscribe(
-                    data => {
-                        this.product = data.json();
-                        this.loadRelatedProducts();
-                    }
-                    )
-            }
-        );
+    constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService, private wishlistService: WishlistService) {
     }
 
     ngOnInit() {
-
-
+        this.subscription = this.route.params.subscribe(
+            (param: any) => {
+                if (param['id'] != undefined) {
+                    this.productService.getProductById(param['id'])
+                        .subscribe(
+                        data => {
+                            this.product = data;
+                            this.loadRelatedProducts();
+                        }
+                        )
+                }
+                else {
+                    this.productService.getProductBySku(param['retailer'], param['sku'])
+                        .subscribe(
+                        data => {
+                            this.product = data;
+                            this.loadRelatedProducts();
+                        }
+                        )
+                }
+            }
+        );
     }
 
     ngOnDestroy() {
@@ -56,4 +65,10 @@ export class ProductDetailComponent implements OnInit {
     addToCart(product: Product) {
         this.cartService.addProductToCart(product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
     }
+
+    addToWishlist(product: Product) {
+        this.wishlistService.addProductToWishlist(product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+    }
 }
+
+

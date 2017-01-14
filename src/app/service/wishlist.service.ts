@@ -2,7 +2,7 @@ import { Product } from './../model/product';
 import { WishListProduct } from './../model/wishlistproduct';
 import { AuthService } from './auth/auth.service';
 import { Injectable } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
+import { Http, Headers, URLSearchParams, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { OORSI_API_ENDPOINT } from '../const';
 
@@ -28,6 +28,21 @@ export class WishlistService {
     }
 
     addProductToWishlist(product: Product) {
+
+        let headers: Headers = new Headers();
+        this.authService.addAuthHeader(headers);
+
+        let searchParams = new URLSearchParams();
+
+        if (null != product.productId) {
+            searchParams.set('productId', '' + product.productId);
+        } else {
+            searchParams.set('retailer', '' + product.retailerId);
+            searchParams.set('sku', '' + product.sku);
+        }
+
+        return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', undefined, { headers: headers, search: searchParams }).map((response: Response) => response.json());
+
 
     }
 

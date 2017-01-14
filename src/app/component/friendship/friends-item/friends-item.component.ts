@@ -2,7 +2,7 @@ import { OORSI_API_ENDPOINT } from './../../../const';
 import { AuthService } from './../../../service/auth/auth.service';
 import { User } from './../../../model/user';
 
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { FriendshipService } from '../../../service/friendship/friendship.service';
 
@@ -11,7 +11,7 @@ import { FriendshipService } from '../../../service/friendship/friendship.servic
   templateUrl: './friends-item.component.html',
   styleUrls: ['./friends-item.component.css']
 })
-export class FriendsItemComponent implements OnInit, OnChanges {
+export class FriendsItemComponent  {
 
   @Input() user: User;
 
@@ -21,18 +21,7 @@ export class FriendsItemComponent implements OnInit, OnChanges {
 
   constructor(private friendshipService: FriendshipService) { }
 
-  ngOnInit() {
-    console.log("FriendsItemComponent.ngOnInit")
-
-  }
-
-  ngOnChanges() {
-    console.log("FriendsItemComponent.ngOnChanges")
-    
-  }
-
   ngDoCheck() {
-    console.log("FriendsItemComponent.ngDoCheck")
     if (this.following) {
       this.followButtonText = "Following";
     } else {

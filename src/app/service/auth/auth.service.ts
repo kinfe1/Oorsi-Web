@@ -1,7 +1,8 @@
+import { User } from '../../model/user';
 import { Observable, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { CanActivate, Router } from '@angular/router';
-import { Http, Jsonp, Response, Headers } from '@angular/http';
+import { Http, Jsonp, Response, Headers, URLSearchParams } from '@angular/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { OORSI_API_ENDPOINT } from '../../const';
 
@@ -31,10 +32,6 @@ export class AuthService implements CanActivate {
         // not logged in so redirect to login page
         this.router.navigate(['/login']);
         return false;
-    }
-
-    signup(firstName: string, lastName: string, lastname: string, email: string, password: string, confirmPassword: string) {
-
     }
 
     login(username: string, password: string): Observable<boolean> {
@@ -81,6 +78,40 @@ export class AuthService implements CanActivate {
                     return false;
                 }
             });
+    }
+
+    facebookLogin(accessToken: string): Observable<boolean> {
+        return this.http.post(OORSI_API_ENDPOINT + 'fbLogin', accessToken)
+            .map((response: Response) => {
+
+                // login successful if there's a jwt token in the response
+                let token = response.json() && response.json().token;
+                if (token) {
+
+
+                    // store username and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', token);
+
+                    this.isLoggedIn.emit(this.canActivate());
+
+                    // return true to indicate successful login
+                    return true;
+                } else {
+                    this.isLoggedIn.emit(this.canActivate());
+                    // return false to indicate failed login
+                    return false;
+                }
+
+            });
+    }
+
+    getFBUserInfo(accessToken): Observable<User> {
+        console.log(accessToken);
+        return this.http.post(OORSI_API_ENDPOINT + 'fbUserInfo', accessToken)
+            .map((response: Response) => {
+                return response.json();
+            });
+
     }
 
     logout(): void {

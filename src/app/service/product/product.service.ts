@@ -16,10 +16,18 @@ export class ProductService {
         return this.http.get(OORSI_API_ENDPOINT + 'product/search?s=' + s + '&page=1', headers);
     }
 
-    public getProduct(sku: string): Observable<any> {
+    public getProductById(id?: number): Observable<any> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.get(OORSI_API_ENDPOINT + 'product/id/' + id, headers).map((response: Response) => response.json());
+    }
+
+    public getProductBySku(retailer: number, sku: string): Observable<any> {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.get(OORSI_API_ENDPOINT + 'product/sku/' + sku, headers).map((response: Response) => response.json());
+
+        return this.http.get(OORSI_API_ENDPOINT + 'product/retailer/' + retailer + "/sku/" + sku, headers).map((response: Response) => response.json());
     }
 
     public getProducts(products: Product[]): Observable<any> {

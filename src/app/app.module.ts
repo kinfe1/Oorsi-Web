@@ -36,7 +36,7 @@ import { FriendListComponent } from './component/friendship/friend-list/friend-l
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/news", pathMatch: "full" },
-    { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
+    { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "retailer/:retailer/sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [AuthService] },
     { path: 'friends', component: FriendshipComponent, canActivate: [AuthService], children: [{ path: "", component: FriendListComponent }, { path: "search", component: FriendSearchComponent }] },
     { path: 'wishlist', component: WishlistComponent, canActivate: [AuthService] },

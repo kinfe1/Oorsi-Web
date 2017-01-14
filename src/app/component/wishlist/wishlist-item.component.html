@@ -1,9 +1,9 @@
 <div class="item">
-  <a routerLink="/shop/sku/{{wishlistProduct?.product.sku}}" class="item-thumb">
+  <a routerLink="/shop/product/{{wishlistProduct?.product.productId}}" class="item-thumb">
     <img src="{{wishlistProduct?.product.largeImage}}" alt="Item">
   </a>
   <div class="item-details">
-    <a routerLink="/shop/sku/{{wishlistProduct?.product.sku}}">
+    <a routerLink="/shop/id/{{wishlistProduct?.product.productId}}">
       <h4 class="item-title"><a>{{wishlistProduct?.product.name}}</a></h4>
     </a>
     <label class=" item-price">{{wishlistProduct?.product.salePrice}}</label>
