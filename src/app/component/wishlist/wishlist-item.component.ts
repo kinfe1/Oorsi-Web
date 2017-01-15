@@ -1,7 +1,7 @@
 import { ADDED_TO_CART } from './../../const';
 import { Product } from './../../model/product';
 import { WishListProduct } from './../../model/wishlistproduct';
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from '@angular/core';
 import { CartService } from '../../service/cart/cart.service';
 import { ADD_TO_CART } from '../../const';
 
@@ -10,7 +10,7 @@ import { ADD_TO_CART } from '../../const';
   templateUrl: './wishlist-item.component.html',
   styleUrls: ['./wishlist-item.component.css']
 })
-export class WishlistItemComponent implements OnInit {
+export class WishlistItemComponent implements OnInit, OnChanges {
 
   addToCartButton: string = ADD_TO_CART;
 
@@ -22,6 +22,10 @@ export class WishlistItemComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
+    console.log(this.wishlistProduct);
   }
 
   onDelete(wishlistProduct: WishListProduct) {

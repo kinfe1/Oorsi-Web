@@ -297,7 +297,7 @@
   </div>
   <!-- .tab-content -->
 </section>
-<section class="container padding-top padding-bottom" *ngIf="product?.frequentlyPurchasedWith.length!=0">
+<section class="container padding-top padding-bottom" *ngIf="product?.frequentlyPurchasedWith?.length!=0">
   <hr>
   <h3 class="padding-top">Frequently Purchsed With</h3>
   <div class="row padding-top">
@@ -306,7 +306,7 @@
   <!-- .row -->
 </section>
 
-<section class="container padding-top padding-bottom" *ngIf="product?.relatedProducts.length!=0">
+<section class="container padding-top padding-bottom" *ngIf="product?.relatedProducts?.length!=0">
   <hr>
   <h3 class="padding-top">Related Products</h3>
   <div class="row padding-top">

@@ -17,20 +17,10 @@ export class LoginComponent implements OnInit {
 
 
     constructor(private authService: AuthService, private router: Router) {
-        FB.init({
-            appId: '611971595616628',
-            cookie: false,  // enable cookies to allow the server to access
-            // the session
-            xfbml: true,  // parse social plugins on this page
-            version: 'v2.5' // use graph api version 2.5
-        });
+
     }
 
-    ngOnInit() {
-        FB.getLoginStatus(response => {
-            this.statusChangeCallback(response);
-        });
-    }
+    ngOnInit() { }
 
     onLogin(ngForm: NgForm) {
 
@@ -49,28 +39,20 @@ export class LoginComponent implements OnInit {
     onFacebookLoginClick() {
         FB.login(response => {
             if (response.status === 'connected') {
-                this.authService.facebookLogin(response.authResponse.accessToken).subscribe(data => {
-                    if (data === true) {
-                        // login successful
-                        this.router.navigate(['/']);
-                    } else {
-                        this.router.navigate(['/register'], { skipLocationChange: true, queryParams: { fbat: response.authResponse.accessToken } });
-                    }
-                });
+                this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
+                    data => {
+                        if (data === true) {
+                            // login successful
+                            this.router.navigate(['/']);
+                        } else {
+                            this.router.navigate(['/register'], { skipLocationChange: true, queryParams: { fbat: response.authResponse.accessToken } });
+                        }
+                    }, err => location.reload);
             }
-        });
+        }, { scope: 'email,user_friends' });
     }
 
-    statusChangeCallback(response) {
-        console.log(response);
-        if (response.status === 'connected') {
-            this.authService.facebookLogin(response.authResponse.accessToken).subscribe(data => console.log(data));
-        } else if (response.status === 'not_authorized') {
 
-        } else {
-
-        }
-    }
 
 
 

@@ -15,6 +15,8 @@ export class AuthService implements CanActivate {
 
     public isLoggedIn: EventEmitter<boolean>;
 
+    public fbat: string;
+
     constructor(private http: Http, private router: Router) {
         this.isLoggedIn = new EventEmitter();
         this.isLoggedIn.emit(this.canActivate());
@@ -106,7 +108,6 @@ export class AuthService implements CanActivate {
     }
 
     getFBUserInfo(accessToken): Observable<User> {
-        console.log(accessToken);
         return this.http.post(OORSI_API_ENDPOINT + 'fbUserInfo', accessToken)
             .map((response: Response) => {
                 return response.json();

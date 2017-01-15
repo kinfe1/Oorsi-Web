@@ -31,6 +31,7 @@ export class ProductDetailComponent implements OnInit {
                         .subscribe(
                         data => {
                             this.product = data;
+                            console.log(this.product);
                             this.loadRelatedProducts();
                         }
                         )
@@ -40,6 +41,7 @@ export class ProductDetailComponent implements OnInit {
                         .subscribe(
                         data => {
                             this.product = data;
+                            console.log(this.product);
                             this.loadRelatedProducts();
                         }
                         )
@@ -53,10 +55,11 @@ export class ProductDetailComponent implements OnInit {
     }
 
     private loadRelatedProducts() {
+        console.log("loadRelatedProducts");
         if (this.product) {
-            if (this.product.frequentlyPurchasedWith.length > 0)
+            if (null != this.product.frequentlyPurchasedWith && this.product.frequentlyPurchasedWith.length > 0)
                 this.productService.getProducts(this.product.frequentlyPurchasedWith).subscribe(data => this.product.frequentlyPurchasedWith = data.json());
-            if (this.product.relatedProducts.length > 0)
+            if (null != this.product.relatedProducts && this.product.relatedProducts.length > 0)
                 this.productService.getProducts(this.product.relatedProducts).subscribe(data => this.product.relatedProducts = data.json());
         }
 

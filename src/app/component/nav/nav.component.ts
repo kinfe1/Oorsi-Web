@@ -2,6 +2,8 @@ import { AuthService } from './../../service/auth/auth.service';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { CartService } from '../../service/cart/cart.service';
 
+declare const FB: any;
+
 @Component({
   selector: 'oorsi-web-nav',
   templateUrl: './nav.component.html',
@@ -12,8 +14,16 @@ export class NavComponent implements OnInit, OnChanges {
   cartSize: number = 0;
 
 
-  constructor(private authService: AuthService, private cartService: CartService) {
 
+
+  constructor(private authService: AuthService, private cartService: CartService) {
+    FB.init({
+      appId: '611971595616628',
+      cookie: false,  // enable cookies to allow the server to access
+      // the session
+      xfbml: true,  // parse social plugins on this page
+      version: 'v2.5' // use graph api version 2.5
+    });
   }
 
   loggedIn: boolean = false;
