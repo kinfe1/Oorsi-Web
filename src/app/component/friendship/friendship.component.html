@@ -1,14 +1,22 @@
 <!-- Shop Bar -->
 <div class="shop-bar space-top-half">
     <!-- .column -->
-    <div class="column">
-        <form class="search-box" (ngSubmit)="onSearch()">
-            <input type="text" class="form-control" placeholder="Search OOrsi Friends" [(ngModel)]="searchString" name="s">
-            <button type="submit">
+    <div class="column row">
+        <div class=" col-sm-offset-2 col-sm-6">
+            <form class="search-box" (ngSubmit)="onSearch()">
+                <input type="text" class="form-control" placeholder="Search OOrsi Friends" [(ngModel)]="searchString" name="s">
+                <button type="submit">
                   <i class="material-icons search"></i>
                 </button>
-        </form>
+            </form>
+        </div>
         <!-- form.search-box -->
+        <div class="col-sm-4">
+            <a class="social-signup-btn ssb-facebook" (click)="onFacebookFriendSearch()">
+                <i class="socicon-facebook"></i>
+                <span>Search Facebook Friends</span>
+            </a>
+        </div>
     </div>
     <!-- .column -->
 </div>

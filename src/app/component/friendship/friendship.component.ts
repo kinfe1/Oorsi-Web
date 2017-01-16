@@ -30,4 +30,8 @@ export class FriendshipComponent implements OnInit {
     this.router.navigate(['/friends/search'], { queryParams: { s: this.searchString } });
   }
 
+  onFacebookFriendSearch() {
+    this.router.navigate(['/friends/fb']);
+  }
+
 }

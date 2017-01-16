@@ -4,7 +4,7 @@
     <form class="login-form row" #f="ngForm" (ngSubmit)="onSubmit(f)">
       <input type="text" class="form-control col-sm-6" placeholder="First Name" required [ngModel]="user?.firstName" name="firstName">
       <input type="text" class="form-control col-sm-6" placeholder="Last Name" required [ngModel]="user?.lastName" name="lastName">
-      <input type="email" class="form-control" placeholder="E-mail" required ngModel name="email">
+      <input type="email" class="form-control" placeholder="E-mail" required [ngModel]="user?.email" name="email">
       <input type="password" class="form-control" placeholder="Password" required ngModel name="password">
       <input type="password" class="form-control" placeholder="Repeat password" required ngModel name="confirmPassword">
 

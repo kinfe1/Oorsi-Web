@@ -1,8 +1,97 @@
 .follow-button{
+  color: #606060;
+}
+
+.follow-button-div{
+text-align: right;
+}
+
+
+ .item {
+  position: relative;
+  display: table;
+  width: 100%;
+  padding-top: 0px;
+  padding-right: 45px;
+  padding-bottom: 30px;
+  padding-left: 0px;
+  border-bottom: 2px solid #ededed;
+  margin-bottom: 30px;
+}
+
+ .item .item-thumb,
+ .item .item-details {
+  display: table-cell;
+  vertical-align: top;
+}
+
+ .item .item-thumb {
+  width: 165px;
+  padding-right: 25px;
+}
+
+ .item .item-thumb > img {
+  width: 100%;
+}
+
+ .item .item-title {
+  /*font-size: 22px;*/
+  font-weight: normal;
+  margin-bottom: 12px;
+}
+
+ .item .item-title > a {
+  color: #606060;
+  text-decoration: none;
+}
+
+ .item .item-title > a:hover,  .item .item-title > a:focus {
+  color: #a6a6a6;
+  text-decoration: none;
+}
+
+ .item .item-price {
+  font-size: 18px;
+  color: #999;
+  font-weight: 500;
+}
+
+ .item .item-remove {
+  display: block;
   position: absolute;
+  width: 36px;
+  height: 36px;
   top: 0;
+  right: 0;
+  font-size: 20px;
   color: #606060;
   text-align: center;
   text-decoration: none;
+  border: 2px solid #ededed;
   border-radius: 4px;
+}
+
+ .item .item-remove > i {
+  line-height: 33px;
+}
+
+ .item .item-remove:hover {
+  color: #ef0568;
+}
+
+ .btn,  .back-btn,  .done-btn,  .search-btn {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 480px) {
+   .item {
+    padding-bottom: 20px;
+  }
+   .item .item-thumb,
+   .item .item-details {
+    display: block;
+  }
+   .item .item-thumb {
+    margin-bottom: 20px;
+  }
 }

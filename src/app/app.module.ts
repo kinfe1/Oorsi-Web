@@ -32,13 +32,15 @@ import { CartComponent } from './component/cart/cart.component';
 import { FriendshipService } from './service/friendship/friendship.service';
 import { FriendsItemComponent } from './component/friendship/friends-item/friends-item.component';
 import { FriendListComponent } from './component/friendship/friend-list/friend-list.component';
+import { FriendFbSearchComponent } from './component/friendship/friend-fb-search/friend-fb-search.component';
+import { FacebookService } from './service/fb/facebook.service';
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/news", pathMatch: "full" },
     { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "r/:retailer/sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [AuthService] },
-    { path: 'friends', component: FriendshipComponent, canActivate: [AuthService], children: [{ path: "", component: FriendListComponent }, { path: "search", component: FriendSearchComponent }] },
+    { path: 'friends', component: FriendshipComponent, canActivate: [AuthService], children: [{ path: "", component: FriendListComponent }, { path: "search", component: FriendSearchComponent }, { path: "fb", component: FriendFbSearchComponent }] },
     { path: 'wishlist', component: WishlistComponent, canActivate: [AuthService] },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
@@ -67,6 +69,7 @@ const appRoutes: Routes = [
         FriendSearchComponent,
         FriendsItemComponent,
         FriendListComponent,
+        FriendFbSearchComponent,
 
     ],
     imports: [
@@ -75,7 +78,7 @@ const appRoutes: Routes = [
         HttpModule,
         RouterModule.forRoot(appRoutes)
     ],
-    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService],
+    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

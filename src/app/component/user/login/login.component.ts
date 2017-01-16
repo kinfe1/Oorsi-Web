@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
 
     onFacebookLoginClick() {
         FB.login(response => {
+            console.log(response);
             if (response.status === 'connected') {
                 this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
                     data => {

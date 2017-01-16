@@ -1,17 +1,19 @@
-<div class="item">
-  <a routerLink="/shop/sku/{{wishlistProduct?.product.sku}}" class="item-thumb">
-    <img alt="Item">
-  </a>
-  <div class="item-details">
+<div class="item row">
+  <div class="col-sm-4 col-xs-2">
+    <a routerLink="/shop/sku/{{wishlistProduct?.product.sku}}" class="item-thumb">
+      <img alt="Item">
+    </a>
+  </div>
+  <div class="item-details col-sm-4 col-xs-6">
     <a routerLink="/u/">
-      <h4 class="item-title"><a>{{user.firstName}} {{user.lastName}}</a></h4>
+      <h6 class="item-title"><a>{{user.firstName}} {{user.lastName}}</a></h6>
     </a>
 
   </div>
   <!--<a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDelete(wishlistProduct)">
     <i class="material-icons delete"></i>
   </a>-->
-
-  <button type="submit" class="btn follow-button" (click)="onFollow(user)" [class.btn-primary]="!following" [class.btn-success]="following">{{followButtonText}}</button>
-
+  <div class="col-xs-4 follow-button-div">
+    <button type="submit" class="btn follow-button" (click)="onFollow(user)" [class.btn-primary]="!following" [class.btn-success]="following">{{followButtonText}}</button>
+  </div>
 </div>
