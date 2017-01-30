@@ -22,7 +22,7 @@
     <div class="shop-item-details">
       <h3 class="shop-item-title"><a routerLink="/shop/r/{{product.retailerId}}/sku/{{product.sku}}">{{product.name}}</a></h3>
       <span class="shop-item-price">
-                    <span class="old-price">{{product.regularPrice}}</span> {{product.salePrice}}
+                    <span class="old-price" *ngIf="product.regularPrice!=product.salePrice">{{product.regularPrice | currency:'USD':true:'1.2-2'}}</span> {{product.salePrice | currency:'USD':true:'1.2-2'}}
       </span>
     </div>
   </div>

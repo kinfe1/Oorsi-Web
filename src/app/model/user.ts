@@ -19,4 +19,12 @@ export class User {
         this.cartProducts.push(cartProduct);
     }
 
+    totalPrice(): number {
+        let sum: number = 0;
+        for (let cartProduct of this.cartProducts) {
+            sum += cartProduct.product.salePrice;
+        }
+        return sum;
+    }
+
 }

@@ -1,3 +1,4 @@
+import { User } from '../../model/user';
 import { ADDED_TO_CART } from './../../const';
 import { Product } from './../../model/product';
 import { WishListProduct } from './../../model/wishlistproduct';
@@ -32,8 +33,8 @@ export class WishlistItemComponent implements OnInit, OnChanges {
     this.onDeleteWishlistProduct.emit(wishlistProduct);
   }
 
-  addToCart(product: Product) {
-    this.cartService.addProductToCart(product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+  addToCart(product: Product, user: User) {
+    this.cartService.addProductToCart(product, user).subscribe(data => this.addToCartButton = ADDED_TO_CART);
   }
 
 

@@ -37,20 +37,22 @@ export class LoginComponent implements OnInit {
     }
 
     onFacebookLoginClick() {
-        FB.login(response => {
-            console.log(response);
-            if (response.status === 'connected') {
-                this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
-                    data => {
-                        if (data === true) {
-                            // login successful
-                            this.router.navigate(['/']);
-                        } else {
-                            this.router.navigate(['/register'], { skipLocationChange: true, queryParams: { fbat: response.authResponse.accessToken } });
-                        }
-                    }, err => location.reload);
-            }
-        }, { scope: 'email,user_friends' });
+        if (FB) {
+            FB.login(response => {
+                console.log(response);
+                if (response.status === 'connected') {
+                    this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
+                        data => {
+                            if (data === true) {
+                                // login successful
+                                this.router.navigate(['/']);
+                            } else {
+                                this.router.navigate(['/register'], { skipLocationChange: true, queryParams: { fbat: response.authResponse.accessToken } });
+                            }
+                        }, err => location.reload);
+                }
+            }, { scope: 'email,user_friends' });
+        }
     }
 
 

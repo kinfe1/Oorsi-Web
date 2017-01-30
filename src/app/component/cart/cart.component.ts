@@ -21,6 +21,7 @@ export class CartComponent implements OnInit {
         let added: boolean = false;
         for (let user of this.users) {
           if (cartProduct.forUser.userID === user.userID) {
+            cartProduct.forUser = user;
             user.cartProducts.push(cartProduct);
             added = true;
             break;
@@ -29,6 +30,7 @@ export class CartComponent implements OnInit {
 
         if (!added) {
           let user: User = new User(cartProduct.forUser);
+           cartProduct.forUser = user;
           user.cartProducts.push(cartProduct);
           this.users.push(user);
         }
@@ -40,9 +42,7 @@ export class CartComponent implements OnInit {
 
   onDeleteCartProduct(cartProduct: CartProduct) {
     this.cartService.deleteCartProduct(cartProduct).subscribe(data => {
-      for (let user of this.users) {
-        user.cartProducts.splice(user.cartProducts.indexOf(cartProduct), 1);
-      }
+      cartProduct.forUser.cartProducts.splice(cartProduct.forUser.cartProducts.indexOf(cartProduct), 1);
     });
   }
 

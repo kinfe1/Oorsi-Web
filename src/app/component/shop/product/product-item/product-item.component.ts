@@ -21,7 +21,7 @@ export class ProductItemComponent {
   constructor(private wishlistService: WishlistService, private cartService: CartService) { }
 
   addToWishlist(product: Product) {
-    this.wishlistService.addProductToWishlist(product);
+    this.wishlistService.addProductToWishlist(product).subscribe();
   }
 
   addToCart(product: Product) {

@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
 import { Product } from '../../model/product';
+import { User } from '../../model/user';
 
 @Injectable()
 export class CartService {
@@ -37,7 +38,7 @@ export class CartService {
     return this.http.delete(OORSI_API_ENDPOINT + 'cart/remove', { headers: headers, search: searchParams });
   }
 
-  addProductToCart(product: Product, to?: number) {
+  addProductToCart(product: Product, to?: User) {
     let headers: Headers = new Headers();
     this.authService.addAuthHeader(headers);
 
@@ -51,7 +52,7 @@ export class CartService {
     }
 
     if (to) {
-      searchParams.set('to', '' + to);
+      searchParams.set('to', '' + to.userID);
     }
 
     return this.http.post(OORSI_API_ENDPOINT + 'cart/add', undefined, { headers: headers, search: searchParams }).map((response: Response) => response.json());
