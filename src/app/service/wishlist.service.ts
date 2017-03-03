@@ -1,3 +1,4 @@
+import { AuthHttp } from 'angular2-jwt';
 import { Product } from './../model/product';
 import { WishListProduct } from './../model/wishlistproduct';
 import { AuthService } from './auth/auth.service';
@@ -9,28 +10,22 @@ import { OORSI_API_ENDPOINT } from '../const';
 @Injectable()
 export class WishlistService {
 
-    constructor(private http: Http, private authService: AuthService) { }
+    constructor(private http: AuthHttp) { }
 
     getWishList(): Observable<any> {
-        let headers: Headers = new Headers();
-        this.authService.addAuthHeader(headers);
-        return this.http.get(OORSI_API_ENDPOINT + 'wishlist/json', { headers: headers });
+        return this.http.get(OORSI_API_ENDPOINT + 'wishlist/json');
     }
 
     deleteWishListProduct(wishlistProduct: WishListProduct): Observable<any> {
-        let headers: Headers = new Headers();
-        this.authService.addAuthHeader(headers);
 
         let searchParams = new URLSearchParams();
         searchParams.set('sku', '' + wishlistProduct.product.sku);
 
-        return this.http.delete(OORSI_API_ENDPOINT + 'wishlist/delete', { headers: headers, search: searchParams });
+        return this.http.delete(OORSI_API_ENDPOINT + 'wishlist/delete', { search: searchParams });
     }
 
     addProductToWishlist(product: Product) {
 
-        let headers: Headers = new Headers();
-        this.authService.addAuthHeader(headers);
 
         let searchParams = new URLSearchParams();
 
@@ -41,7 +36,7 @@ export class WishlistService {
             searchParams.set('sku', '' + product.sku);
         }
 
-        return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', undefined, { headers: headers, search: searchParams }).map((response: Response) => response.json());
+        return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', undefined, { search: searchParams }).map((response: Response) => response.json());
 
 
     }

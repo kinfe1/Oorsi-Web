@@ -33,6 +33,12 @@
       <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
         <a routerLink="/register">Register</a>
       </li>
+       <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/account"><i class="material-icons person"></i></a>
+        <ul class="sub-menu">
+          <li><a routerLink="/orders">Orders</a></li>
+        </ul>
+      </li>
     </ul>
     <!-- .menu -->
   </nav>
@@ -42,7 +48,6 @@
   <div class="toolbar">
     <div class="inner">
       <a routerLink="/wishlist"><i class="material-icons favorite_border"></i></a>
-      <a><i class="material-icons person"></i></a>
       <div class="cart-btn">
         <a routerLink="/cart">
           <i>

@@ -1,13 +1,15 @@
+import { AddressService } from './service/address/address.service';
 import { FriendSearchComponent } from './component/friendship/friend-search/friend-search.component';
 import { WishlistService } from './service/wishlist.service';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
-import { AUTH_PROVIDERS, AuthConfigConsts, AuthHttp, IAuthConfig, provideAuth } from 'angular2-jwt';
+import { AUTH_PROVIDERS, AuthConfigConsts, AuthHttp, IAuthConfig, provideAuth, AuthConfig } from 'angular2-jwt';
 import { ProductService } from './service/product/product.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { ModalModule } from 'ng2-bootstrap/modal';
 
 
 
@@ -34,6 +36,9 @@ import { FriendsItemComponent } from './component/friendship/friends-item/friend
 import { FriendListComponent } from './component/friendship/friend-list/friend-list.component';
 import { FriendFbSearchComponent } from './component/friendship/friend-fb-search/friend-fb-search.component';
 import { FacebookService } from './service/fb/facebook.service';
+import { CheckoutComponent } from './component/checkout/checkout.component';
+import { CheckoutService } from './service/checkout/checkout.service';
+import { AddressComponent } from './component/address.component';
 
 
 const appRoutes: Routes = [
@@ -46,7 +51,17 @@ const appRoutes: Routes = [
     { path: 'logout', component: LogoutComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'cart', component: CartComponent, canActivate: [AuthService] },
+    { path: 'checkout/for/:id', component: CheckoutComponent, canActivate: [AuthService] },
 ];
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+
+    return new AuthHttp(new AuthConfig({
+        headerName: 'jwt-token',
+        tokenGetter: (() => localStorage.getItem('currentUser')),
+        globalHeaders: [{ 'Content-Type': 'application/json' }],
+    }), http, options);
+}
 
 
 @NgModule({
@@ -70,15 +85,22 @@ const appRoutes: Routes = [
         FriendsItemComponent,
         FriendListComponent,
         FriendFbSearchComponent,
+        CheckoutComponent,
+        AddressComponent,
 
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes), ModalModule.forRoot()
     ],
-    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService],
+    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService, CheckoutService, AddressService,
+        {
+            provide: AuthHttp,
+            useFactory: authHttpServiceFactory,
+            deps: [Http, RequestOptions]
+        }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

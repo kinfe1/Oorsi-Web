@@ -7,29 +7,27 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
 import { Product } from '../../model/product';
 import { User } from '../../model/user';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class CartService {
 
-  constructor(private http: Http, private authService: AuthService) { }
+  constructor(private http: AuthHttp) { }
 
   getCart(): Observable<CartProduct[]> {
     let headers: Headers = new Headers();
-    this.authService.addAuthHeader(headers);
 
     return this.http.get(OORSI_API_ENDPOINT + 'cart/products', { headers: headers }).map((response: Response) => response.json());
   }
 
   getCartSize(): Observable<number> {
     let headers: Headers = new Headers();
-    this.authService.addAuthHeader(headers);
 
     return this.http.get(OORSI_API_ENDPOINT + 'cart/size', { headers: headers }).map((response: Response) => response.json());
   }
 
   deleteCartProduct(cartProduct: CartProduct): Observable<any> {
     let headers: Headers = new Headers();
-    this.authService.addAuthHeader(headers);
 
     let searchParams = new URLSearchParams();
     searchParams.set('forId', '' + cartProduct.forUser.userID);
@@ -40,7 +38,6 @@ export class CartService {
 
   addProductToCart(product: Product, to?: User) {
     let headers: Headers = new Headers();
-    this.authService.addAuthHeader(headers);
 
     let searchParams = new URLSearchParams();
 
@@ -55,7 +52,10 @@ export class CartService {
       searchParams.set('to', '' + to.userID);
     }
 
-    return this.http.post(OORSI_API_ENDPOINT + 'cart/add', undefined, { headers: headers, search: searchParams }).map((response: Response) => response.json());
+    return this.http.post(OORSI_API_ENDPOINT + 'cart/add', null, { headers: headers, search: searchParams }).map(
+      (response: Response) => {
+        response.json()
+      });
   }
 
 

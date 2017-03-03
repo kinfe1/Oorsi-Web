@@ -9,12 +9,11 @@ import { User } from '../../model/user';
 @Injectable()
 export class FriendshipService {
 
-    constructor(private http: Http, private authService: AuthService) { }
+    constructor(private http: AuthHttp) { }
 
     public search(s: string): Observable<User[]> {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.authService.addAuthHeader(headers);
         return this.http.get(OORSI_API_ENDPOINT + 'friends/search?s=' + s, { headers: headers }).map((response: Response) => response.json());
     }
 
@@ -22,7 +21,6 @@ export class FriendshipService {
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.authService.addAuthHeader(headers);
         return this.http.get(OORSI_API_ENDPOINT + 'friends', { headers: headers }).map((response: Response) => response.json());
 
     }
@@ -37,7 +35,6 @@ export class FriendshipService {
 
     public sendFollowUnfollowRequest(user: User, url: string) {
         let headers: Headers = new Headers();
-        this.authService.addAuthHeader(headers);
 
         let searchParams = new URLSearchParams();
         searchParams.append("friendID", user.userID);

@@ -1,0 +1,70 @@
+<section class="container padding-top-3x padding-bottom">
+
+
+  <div class="row padding-top" *ngIf="user">
+    <h1 class="space-top-half">Checkout for</h1>
+    <!-- Cart -->
+    <div class="col-sm-8 padding-bottom-2x">
+      <div>
+        <h3 class="toolbar-title">{{user?.firstName}} {{user?.lastName}}</h3>
+        <p class="text-sm">
+          <span class="text-gray">Currently</span> {{user?.cartProducts.length}} items
+          <span class="text-gray"> in cart</span>
+        </p>
+        <div class="shopping-cart">
+          <!-- Item -->
+          <div class="item" *ngFor="let cartProduct of  user.cartProducts">
+            <a routerLink="/shop/id/{{cartProduct?.product.productId}}" class="item-thumb">
+              <img src="{{cartProduct.product.largeImage}}" alt="Item">
+            </a>
+            <div class="item-details">
+              <h5 class="item-title"><a routerLink="/shop/id/{{cartProduct.product.productId}}">{{cartProduct.product.name}}</a></h5>
+              <h6 class="item-price">{{cartProduct.product.salePrice | currency:'USD':true:'1.2-2'}}</h6>
+              <div class="count-input">
+                <a class="incr-btn" data-action="decrease" (click)="decrease(cartProduct)">–</a>
+                <input class="quantity" type="text" value="1">
+                <a class="incr-btn" data-action="increase" (click)="increase(cartProduct)">+</a>
+              </div>
+            </div>
+            <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDeleteCartProduct(cartProduct)">
+              <i class="material-icons remove_shopping_cart"></i>
+            </a>
+          </div>
+          <!-- .item -->
+
+        </div>
+        <!-- .shopping-cart -->
+      </div>
+    </div>
+    <!-- .col-sm-8 -->
+
+    <div class="col-sm-4 padding-bottom-2x">
+      <form>
+        <aside>
+          <h3 class="toolbar-title">Cart subtotal:</h3>
+          <h4 class="amount">{{user?.totalPrice()| currency:'USD':true:'1.2-2'}}</h4>
+          <a href="#" class="btn btn-default btn-block waves-effect waves-light">Update Cart</a>
+          <a href="checkout.html" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Checkout</a>
+        </aside>
+        <aside>
+          <div>
+            <div>Ship to</div>
+            <select id="shipToDropDown" class="form-control" [(ngModel)]="shipTo" name="shipTo">
+							<option value="2">Anteneh Negash</option>
+							<option value="1">Me</option>
+						</select>
+            <div id="shippingAddressDiv" *ngIf="shipTo==1">
+              <span>Shipping Address</span>
+              <select id="shippingAddress" class="form-control" *ngIf="addresses.size>0">
+                <option *ngFor="let address of addresses" value="{{address.id}}">{{address.formattedAddress}}</option>
+                </select>
+              <a data-toggle="modal" data-target="#addressModal" class="btn btn-ghost btn-sm btn-info waves-effect waves-light">Add New Shipping Address</a>
+            </div>
+          </div>
+        </aside>
+      </form>
+    </div>
+
+  </div>
+  <!-- .row -->
+</section>
