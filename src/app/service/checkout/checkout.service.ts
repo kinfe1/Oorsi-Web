@@ -13,8 +13,7 @@ export class CheckoutService {
     constructor(private http: AuthHttp) { }
 
     getCheckoutProducts(forUser?: number): Observable<CartProduct[]> {
-        let headers: Headers = new Headers();
-        return this.http.get(OORSI_API_ENDPOINT + 'checkout/products/' + forUser, { headers: headers }).map((response: Response) => response.json());
+        return this.http.get(OORSI_API_ENDPOINT + 'checkout/products/' + forUser).map((response: Response) => response.json());
     }
 
 

@@ -1,3 +1,4 @@
+import { PaymentService } from './service/payment.service';
 import { AddressService } from './service/address/address.service';
 import { FriendSearchComponent } from './component/friendship/friend-search/friend-search.component';
 import { WishlistService } from './service/wishlist.service';
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'cart', component: CartComponent, canActivate: [AuthService] },
     { path: 'checkout/for/:id', component: CheckoutComponent, canActivate: [AuthService] },
-     { path: 'address', component: AddressComponent},
+    { path: 'address', component: AddressComponent },
 ];
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -98,7 +99,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpModule,
         RouterModule.forRoot(appRoutes), ModalModule.forRoot(), ReactiveFormsModule
     ],
-    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService, CheckoutService, AddressService,
+    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService, CheckoutService, AddressService, PaymentService,
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,

@@ -1,3 +1,4 @@
+import { PaymentService } from '../../service/payment.service';
 import { Address } from 'cluster';
 import { Subscription } from 'rxjs/Rx';
 import { User } from './../../model/user';
@@ -6,6 +7,7 @@ import { CartProduct } from './../../model/cartProduct';
 import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { CheckoutService } from '../../service/checkout/checkout.service';
 import { AddressService } from '../../service/address/address.service';
+import { Card } from '../../model/card';
 
 @Component({
     selector: 'oorsi-web-checkout',
@@ -18,9 +20,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     user: User;
     shipTo: number = 2;
-    addresses: Address[];
 
-    constructor(private route: ActivatedRoute, private checkoutService: CheckoutService, private addressService: AddressService) { }
+    addresses: Address[];
+    paymentMethods: Card[];
+
+    constructor(private route: ActivatedRoute, private checkoutService: CheckoutService, private addressService: AddressService, private paymentService: PaymentService) { }
 
     ngOnInit() {
         this.subscription = this.route.params.subscribe(
@@ -41,6 +45,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         );
 
         this.addressService.getAllAddresses().subscribe(data => this.addresses = data);
+        this.paymentService.getAllPayments().subscribe(data => this.paymentMethods = data);
 
     }
 
@@ -48,9 +53,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.subscription.unsubscribe();
     }
 
-
-
-    onAddressEmit(address: Address) {
+    onAddressSaved(address: Address) {
         this.addresses.push(address);
+    }
+
+    onPaymentSaved(card: Card) {
+        this.paymentMethods.push(card);
     }
 }

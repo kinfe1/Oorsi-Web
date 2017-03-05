@@ -21,14 +21,14 @@ export class AddressComponent implements OnInit {
     constructor(private addressService: AddressService, fb: FormBuilder) {
 
         this.complexForm = fb.group({
-            'firstName': ["Anteneh", Validators.required],
-            'lastName': ["Negash", Validators.required],
-            'address1': ["1501 N highview ln", Validators.required],
-            'address2': [],
-            'city': ["Alexandria", Validators.required],
-            'state': ["VA", Validators.required],
-            'zip': ["22311", [Validators.required]],
-            'phone': ["5713149223", [Validators.required]]
+            'firstName': ["", Validators.required],
+            'lastName': ["", Validators.required],
+            'address1': ["", Validators.required],
+            'address2': [""],
+            'city': ["", Validators.required],
+            'state': ["", Validators.required],
+            'zip': ["", [Validators.required]],
+            'phone': ["", [Validators.required]]
 
         })
     }
@@ -59,7 +59,7 @@ export class AddressComponent implements OnInit {
     }
 
     onCancel() {
-        this.cancel.emit(null);
+        this.cancel.emit();
     }
 
 }

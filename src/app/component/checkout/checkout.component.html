@@ -35,34 +35,45 @@
         </div>
         <!-- .shopping-cart -->
       </div>
+      <div>
+        <h3 class="toolbar-title">Cart subtotal:</h3>
+        <h4 class="amount">{{user?.totalPrice()| currency:'USD':true:'1.2-2'}}</h4>
+        <a href="#" class="btn btn-default btn-block waves-effect waves-light">Update Cart</a>
+        <a href="checkout.html" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Checkout</a>
+      </div>
     </div>
     <!-- .col-sm-8 -->
 
     <div class="col-sm-4 padding-bottom-2x">
-      <form>
-        <aside>
-          <h3 class="toolbar-title">Cart subtotal:</h3>
-          <h4 class="amount">{{user?.totalPrice()| currency:'USD':true:'1.2-2'}}</h4>
-          <a href="#" class="btn btn-default btn-block waves-effect waves-light">Update Cart</a>
-          <a href="checkout.html" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Checkout</a>
-        </aside>
-        <aside>
-          <div>
-            <div>Ship to</div>
-            <select id="shipToDropDown" class="form-control" [(ngModel)]="shipTo" name="shipTo">
+      <aside>
+        <div>
+          <div>Ship to</div>
+          <select id="shipToDropDown" class="form-control" [(ngModel)]="shipTo" name="shipTo">
 							<option value="2">Anteneh Negash</option>
 							<option value="1">Me</option>
 						</select>
-            <div id="shippingAddressDiv" *ngIf="shipTo==1">
-              <span>Shipping Address</span>
-              <select id="shippingAddress" class="form-control">
+          <div id="shippingAddressDiv" *ngIf="shipTo==1">
+            <span>Shipping Address</span>
+            <select id="shippingAddress" class="form-control">
                 <option *ngFor="let address of addresses" value="{{address.id}}">{{address.formattedAddress}}</option>
                 </select>
-              <a data-toggle="modal" data-target="#addressModal" (click)="lgModal.show()" class="btn btn-ghost btn-sm btn-info waves-effect waves-light">Add New Shipping Address</a>
-            </div>
+            <a data-toggle="modal" data-target="#addressModal" (click)="addressModal.show()" class="btn btn-ghost btn-sm btn-info waves-effect waves-light">Add New Shipping Address</a>
           </div>
-        </aside>
-      </form>
+        </div>
+      </aside>
+
+      <aside>
+        <div>
+          <div>Payment Method</div>
+          <div>
+            <span>Select Payment Method</span>
+            <select class="form-control">
+                <option *ngFor="let card of paymentMethods" value="{{card.id}}">{{card.brand}} ending in {{card.last4}}</option>
+                </select>
+            <a data-toggle="modal" data-target="#paymentModal" (click)="paymentModal.show()" class="btn btn-ghost btn-sm btn-info waves-effect waves-light">Add New Payment Method</a>
+          </div>
+        </div>
+      </aside>
     </div>
 
   </div>
@@ -70,6 +81,13 @@
 </section>
 
 
-<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <oorsi-web-address (save)="onAddressEmit($event);lgModal.hide();" (cancel)="lgModal.hide()"></oorsi-web-address>
+<div bsModal #addressModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <oorsi-web-address (save)="onAddressSaved($event);addressModal.hide();" (cancel)="addressModal.hide()"></oorsi-web-address>
+</div>
+
+
+<div bsModal #paymentModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <oorsi-web-payment (save)="onPaymentSaved($event);paymentModal.hide();" (cancel)="paymentModal.hide()"></oorsi-web-payment>
 </div>
