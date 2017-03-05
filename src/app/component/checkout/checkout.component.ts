@@ -12,7 +12,7 @@ import { AddressService } from '../../service/address/address.service';
     templateUrl: './checkout.component.html',
     styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit, OnDestroy, OnChanges {
+export class CheckoutComponent implements OnInit, OnDestroy {
 
     private subscription: Subscription;
 
@@ -48,7 +48,9 @@ export class CheckoutComponent implements OnInit, OnDestroy, OnChanges {
         this.subscription.unsubscribe();
     }
 
-    ngOnChanges() {
 
+
+    onAddressEmit(address: Address) {
+        this.addresses.push(address);
     }
 }

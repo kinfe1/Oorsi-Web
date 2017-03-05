@@ -6,7 +6,7 @@ import { AUTH_PROVIDERS, AuthConfigConsts, AuthHttp, IAuthConfig, provideAuth, A
 import { ProductService } from './service/product/product.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, RequestOptions, Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ModalModule } from 'ng2-bootstrap/modal';
@@ -38,7 +38,8 @@ import { FriendFbSearchComponent } from './component/friendship/friend-fb-search
 import { FacebookService } from './service/fb/facebook.service';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { CheckoutService } from './service/checkout/checkout.service';
-import { AddressComponent } from './component/address.component';
+import { AddressComponent } from './component/address/address.component';
+import { PaymentComponent } from './component/payment/payment.component';
 
 
 const appRoutes: Routes = [
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'cart', component: CartComponent, canActivate: [AuthService] },
     { path: 'checkout/for/:id', component: CheckoutComponent, canActivate: [AuthService] },
+     { path: 'address', component: AddressComponent},
 ];
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -87,13 +89,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         FriendFbSearchComponent,
         CheckoutComponent,
         AddressComponent,
+        PaymentComponent,
 
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes), ModalModule.forRoot()
+        RouterModule.forRoot(appRoutes), ModalModule.forRoot(), ReactiveFormsModule
     ],
     providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService, CheckoutService, AddressService,
         {

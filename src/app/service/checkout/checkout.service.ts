@@ -5,6 +5,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { CartProduct } from '../../model/cartProduct';
 import { Observable } from 'rxjs/Rx';
+import { Address } from 'cluster';
 
 @Injectable()
 export class CheckoutService {
@@ -15,5 +16,7 @@ export class CheckoutService {
         let headers: Headers = new Headers();
         return this.http.get(OORSI_API_ENDPOINT + 'checkout/products/' + forUser, { headers: headers }).map((response: Response) => response.json());
     }
+
+
 
 }

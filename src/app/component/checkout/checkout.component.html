@@ -55,10 +55,10 @@
 						</select>
             <div id="shippingAddressDiv" *ngIf="shipTo==1">
               <span>Shipping Address</span>
-              <select id="shippingAddress" class="form-control" *ngIf="addresses.size>0">
+              <select id="shippingAddress" class="form-control">
                 <option *ngFor="let address of addresses" value="{{address.id}}">{{address.formattedAddress}}</option>
                 </select>
-              <a data-toggle="modal" data-target="#addressModal" class="btn btn-ghost btn-sm btn-info waves-effect waves-light">Add New Shipping Address</a>
+              <a data-toggle="modal" data-target="#addressModal" (click)="lgModal.show()" class="btn btn-ghost btn-sm btn-info waves-effect waves-light">Add New Shipping Address</a>
             </div>
           </div>
         </aside>
@@ -68,3 +68,8 @@
   </div>
   <!-- .row -->
 </section>
+
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <oorsi-web-address (save)="onAddressEmit($event);lgModal.hide();" (cancel)="lgModal.hide()"></oorsi-web-address>
+</div>
