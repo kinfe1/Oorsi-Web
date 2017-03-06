@@ -50,8 +50,8 @@
   <div class="container">
     <div class="product-info padding-top-2x text-center">
       <h5 class="h5 space-bottom-half"> {{product?.name}}</h5>
-      <h6>{{product?.salePrice}}</h6>
-      <s>{{product?.regularPrice}}</s>
+      <h6>{{product?.salePrice| currency:'USD':true:'1.2-2'}}</h6>
+      <s>{{product?.regularPrice}| currency:'USD':true:'1.2-2'}</s>
       <p class="text-sm text-gray">{{product?.shortDescription}}</p>
       <div class="product-meta">
         <div class="product-sku">

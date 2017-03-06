@@ -25,10 +25,4 @@ export class PaymentService {
     return this.authHttp.get(OORSI_API_ENDPOINT + 'payment/all').map((response: Response) => response.json());
   }
 
-
-
-
-
-
-
 }

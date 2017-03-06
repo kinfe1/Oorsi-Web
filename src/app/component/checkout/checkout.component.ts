@@ -21,10 +21,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     user: User;
     shipTo: number = 2;
 
+    shippingAddress: number;
+    paymentMethod: string;
+
     addresses: Address[];
     paymentMethods: Card[];
 
-    constructor(private route: ActivatedRoute, private checkoutService: CheckoutService, private addressService: AddressService, private paymentService: PaymentService) { }
+    constructor(private route: ActivatedRoute, private router: Router, private checkoutService: CheckoutService, private addressService: AddressService, private paymentService: PaymentService) { }
 
     ngOnInit() {
         this.subscription = this.route.params.subscribe(
@@ -59,5 +62,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     onPaymentSaved(card: Card) {
         this.paymentMethods.push(card);
+    }
+
+    submitOrder() {
+        this.checkoutService.submitOrder(this.user.userID, this.shipTo, this.shippingAddress, this.paymentMethod)
+            .subscribe(
+            data => this.router.navigate(['/orders/id/' + data.id])
+            )
     }
 }

@@ -37,9 +37,9 @@ export class WishlistService {
         }
 
         return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', undefined, { search: searchParams }).map((response: Response) => response.json());
-
-
     }
+
+    
 
 
 }

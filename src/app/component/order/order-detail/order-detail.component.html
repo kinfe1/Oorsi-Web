@@ -1,0 +1,48 @@
+<section class="container padding-top-3x padding-bottom">
+
+  <h1 class="space-top-half">Order Confirmation</h1>
+  <div class="row padding-top">
+
+    <!-- Cart -->
+    <div class="col-sm-12 padding-bottom-2x row">
+      <h3 class="toolbar-title">Ordered for <a>{{order?.forUser.firstName}} {{order?.forUser.lastName}}</a></h3>
+
+      <div class="row">
+        <p class="col-xs-4">
+          <span class="text-gray">Order Number</span>
+          <span> {{order?.id}}</span>
+        </p>
+        <p class="col-xs-4">
+          <span class="text-gray">Total Charge</span>
+          <span>{{order?.totalPrice | currency:'USD':true:'1.2-2'}}</span>
+        </p>
+        <p class="col-xs-4">
+          <span class="text-gray">Ordered Date</span>
+          <span>{{order?.date | date: 'dd/MM/yyyy hh:mm a'}}</span>
+        </p>
+        <p class="col-xs-6" *ngIf="order?.shippingAddress!=undefined">
+          <span class="text-gray">Shipping Address</span>
+          <label>{{order?.shippingAddress?.formattedAddress}}</label>
+        </p>
+      </div>
+      <div class="shopping-cart row">
+        <!-- Item -->
+        <div class="item row col-xs-12" *ngFor="let orderProduct of order?.orderProducts">
+          <a routerLink="/shop/id/{{orderProduct.product.productId}}" class="item-thumb col-xs-2">
+            <img src="{{orderProduct.product.largeImage}}" alt="Item">
+          </a>
+          <h5 class="item-title col-xs-4"><a routerLink="/shop/id/{{orderProduct.product.productId}}">{{orderProduct.product.name}}</a></h5>
+          <h6 class="item-price col-xs-2">{{orderProduct.soldPrice | currency:'USD':true:'1.2-2'}}</h6>
+          <span class="col-xs-2">{{orderProduct.quantity}}</span>
+          <span class="col-xs-2">{{orderProduct.totalPrice| currency:'USD':true:'1.2-2'}}</span>
+
+        </div>
+        <!-- .item -->
+
+      </div>
+      <!-- .shopping-cart -->
+    </div>
+
+  </div>
+  <!-- .row -->
+</section>

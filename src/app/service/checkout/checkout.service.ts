@@ -16,6 +16,17 @@ export class CheckoutService {
         return this.http.get(OORSI_API_ENDPOINT + 'checkout/products/' + forUser).map((response: Response) => response.json());
     }
 
+    submitOrder(forUser: string, shipTo: number, shippingAddress: number, paymentMethod: string): Observable<any> {
+        return this.http.post(OORSI_API_ENDPOINT + 'order/submit',
+            {
+                forUser: forUser,
+                shipTo: shipTo,
+                shippingAddress: shippingAddress,
+                paymentMethod: paymentMethod
+            }
+        ).map((response: Response) => response.json());
+    }
+
 
 
 }

@@ -3780,7 +3780,7 @@ input[type="button"].btn-block {
   text-align: right;
 }
 
-.shop-item .shop-item-details .shop-item-price .old-price {
+.old-price {
   font-size: 14px;
   color: #999;
   text-decoration: line-through;

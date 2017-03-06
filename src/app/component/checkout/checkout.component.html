@@ -39,7 +39,7 @@
         <h3 class="toolbar-title">Cart subtotal:</h3>
         <h4 class="amount">{{user?.totalPrice()| currency:'USD':true:'1.2-2'}}</h4>
         <a href="#" class="btn btn-default btn-block waves-effect waves-light">Update Cart</a>
-        <a href="checkout.html" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Checkout</a>
+        <a (click)="submitOrder()" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Checkout</a>
       </div>
     </div>
     <!-- .col-sm-8 -->
@@ -54,7 +54,7 @@
 						</select>
           <div id="shippingAddressDiv" *ngIf="shipTo==1">
             <span>Shipping Address</span>
-            <select id="shippingAddress" class="form-control">
+            <select id="shippingAddress" class="form-control" [(ngModel)]="shippingAddress">
                 <option *ngFor="let address of addresses" value="{{address.id}}">{{address.formattedAddress}}</option>
                 </select>
             <a data-toggle="modal" data-target="#addressModal" (click)="addressModal.show()" class="btn btn-ghost btn-sm btn-info waves-effect waves-light">Add New Shipping Address</a>
@@ -67,7 +67,7 @@
           <div>Payment Method</div>
           <div>
             <span>Select Payment Method</span>
-            <select class="form-control">
+            <select class="form-control" [(ngModel)]="paymentMethod">
                 <option *ngFor="let card of paymentMethods" value="{{card.id}}">{{card.brand}} ending in {{card.last4}}</option>
                 </select>
             <a data-toggle="modal" data-target="#paymentModal" (click)="paymentModal.show()" class="btn btn-ghost btn-sm btn-info waves-effect waves-light">Add New Payment Method</a>

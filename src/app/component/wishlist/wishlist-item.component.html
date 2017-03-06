@@ -6,8 +6,9 @@
     <a routerLink="/shop/id/{{wishlistProduct?.product.productId}}">
       <h4 class="item-title"><a>{{wishlistProduct?.product.name}}</a></h4>
     </a>
-    <label class=" item-price">{{wishlistProduct?.product.salePrice}}</label>
-    <label class=" item-price" *ngIf="wishlistProduct?.product.regularPrice!=wishlistProduct?.product.salePrice">{{wishlistProduct?.product.regularPrice}}</label>
+    <span class="shop-item-price">
+                <span class="old-price"  *ngIf="wishlistProduct?.product.regularPrice!=wishlistProduct?.product.salePrice">{{wishlistProduct?.product.regularPrice| currency:'USD':true:'1.2-2'}}</span>    {{wishlistProduct?.product.salePrice| currency:'USD':true:'1.2-2'}}
+    </span>
     <a class="add-to-cart" (click)="addToCart(wishlistProduct?.product, wishlistProduct?.user)">
       <em>{{addToCartButton}} for {{wishlistProduct?.user.firstName}}</em>
       <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
