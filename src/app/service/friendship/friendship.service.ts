@@ -9,19 +9,15 @@ import { User } from '../../model/user';
 @Injectable()
 export class FriendshipService {
 
-    constructor(private http: AuthHttp) { }
+    constructor(private authHttp: AuthHttp) { }
 
     public search(s: string): Observable<User[]> {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get(OORSI_API_ENDPOINT + 'friends/search?s=' + s, { headers: headers }).map((response: Response) => response.json());
+        return this.authHttp.get(OORSI_API_ENDPOINT + 'friends/search?s=' + s).map((response: Response) => response.json());
     }
 
     public getFriends(): Observable<User[]> {
 
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.get(OORSI_API_ENDPOINT + 'friends', { headers: headers }).map((response: Response) => response.json());
+        return this.authHttp.get(OORSI_API_ENDPOINT + 'friends').map((response: Response) => response.json());
 
     }
 
@@ -34,11 +30,8 @@ export class FriendshipService {
     }
 
     public sendFollowUnfollowRequest(user: User, url: string) {
-        let headers: Headers = new Headers();
-
         let searchParams = new URLSearchParams();
         searchParams.append("friendID", user.userID);
-
-        return this.http.post(OORSI_API_ENDPOINT + url, undefined, { headers: headers, search: searchParams });
+        return this.authHttp.post(OORSI_API_ENDPOINT + url, undefined, { search: searchParams });
     }
 }

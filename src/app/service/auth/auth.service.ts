@@ -75,7 +75,7 @@ export class AuthService implements CanActivate {
                     // return true to indicate successful login
                     return true;
                 } else {
-                    this.isLoggedIn.emit(this.canActivate());
+                    //this.isLoggedIn.emit(this.canActivate());
                     // return false to indicate failed login
                     return false;
                 }
@@ -99,7 +99,7 @@ export class AuthService implements CanActivate {
                     // return true to indicate successful login
                     return true;
                 } else {
-                    this.isLoggedIn.emit(this.canActivate());
+                    // this.isLoggedIn.emit(this.canActivate());
                     // return false to indicate failed login
                     return false;
                 }

@@ -11,7 +11,7 @@ import { ADD_TO_CART } from '../../const';
   templateUrl: './wishlist-item.component.html',
   styleUrls: ['./wishlist-item.component.css']
 })
-export class WishlistItemComponent implements OnInit, OnChanges {
+export class WishlistItemComponent implements OnInit {
 
   addToCartButton: string = ADD_TO_CART;
 
@@ -25,9 +25,6 @@ export class WishlistItemComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges() {
-    console.log(this.wishlistProduct);
-  }
 
   onDelete(wishlistProduct: WishListProduct) {
     this.onDeleteWishlistProduct.emit(wishlistProduct);
