@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
                             // login successful
                             this.router.navigate(['/']);
                         } else {
-                            this.router.navigate(['/register'], { skipLocationChange: true, queryParams: { fbat: response.authResponse.accessToken } });
+                            this.router.navigate(['/register'], { queryParams: { fbat: response.authResponse.accessToken } });
                         }
                     }, err => location.reload);
             }

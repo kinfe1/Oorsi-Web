@@ -19,7 +19,7 @@ export class WishlistService {
     deleteWishListProduct(wishlistProduct: WishListProduct): Observable<any> {
 
         let searchParams = new URLSearchParams();
-        searchParams.set('sku', '' + wishlistProduct.product.sku);
+        searchParams.set('productId', '' + wishlistProduct.product.productId);
 
         return this.http.delete(OORSI_API_ENDPOINT + 'wishlist/delete', { search: searchParams });
     }

@@ -19,7 +19,7 @@ export class NewsFeedComponent implements OnInit {
       .subscribe(
       data => {
         this.wishlistProducts = data.json();
-      }
+      }, err => { }
       )
   }
 
