@@ -1,5 +1,5 @@
-import { OrderProduct } from './orderProduct';
 import { Address } from 'cluster';
+import { OrderProduct } from './orderProduct';
 import { Product } from './product';
 import { User } from './user';
 export interface Order {

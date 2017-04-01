@@ -49,7 +49,7 @@
         <div>
           <div>Ship to</div>
           <select id="shipToDropDown" class="form-control" [(ngModel)]="shipTo" name="shipTo">
-							<option value="2">Anteneh Negash</option>
+							<option value="2">{{user?.firstName}} {{user?.lastName}}</option>
 							<option value="1">Me</option>
 						</select>
           <div id="shippingAddressDiv" *ngIf="shipTo==1">

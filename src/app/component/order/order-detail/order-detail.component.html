@@ -20,7 +20,7 @@
           <span class="text-gray">Ordered Date</span>
           <span>{{order?.date | date: 'dd/MM/yyyy hh:mm a'}}</span>
         </p>
-        <p class="col-xs-6" *ngIf="order?.shippingAddress!=undefined">
+        <p class="col-xs-6" *ngIf="order?.shippingAddress">
           <span class="text-gray">Shipping Address</span>
           <label>{{order?.shippingAddress?.formattedAddress}}</label>
         </p>

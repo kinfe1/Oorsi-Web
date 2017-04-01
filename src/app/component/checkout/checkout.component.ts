@@ -1,5 +1,5 @@
-import { PaymentService } from '../../service/payment.service';
 import { Address } from 'cluster';
+import { PaymentService } from '../../service/payment.service';
 import { Subscription } from 'rxjs/Rx';
 import { User } from './../../model/user';
 import { Router, ActivatedRoute } from '@angular/router';
