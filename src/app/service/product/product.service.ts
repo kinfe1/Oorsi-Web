@@ -12,7 +12,8 @@ export class ProductService {
 
     public search(s: string): Observable<any> {
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+        //  headers.append('Content-Type', 'application/json');
+        headers.append("Origin", "http://localhost:4200/");
         return this.http.get(OORSI_API_ENDPOINT + 'product/search?s=' + s + '&page=1', headers);
     }
 

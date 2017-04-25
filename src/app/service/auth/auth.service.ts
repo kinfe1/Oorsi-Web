@@ -37,6 +37,7 @@ export class AuthService implements CanActivate {
     }
 
     login(username: string, password: string): Observable<boolean> {
+        let headers: Headers = new Headers();
         return this.http.post(OORSI_API_ENDPOINT + 'login', { username: username, password: password })
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response

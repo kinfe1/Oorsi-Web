@@ -64,9 +64,7 @@ const appRoutes: Routes = [
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
     return new AuthHttp(new AuthConfig({
-        headerName: 'jwt-token',
         tokenGetter: (() => localStorage.getItem('currentUser')),
-        globalHeaders: [{ 'Content-Type': 'application/json' }],
     }), http, options);
 }
 
