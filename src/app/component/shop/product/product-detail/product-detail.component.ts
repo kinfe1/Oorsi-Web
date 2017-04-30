@@ -1,3 +1,5 @@
+import { User } from './../../../../model/user';
+import { ProfileService } from '../../../../service/profile.service';
 import { WishlistService } from '../../../../service/wishlist.service';
 import { ADDED_TO_CART, ADD_TO_CART } from './../../../../const';
 import { CartService } from './../../../../service/cart/cart.service';
@@ -16,15 +18,19 @@ export class ProductDetailComponent implements OnInit {
 
     product: Product;
 
+    forUser: User;
+
     addToCartButton: string = ADD_TO_CART;
+    addToCartButtonForUser: string = ADD_TO_CART;
 
-    private subscription: Subscription;
+    private paramSubscription: Subscription;
+    private queryParamSubscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService, private wishlistService: WishlistService) {
+    constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService, private wishlistService: WishlistService, private profileService: ProfileService) {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(
+        this.paramSubscription = this.route.params.subscribe(
             (param: any) => {
                 if (param['id'] != undefined) {
                     this.productService.getProductById(param['id'])
@@ -48,10 +54,20 @@ export class ProductDetailComponent implements OnInit {
                 }
             }
         );
+
+        this.queryParamSubscription = this.route.queryParams.subscribe(
+            params => {
+                if (params['for'] != undefined) {
+                    this.profileService.getUserInfo(params['for']).subscribe(data => { this.forUser = data });
+                }
+
+            }
+        );
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe();
+        this.paramSubscription.unsubscribe();
+        this.queryParamSubscription.unsubscribe();
     }
 
     private loadRelatedProducts() {
@@ -65,12 +81,16 @@ export class ProductDetailComponent implements OnInit {
 
     }
 
-    addToCart(product: Product) {
-        this.cartService.addProductToCart(product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+    addToCart() {
+        this.cartService.addProductToCart(this.product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
     }
 
-    addToWishlist(product: Product) {
-        this.wishlistService.addProductToWishlist(product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+    addToCartForUser() {
+        this.cartService.addProductToCart(this.product, this.forUser).subscribe(data => this.addToCartButtonForUser = ADDED_TO_CART);
+    }
+
+    addToWishlist() {
+        this.wishlistService.addProductToWishlist(this.product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
     }
 }
 

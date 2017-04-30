@@ -12,7 +12,7 @@ declare const FB: any;
 })
 export class LoginComponent implements OnInit {
 
-    error: string;
+    errors: Error[] = [];
     loading: boolean;
 
 
@@ -25,14 +25,9 @@ export class LoginComponent implements OnInit {
     onLogin(ngForm: NgForm) {
 
         this.authService.login(ngForm.value.email, ngForm.value.password).subscribe(result => {
-            if (result === true) {
-                // login successful
-                this.router.navigate(['/']);
-            } else {
-                // login failed
-                this.error = 'Username or password is incorrect';
-                this.loading = false;
-            }
+            this.router.navigate(['/']);
+        }, err => {
+            this.errors = err.json();
         });
     }
 

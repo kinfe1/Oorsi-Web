@@ -5,6 +5,7 @@ import { WishListProduct } from './../../model/wishlistproduct';
 import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from '@angular/core';
 import { CartService } from '../../service/cart/cart.service';
 import { ADD_TO_CART } from '../../const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'oorsi-web-wishlist-item',
@@ -19,7 +20,7 @@ export class WishlistItemComponent implements OnInit {
 
   @Output() onDeleteWishlistProduct = new EventEmitter<WishListProduct>();
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
   }
 
   ngOnInit() {
@@ -32,6 +33,12 @@ export class WishlistItemComponent implements OnInit {
 
   addToCart(product: Product, user: User) {
     this.cartService.addProductToCart(product, user).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+  }
+
+
+  viewProduct() {
+    console.log('clicked');
+    this.router.navigate(['shop/id', this.wishlistProduct.product.productId], { queryParams: { for: this.wishlistProduct.user.userID } });
   }
 
 

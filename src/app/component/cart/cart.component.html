@@ -15,7 +15,7 @@
           <!-- Item -->
           <div class="item" *ngFor="let cartProduct of user.cartProducts">
             <a routerLink="/shop/id/{{cartProduct.product.productId}}" class="item-thumb">
-              <img src="{{cartProduct.product.largeImage}}" alt="Item">
+              <img src="{{cartProduct.product.image}}" alt="Item">
             </a>
             <div class="item-details">
               <h5 class="item-title"><a routerLink="/shop/id/{{cartProduct.product.productId}}">{{cartProduct.product.name}}</a></h5>

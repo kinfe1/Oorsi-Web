@@ -3756,7 +3756,7 @@ input[type="button"].btn-block {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  width: 114px;
+  width: 200px;
   height: 36px;
   line-height: 36px;
   font-size: 12px;
@@ -4282,7 +4282,7 @@ input[type="button"].btn-block {
   display: table;
   width: 100%;
   padding: 0 45px 30px 0;
-  border-bottom: 2px solid #ededed;
+  /*border-bottom: 2px solid #ededed;*/
   margin-bottom: 30px;
 }
 

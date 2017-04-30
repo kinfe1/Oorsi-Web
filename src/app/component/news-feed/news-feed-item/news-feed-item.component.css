@@ -1,3 +1,21 @@
 .float-right{
     float: right;
 }
+
+.profile-picture-thumbnail{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+}
+
+.profile-wrapper{
+    padding: 20px;
+    display: table;
+    text-align: center;
+}
+
+.product-wrapper{
+    margin-left: 100px;
+}

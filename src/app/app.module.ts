@@ -44,6 +44,8 @@ import { AddressComponent } from './component/address/address.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { OrderDetailComponent } from './component/order/order-detail/order-detail.component';
 import { OrderComponent } from './component/order/order.component';
+import { ImageURLPipe } from './pipe/image-url.pipe';
+import { ProfileService } from './service/profile.service';
 
 
 const appRoutes: Routes = [
@@ -95,6 +97,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         PaymentComponent,
         OrderDetailComponent,
         OrderComponent,
+        ImageURLPipe,
 
     ],
     imports: [
@@ -103,7 +106,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpModule,
         RouterModule.forRoot(appRoutes), ModalModule.forRoot(), ReactiveFormsModule
     ],
-    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService, CheckoutService, AddressService, PaymentService, OrderService,
+    providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService, CheckoutService, AddressService, PaymentService, OrderService, ProfileService,
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,

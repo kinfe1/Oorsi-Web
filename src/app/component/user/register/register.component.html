@@ -1,19 +1,28 @@
 <div class="col-md-6 col-md-offset-3">
   <h3>Register</h3>
   <div class="inner">
-    <form class="login-form row" #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <input type="text" class="form-control col-sm-6" placeholder="First Name" required [ngModel]="user?.firstName" name="firstName">
-      <input type="text" class="form-control col-sm-6" placeholder="Last Name" required [ngModel]="user?.lastName" name="lastName">
-      <input type="email" class="form-control" placeholder="E-mail" required [ngModel]="user?.email" name="email">
-      <input type="password" class="form-control" placeholder="Password" required ngModel name="password">
-      <input type="password" class="form-control" placeholder="Repeat password" required ngModel name="confirmPassword">
-
-      <input type="hidden" [ngModel]="fbat" name="fbat">
-
-      <div class="form-footer">
-        <div class="rememberme"></div>
+    <form class="login-form row" [formGroup]="myForm">
+      <div class="col-sm-6">
+        <p class="fieldError" *ngIf="myForm.controls.firstName.errors?.required  && submitAttempt">First Name required</p>
+        <input type="text" class="form-control" placeholder="First Name" required formControlName="firstName" [class.invalid]="!myForm.controls.firstName.valid  && submitAttempt">
+      </div>
+      <div class="col-sm-6">
+        <p class="fieldError" *ngIf="myForm.controls.lastName.errors?.required  && submitAttempt">Last Name required</p>
+        <input type="text" class="form-control" placeholder="Last Name" required formControlName="lastName" [class.invalid]="!myForm.controls.lastName.valid  && submitAttempt">
+      </div>
+      <div class="col-sm-12">
+        <p class="fieldError" *ngIf="myForm.controls.email.errors?.remote  && submitAttempt">{{myForm.controls.email.errors?.remote}}</p>
+        <p class="fieldError" *ngIf="myForm.controls.email.errors?.required  && submitAttempt">Email required</p>
+        <input type="email" class="form-control" placeholder="Email" required formControlName="email" [class.invalid]="!myForm.controls.email.valid  && submitAttempt">
+      </div>
+      <div class="col-sm-12">
+        <p class="fieldError" *ngIf="(myForm.controls.password.errors?.required || myForm.controls.password.errors?.minlength) && submitAttempt">Password must be atleast 6 characters</p>
+        <input type="password" class="form-control" placeholder="Password" required formControlName="password" [class.invalid]="!myForm.controls.password.valid  && submitAttempt">
+      </div>
+      <input type="hidden" formControlName="password">
+      <div class="form-footer col-sm-12">
         <div class="form-submit">
-          <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Sign up</button>
+          <button type="submit" class="btn btn-primary btn-block waves-effect waves-light" (click)="register()">Sign up</button>
         </div>
       </div>
     </form>

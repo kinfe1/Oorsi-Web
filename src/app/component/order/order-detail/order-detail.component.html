@@ -29,7 +29,7 @@
         <!-- Item -->
         <div class="item row col-xs-12" *ngFor="let orderProduct of order?.orderProducts">
           <a routerLink="/shop/id/{{orderProduct.product.productId}}" class="item-thumb col-xs-2">
-            <img src="{{orderProduct.product.largeImage}}" alt="Item">
+            <img src="{{orderProduct.product.image}}" alt="Item">
           </a>
           <h5 class="item-title col-xs-4"><a routerLink="/shop/id/{{orderProduct.product.productId}}">{{orderProduct.product.name}}</a></h5>
           <h6 class="item-price col-xs-2">{{orderProduct.soldPrice | currency:'USD':true:'1.2-2'}}</h6>

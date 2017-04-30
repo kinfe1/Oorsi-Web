@@ -14,7 +14,6 @@ export class AuthService implements CanActivate {
 
 
     public isLoggedIn: EventEmitter<boolean>;
-
     public fbat: string;
 
     constructor(private http: Http, private router: Router) {

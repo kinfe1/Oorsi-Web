@@ -1,8 +1,10 @@
-<div *ngIf="wishlistProduct?.product!=null" class="row">
-  <span class="col-sm-8"><a routerLink="/{{wishlistProduct?.user.userID}}">{{wishlistProduct?.user.firstName}} {{wishlistProduct?.user.lastName}}</a> added to wishlist </span>
-  <span class="col-sm-4 float-right">{{wishlistProduct?.updated | date: 'MMM dd HH:mma'}}</span>
+<div *ngIf="wishlistProduct?.product!=null" class="profile-wrapper">
+  <div>
+    <img alt="Item" class="profile-picture-thumbnail img-responsive rounded-circle" src="{{wishlistProduct?.user.profilePictureName | oorsiImgURL}}"></div>
+  <div>
+    <span><a routerLink="/{{wishlistProduct?.user.userID}}" class="h3">{{wishlistProduct?.user.firstName}} {{wishlistProduct?.user.lastName}}</a> added to wishlist </span>
+    <span class="col-sm-6">{{wishlistProduct?.updated | date: 'MMM dd HH:mma'}}</span></div>
 </div>
-
-<div *ngIf="wishlistProduct?.product!=null">
+<div *ngIf="wishlistProduct?.product!=null" class="product-wrapper">
   <oorsi-web-wishlist-item [wishlistProduct]="wishlistProduct"></oorsi-web-wishlist-item>
 </div>

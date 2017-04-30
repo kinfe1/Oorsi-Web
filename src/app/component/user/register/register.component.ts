@@ -1,9 +1,10 @@
 import { User } from './../../../model/user';
 import { Subscription } from 'rxjs/Rx';
 import { AuthService } from './../../../service/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms/src/directives';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Error } from '../../../model/error';
 
 declare const FB: any;
 
@@ -15,17 +16,27 @@ declare const FB: any;
 export class RegisterComponent implements OnInit {
 
 
-  user: User;
-  fbat: string;
+  myForm: FormGroup;
 
-  error: string;
-  loading: boolean;
+  submitAttempt: boolean = false;
+
+  registerPageEmitter: EventEmitter<any>;
 
   private subscription: Subscription;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.myForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      birthDate: [],
+      fbat: []
+    });
+
     this.subscription = this.route.queryParams.subscribe(
       (queryParam: any) => {
         if (queryParam['fbat'] === undefined || queryParam['fbat'] === null) {
@@ -33,8 +44,11 @@ export class RegisterComponent implements OnInit {
         }
         else {
           this.authService.getFBUserInfo(queryParam['fbat']).subscribe(user => {
-            this.user = user;
-            this.fbat = queryParam['fbat'];
+            this.myForm.setValue({
+              firstName: user.firstName,
+              lastName: user.lastName,
+              fbat: queryParam['fbat'],
+            });
           });
         }
 
@@ -44,17 +58,22 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  onSubmit(ngForm: NgForm) {
-    this.authService.register(ngForm.value).subscribe(result => {
-      if (result === true) {
-        // login successful
-        this.router.navigate(['/']);
-      } else {
-        // login failed
-        this.error = 'Username or password is incorrect';
-        this.loading = false;
-      }
-    });
+  register() {
+
+    this.submitAttempt = true;
+    if (this.myForm.valid) {
+      this.authService.register(this.myForm.value).subscribe(
+        result => { },
+        err => {
+          let errors: Error[] = err.json();
+          for (let error of errors) {
+            if (this.myForm.controls[error.fieldName]) {
+              this.myForm.controls[error.fieldName].setErrors({ remote: error.message });
+            }
+          }
+        });
+    } else {
+    }
   }
 
 
@@ -65,14 +84,20 @@ export class RegisterComponent implements OnInit {
       if (response.status === 'connected') {
         this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
           data => {
-            debugger;
             if (data === true) {
               // login successful
               this.router.navigate(['/']);
             } else {
               this.authService.getFBUserInfo(response.authResponse.accessToken).subscribe(user => {
-                this.user = user;
-                this.fbat = response.authResponse.accessToken;
+                debugger;
+                this.myForm.setValue({
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  email: user.email,
+                  fbat: response.authResponse.accessToken,
+                  password: '',
+                  birthDate: '',
+                });
               });
             }
           }, err => location.reload);

@@ -13,7 +13,7 @@ export class WishlistService {
     constructor(private http: AuthHttp) { }
 
     getWishList(): Observable<any> {
-        return this.http.get(OORSI_API_ENDPOINT + 'wishlist/json');
+        return this.http.get(OORSI_API_ENDPOINT + 'wishlist/list.json');
     }
 
     deleteWishListProduct(wishlistProduct: WishListProduct): Observable<any> {
