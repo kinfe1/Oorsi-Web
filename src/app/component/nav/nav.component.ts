@@ -29,8 +29,8 @@ export class NavComponent implements OnInit, OnChanges {
   loggedIn: boolean = false;
 
   ngOnInit() {
-    this.loggedIn = this.authService.canActivate();
-    this.authService.isLoggedIn.subscribe(i => {
+    this.loggedIn = this.authService.isLoggedIn();
+    this.authService.isLoggedInEmitter.subscribe(i => {
       this.loggedIn = i;
     })
   }

@@ -8,21 +8,23 @@ import { OORSI_API_ENDPOINT } from '../../const';
 
 
 @Injectable()
-export class AuthService implements CanActivate {
+export class AuthService {
 
 
 
 
-    public isLoggedIn: EventEmitter<boolean>;
+    public isLoggedInEmitter: EventEmitter<boolean>;
     public fbat: string;
 
+    public loggedInUserId: number;
+
     constructor(private http: Http, private router: Router) {
-        this.isLoggedIn = new EventEmitter();
-        this.isLoggedIn.emit(this.canActivate());
+        this.isLoggedInEmitter = new EventEmitter();
+        this.isLoggedInEmitter.emit(this.isLoggedIn());
     }
 
 
-    canActivate(): boolean {
+    isLoggedIn(): boolean {
 
 
         if (localStorage.getItem('currentUser')) {
@@ -31,8 +33,14 @@ export class AuthService implements CanActivate {
         }
 
         // not logged in so redirect to login page
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
         return false;
+    }
+
+    checkError(err) {
+        if (err && err != null && err.status == 403) {
+            this.logout();
+        }
     }
 
     login(username: string, password: string): Observable<boolean> {
@@ -47,12 +55,12 @@ export class AuthService implements CanActivate {
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', token);
 
-                    this.isLoggedIn.emit(this.canActivate());
+                    this.isLoggedInEmitter.emit(this.isLoggedIn());
 
                     // return true to indicate successful login
                     return true;
                 } else {
-                    this.isLoggedIn.emit(this.canActivate());
+                    this.isLoggedInEmitter.emit(this.isLoggedIn());
                     // return false to indicate failed login
                     return false;
                 }
@@ -70,7 +78,7 @@ export class AuthService implements CanActivate {
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', token);
 
-                    this.isLoggedIn.emit(this.canActivate());
+                    this.isLoggedInEmitter.emit(this.isLoggedIn());
 
                     // return true to indicate successful login
                     return true;
@@ -94,7 +102,7 @@ export class AuthService implements CanActivate {
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', token);
 
-                    this.isLoggedIn.emit(this.canActivate());
+                    this.isLoggedInEmitter.emit(this.isLoggedIn());
 
                     // return true to indicate successful login
                     return true;
@@ -118,7 +126,7 @@ export class AuthService implements CanActivate {
     logout(): void {
         // clear token remove user from local storage to log user out
         localStorage.removeItem('currentUser');
-        this.isLoggedIn.emit(this.canActivate());
+        this.isLoggedInEmitter.emit(this.isLoggedIn());
     }
 
     addAuthHeader(headers: Headers): void {

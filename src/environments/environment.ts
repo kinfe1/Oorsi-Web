@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false,
+    production: false,
+    fbAppID: 611971595616628,
+    stripePublishableKey: 'pk_test_vZVuEjNYLemezGBMxLFIYwLj'
 };

@@ -1,3 +1,4 @@
+import { environment } from '../../../environments/environment.dev';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PaymentService } from '../../service/payment.service';
 import { Card } from '../../model/card';
@@ -22,7 +23,7 @@ export class PaymentComponent implements OnInit {
   constructor(private paymentService: PaymentService) { }
 
   ngOnInit() {
-    Stripe.setPublishableKey('pk_test_vZVuEjNYLemezGBMxLFIYwLj');
+    Stripe.setPublishableKey(environment.stripePublishableKey);
   }
 
   submit(form) {
