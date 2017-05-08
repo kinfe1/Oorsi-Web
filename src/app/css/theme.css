@@ -4295,6 +4295,7 @@ input[type="button"].btn-block {
 .shopping-cart .item .item-thumb {
   width: 165px;
   padding-right: 25px;
+  height: 100px;
 }
 
 .shopping-cart .item .item-thumb > img {

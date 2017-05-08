@@ -6,6 +6,7 @@ import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from '@angu
 import { CartService } from '../../service/cart/cart.service';
 import { ADD_TO_CART } from '../../const';
 import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'oorsi-web-wishlist-item',
@@ -16,11 +17,13 @@ export class WishlistItemComponent implements OnInit {
 
   addToCartButton: string = ADD_TO_CART;
 
+  @Input() canDelete: boolean = false;
+
   @Input() wishlistProduct: WishListProduct;
 
   @Output() onDeleteWishlistProduct = new EventEmitter<WishListProduct>();
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(private cartService: CartService, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -32,13 +35,16 @@ export class WishlistItemComponent implements OnInit {
   }
 
   addToCart(product: Product, user: User) {
-    this.cartService.addProductToCart(product, user).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+    this.cartService.addProductToCart(product, user).subscribe(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
   }
 
 
   viewProduct() {
-    console.log('clicked');
-    this.router.navigate(['shop/id', this.wishlistProduct.product.productId], { queryParams: { for: this.wishlistProduct.user.userID } });
+    let queryParams = {};
+    if (this.wishlistProduct.user) {
+      queryParams['for'] = this.wishlistProduct.user.userID;
+    }
+    this.router.navigate(['shop/id', this.wishlistProduct.product.productId], { queryParams: queryParams });
   }
 
 

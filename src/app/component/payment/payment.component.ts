@@ -1,3 +1,4 @@
+import { AuthService } from './../../service/auth/auth.service';
 import { environment } from '../../../environments/environment.dev';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PaymentService } from '../../service/payment.service';
@@ -20,7 +21,7 @@ export class PaymentComponent implements OnInit {
   @Output() save: EventEmitter<Card> = new EventEmitter();
   @Output() cancel: EventEmitter<any> = new EventEmitter();
 
-  constructor(private paymentService: PaymentService) { }
+  constructor(private paymentService: PaymentService, private authService: AuthService) { }
 
   ngOnInit() {
     Stripe.setPublishableKey(environment.stripePublishableKey);
@@ -40,7 +41,7 @@ export class PaymentComponent implements OnInit {
       this.error = true;
       this.errorText = response.error.message;
     } else {
-      this.paymentService.sendToken(response.id, true).subscribe(data => this.save.emit(data));
+      this.paymentService.sendToken(response.id, true).subscribe(data => this.save.emit(data), err => this.authService.checkError(err));
     }
 
   }

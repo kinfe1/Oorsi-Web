@@ -11,7 +11,7 @@ import { FriendshipService } from '../../../service/friendship/friendship.servic
   templateUrl: './friends-item.component.html',
   styleUrls: ['./friends-item.component.css']
 })
-export class FriendsItemComponent  {
+export class FriendsItemComponent {
 
   @Input() user: User;
 
@@ -19,7 +19,7 @@ export class FriendsItemComponent  {
   @Input() following: boolean = false;
 
 
-  constructor(private friendshipService: FriendshipService) { }
+  constructor(private friendshipService: FriendshipService, private authService: AuthService) { }
 
   ngDoCheck() {
     if (this.following) {
@@ -33,12 +33,12 @@ export class FriendsItemComponent  {
     if (!this.following) {
       this.friendshipService.follow(user).subscribe(data => {
         this.following = true;
-      });
+      }, err => this.authService.checkError(err));
     }
     else {
       this.friendshipService.unfollow(user).subscribe(data => {
         this.following = false;
-      });
+      }, err => this.authService.checkError(err));
     }
 
   }

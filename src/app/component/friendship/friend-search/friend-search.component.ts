@@ -1,3 +1,4 @@
+import { AuthService } from './../../../service/auth/auth.service';
 import { User } from '../../../model/user';
 import { Subscription } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
@@ -15,7 +16,7 @@ export class FriendSearchComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private friendshipService: FriendshipService) { }
+  constructor(private route: ActivatedRoute, private friendshipService: FriendshipService, private authService: AuthService) { }
 
   ngOnInit() {
     this.subscription = this.route.queryParams.subscribe(
@@ -24,7 +25,7 @@ export class FriendSearchComponent implements OnInit, OnDestroy {
           .subscribe(
           data => {
             this.users = data;
-          }
+          }, err => this.authService.checkError(err)
           )
       }
     );

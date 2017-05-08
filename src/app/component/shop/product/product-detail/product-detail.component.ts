@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../../model/product';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../../service/auth/auth.service';
 
 @Component({
     selector: 'oorsi-web-product-detail',
@@ -26,7 +27,7 @@ export class ProductDetailComponent implements OnInit {
     private paramSubscription: Subscription;
     private queryParamSubscription: Subscription;
 
-    constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService, private wishlistService: WishlistService, private profileService: ProfileService) {
+    constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService, private wishlistService: WishlistService, private profileService: ProfileService, private authService: AuthService) {
     }
 
     ngOnInit() {
@@ -58,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
         this.queryParamSubscription = this.route.queryParams.subscribe(
             params => {
                 if (params['for'] != undefined) {
-                    this.profileService.getUserInfo(params['for']).subscribe(data => { this.forUser = data });
+                    this.profileService.getUserInfo(params['for']).subscribe(data => { this.forUser = data }, err => this.authService.checkError(err));
                 }
 
             }
@@ -82,15 +83,15 @@ export class ProductDetailComponent implements OnInit {
     }
 
     addToCart() {
-        this.cartService.addProductToCart(this.product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+        this.cartService.addProductToCart(this.product).subscribe(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
     }
 
     addToCartForUser() {
-        this.cartService.addProductToCart(this.product, this.forUser).subscribe(data => this.addToCartButtonForUser = ADDED_TO_CART);
+        this.cartService.addProductToCart(this.product, this.forUser).subscribe(data => this.addToCartButtonForUser = ADDED_TO_CART, err => this.authService.checkError(err));
     }
 
     addToWishlist() {
-        this.wishlistService.addProductToWishlist(this.product).subscribe(data => this.addToCartButton = ADDED_TO_CART);
+        this.wishlistService.addProductToWishlist(this.product).subscribe(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
     }
 }
 

@@ -1,3 +1,4 @@
+import { AuthService } from './../../../service/auth/auth.service';
 import { User } from './../../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { FriendshipService } from '../../../service/friendship/friendship.service';
@@ -9,17 +10,17 @@ import { FacebookService } from '../../../service/fb/facebook.service';
   styleUrls: ['./friend-fb-search.component.css']
 })
 export class FriendFbSearchComponent implements OnInit {
-  
+
   users: User[];
-  
-  constructor(private facebookService: FacebookService) { }
+
+  constructor(private facebookService: FacebookService, private authService: AuthService) { }
 
   ngOnInit() {
     this.facebookService.getFBFriends()
       .subscribe(
       data => {
         this.users = data;
-      }
+      }, err => this.authService.checkError(err)
       )
 
 

@@ -1,3 +1,4 @@
+import { AuthService } from './../../service/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../service/order.service';
 import { Order } from '../../model/order';
@@ -11,10 +12,10 @@ export class OrderComponent implements OnInit {
 
   orders: Order[] = [];
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.orderService.getAllOrders().subscribe(data => this.orders = data);
+    this.orderService.getAllOrders().subscribe(data => this.orders = data, err => this.authService.checkError(err));
   }
 
 }

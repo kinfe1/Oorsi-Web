@@ -1,3 +1,4 @@
+import { AuthService } from './../../service/auth/auth.service';
 import { WishListProduct } from './../../model/wishlistproduct';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../model/product';
@@ -14,7 +15,7 @@ export class WishlistComponent implements OnInit {
 
     wishlistProducts: WishListProduct[] = []
 
-    constructor(private wishlistService: WishlistService) { }
+    constructor(private wishlistService: WishlistService, private authService: AuthService) { }
 
     ngOnInit() {
         this.wishlistService.getWishList()
@@ -28,7 +29,7 @@ export class WishlistComponent implements OnInit {
     }
 
     onDeleteWishlistProduct(wishlistProduct: WishListProduct) {
-        this.wishlistService.deleteWishListProduct(wishlistProduct).subscribe(data => this.wishlistProducts.splice(this.wishlistProducts.indexOf(wishlistProduct), 1));
+        this.wishlistService.deleteWishListProduct(wishlistProduct).subscribe(data => this.wishlistProducts.splice(this.wishlistProducts.indexOf(wishlistProduct), 1), err => this.authService.checkError(err));
     }
 
 

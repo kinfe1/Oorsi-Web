@@ -15,7 +15,7 @@
     <!-- .add-to-cart -->
 
   </div>
-  <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDelete(wishlistProduct)">
+  <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" *ngIf="canDelete" (click)="onDelete(wishlistProduct)">
     <i class="material-icons delete"></i>
   </a>
 </div>

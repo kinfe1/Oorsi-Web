@@ -8,6 +8,7 @@ import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { CheckoutService } from '../../service/checkout/checkout.service';
 import { AddressService } from '../../service/address/address.service';
 import { Card } from '../../model/card';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
     selector: 'oorsi-web-checkout',
@@ -27,7 +28,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     addresses: Address[];
     paymentMethods: Card[];
 
-    constructor(private route: ActivatedRoute, private router: Router, private checkoutService: CheckoutService, private addressService: AddressService, private paymentService: PaymentService) { }
+    constructor(private route: ActivatedRoute, private router: Router, private checkoutService: CheckoutService, private addressService: AddressService, private paymentService: PaymentService, private authService: AuthService) { }
 
     ngOnInit() {
         this.subscription = this.route.params.subscribe(
@@ -42,13 +43,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                                 this.user.addCartProduct(cartProduct);
                             }
                         }
-                    }
+                    }, err => this.authService.checkError(err)
                     )
             }
         );
 
-        this.addressService.getAllAddresses().subscribe(data => this.addresses = data);
-        this.paymentService.getAllPayments().subscribe(data => this.paymentMethods = data);
+        this.addressService.getAllAddresses().subscribe(data => this.addresses = data, err => this.authService.checkError(err));
+        this.paymentService.getAllPayments().subscribe(data => this.paymentMethods = data, err => this.authService.checkError(err));
 
     }
 
@@ -67,7 +68,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     submitOrder() {
         this.checkoutService.submitOrder(this.user.userID, this.shipTo, this.shippingAddress, this.paymentMethod)
             .subscribe(
-            data => this.router.navigate(['/orders/id/' + data.id])
+            data => this.router.navigate(['/orders/id/' + data.id]),
+            err => this.authService.checkError(err)
             )
     }
 }

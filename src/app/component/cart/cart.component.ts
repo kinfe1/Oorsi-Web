@@ -1,3 +1,4 @@
+import { AuthService } from './../../service/auth/auth.service';
 import { CartProduct } from '../../model/cartProduct';
 import { CartService } from './../../service/cart/cart.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ export class CartComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private authService: AuthService) { }
 
   ngOnInit() {
     this.cartService.getCart().subscribe(data => {
@@ -30,22 +31,22 @@ export class CartComponent implements OnInit {
 
         if (!added) {
           let user: User = new User(cartProduct.forUser);
-           cartProduct.forUser = user;
+          cartProduct.forUser = user;
           user.cartProducts.push(cartProduct);
           this.users.push(user);
         }
 
       }
-    });
+    }, err => this.authService.checkError(err));
 
   }
 
   onDeleteCartProduct(cartProduct: CartProduct) {
     this.cartService.deleteCartProduct(cartProduct).subscribe(data => {
       cartProduct.forUser.cartProducts.splice(cartProduct.forUser.cartProducts.indexOf(cartProduct), 1);
-    });
+    }, err => this.authService.checkError(err));
   }
 
-  
+
 
 }

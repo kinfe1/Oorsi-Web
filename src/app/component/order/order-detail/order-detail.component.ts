@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs/Rx';
 import { OrderService } from './../../../service/order.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../service/auth/auth.service';
 
 @Component({
   selector: 'oorsi-web-order-detail',
@@ -12,7 +13,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
 
   private order: any;
 
-  constructor(private orderService: OrderService, private route: ActivatedRoute) { }
+  constructor(private orderService: OrderService, private route: ActivatedRoute, private authService: AuthService) { }
 
   private subscription: Subscription;
 
@@ -23,7 +24,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
           .subscribe(
           data => {
             this.order = data;
-          }
+          }, err => this.authService.checkError(err)
           )
 
       }

@@ -37,7 +37,7 @@ export class NavComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.loggedIn) {
-      this.cartService.getCartSize().subscribe(data => this.cartSize = data);
+      this.cartService.getCartSize().subscribe(data => this.cartSize = data, err => this.authService.checkError(err));
     }
   }
 

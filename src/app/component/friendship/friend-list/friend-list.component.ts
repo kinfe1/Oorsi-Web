@@ -1,6 +1,7 @@
 import { User } from '../../../model/user';
 import { FriendshipService } from './../../../service/friendship/friendship.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../service/auth/auth.service';
 
 @Component({
   selector: 'oorsi-web-friend-list',
@@ -11,10 +12,10 @@ export class FriendListComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private friendshipService: FriendshipService) { }
+  constructor(private friendshipService: FriendshipService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.friendshipService.getFriends().subscribe(data => this.users = data);
+    this.friendshipService.getFriends().subscribe(data => this.users = data), err => this.authService.checkError(err);
   }
 
 }

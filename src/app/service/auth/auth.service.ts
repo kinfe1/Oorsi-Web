@@ -40,6 +40,8 @@ export class AuthService {
     checkError(err) {
         if (err && err != null && err.status == 403) {
             this.logout();
+            this.router.navigate(['login']);
+            return true;
         }
     }
 
