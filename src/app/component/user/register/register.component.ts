@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
     this.submitAttempt = true;
     if (this.myForm.valid) {
       this.authService.register(this.myForm.value).subscribe(
-        result => { },
+        result => { this.router.navigate(['/news']) },
         err => {
           let errors: Error[] = err.json();
           for (let error of errors) {

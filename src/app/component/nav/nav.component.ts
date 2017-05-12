@@ -14,8 +14,6 @@ export class NavComponent implements OnInit, OnChanges {
 
   cartSize: number = 0;
 
-  env = environment;
-
 
   constructor(private authService: AuthService, private cartService: CartService) {
     FB.init({
