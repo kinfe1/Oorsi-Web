@@ -16,13 +16,12 @@ export class FriendsItemComponent {
   @Input() user: User;
 
   followButtonText: string = "Follow";
-  @Input() following: boolean = false;
 
 
   constructor(private friendshipService: FriendshipService, private authService: AuthService) { }
 
   ngDoCheck() {
-    if (this.following) {
+    if (this.user.followed) {
       this.followButtonText = "Following";
     } else {
       this.followButtonText = "Follow";
@@ -30,14 +29,14 @@ export class FriendsItemComponent {
   }
 
   onFollow(user: User) {
-    if (!this.following) {
+    if (!this.user.followed) {
       this.friendshipService.follow(user).subscribe(data => {
-        this.following = true;
+        this.user.followed = true;
       }, err => this.authService.checkError(err));
     }
     else {
       this.friendshipService.unfollow(user).subscribe(data => {
-        this.following = false;
+        this.user.followed = false;
       }, err => this.authService.checkError(err));
     }
 

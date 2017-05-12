@@ -14,6 +14,6 @@
     <i class="material-icons delete"></i>
   </a>-->
   <div class="col-xs-4 follow-button-div">
-    <button type="submit" class="btn follow-button" (click)="onFollow(user)" [class.btn-primary]="!following" [class.btn-success]="following">{{followButtonText}}</button>
+    <button type="submit" class="btn follow-button" (click)="onFollow(user)" [class.btn-primary]="!user.followed" [class.btn-success]="user.followed">{{followButtonText}}</button>
   </div>
 </div>

@@ -7,6 +7,12 @@ export class User {
     email: string;
     cartProducts: CartProduct[] = [];
 
+    numberOfFollowed: number;
+    numberOfFollowers: number;
+
+    followed: boolean = false;
+
+
     constructor(obj) {
         if (undefined != obj) {
             for (var prop in obj) this[prop] = obj[prop];

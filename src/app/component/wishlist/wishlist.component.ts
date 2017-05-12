@@ -3,6 +3,7 @@ import { WishListProduct } from './../../model/wishlistproduct';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../model/product';
 import { WishlistService } from '../../service/wishlist.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'oorsi-web-wishlist',
@@ -15,7 +16,7 @@ export class WishlistComponent implements OnInit {
 
     wishlistProducts: WishListProduct[] = []
 
-    constructor(private wishlistService: WishlistService, private authService: AuthService) { }
+    constructor(private wishlistService: WishlistService, private authService: AuthService, private titleService: Title) { }
 
     ngOnInit() {
         this.wishlistService.getWishList()
@@ -26,6 +27,8 @@ export class WishlistComponent implements OnInit {
             }
 
             )
+
+        // this.titleService.setTitle(this.titleService.getTitle() + ": Wishlist");
     }
 
     onDeleteWishlistProduct(wishlistProduct: WishListProduct) {

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.dev';
 import { AuthService } from './../../service/auth/auth.service';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { CartService } from '../../service/cart/cart.service';
@@ -18,7 +19,7 @@ export class NavComponent implements OnInit, OnChanges {
 
   constructor(private authService: AuthService, private cartService: CartService) {
     FB.init({
-      appId: '611971595616628',
+      appId: environment.fbAppID,
       cookie: false,  // enable cookies to allow the server to access
       // the session
       xfbml: true,  // parse social plugins on this page

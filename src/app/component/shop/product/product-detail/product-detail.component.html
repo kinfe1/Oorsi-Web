@@ -17,8 +17,6 @@
     <div class="product-gallery">
       <!-- Preview -->
       <ul class="product-gallery-preview">
-        <li id="preview01" class=""><img class="productImage" src="img/shop/product-gallery/preview01.jpg" alt="Product"></li>
-        <li id="preview02" class=""><img class="productImage" src="img/shop/product-gallery/preview02.jpg" alt="Product"></li>
         <li id="preview03" class="current"><img class="productImage" src="{{product?.largeFrontImage}}" alt="Product"></li>
       </ul>
       <!-- .product-gallery-preview -->
@@ -82,21 +80,7 @@
           <i class="material-icons favorite_border"></i>
         </a>
       </div>
-      <!-- .product-tools -->
-      <div class="product-share">
-        <span>Share this product: </span>
-        <div class="social-bar">
-          <a class="sb-facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-            <i class="socicon-facebook"></i>
-          </a>
-          <a class="sb-twitter" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-            <i class="socicon-twitter"></i>
-          </a>
-          <a class="sb-instagram" data-toggle="tooltip" data-placement="top" title="" data-original-title="Instagram">
-            <i class="socicon-instagram"></i>
-          </a>
-        </div>
-      </div>
+
       <!-- .product-share -->
     </div>
     <!-- .product-info -->
@@ -106,9 +90,7 @@
 <section class="container padding-top-2x">
   <!-- Nav Tabs -->
   <ul class="nav-tabs text-center" role="tablist">
-    <li class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
-    <li><a href="#additional" role="tab" data-toggle="tab">Additional Info</a></li>
-    <li><a href="#reviews" role="tab" data-toggle="tab">Reviews <sup>3</sup></a></li>
+    <li class="active"><a role="tab" data-toggle="tab">Description</a></li>
   </ul>
   <!-- .nav-tabs -->
   <!-- Tab panes -->
@@ -121,170 +103,11 @@
       </div>
     </div>
     <!-- .tab-pane -->
-    <div role="tabpanel" class="tab-pane transition fade" id="additional">
-      <div class="row">
-        <div class="col-md-6">
-          <table class="table-no-border">
-            <tbody>
-              <tr>
-                <th>Weight</th>
-                <td>2.65 kg</td>
-              </tr>
-              <tr>
-                <th>Dimensions</th>
-                <td>120 x 75 x 90 cm</td>
-              </tr>
-              <tr>
-                <th>Materials</th>
-                <td>40% wood, 37% cotton, 23% plastic</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-md-6">
-          <table class="table-no-border">
-            <tbody>
-              <tr>
-                <th>Colors</th>
-                <td>Blue, Creme, Orange, Red</td>
-              </tr>
-              <tr>
-                <th>Manufacturer</th>
-                <td>Norway</td>
-              </tr>
-              <tr>
-                <th>Other Info</th>
-                <td>Repellendus ea laudantium pariatur eum.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <!-- .tab-pane -->
-    <div role="tabpanel" class="tab-pane transition fade" id="reviews">
-      <!-- Review -->
-      <div class="review">
-        <div class="review-author-ava">
-          <img src="img/shop/reviews/01.jpg" alt="Review Author">
-        </div>
-        <div class="review-body">
-          <div class="review-meta">
-            <div class="column">
-              <h4 class="review-title">Very stylish. Great Deal!</h4>
-            </div>
-            <div class="column">
-              <span class="product-rating text-warning">
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                  </span>
-            </div>
-          </div>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.</p>
-          <cite>Jessie James</cite>
-        </div>
-      </div>
-      <!-- .review -->
-      <!-- Review -->
-      <div class="review">
-        <div class="review-author-ava">
-          <img src="img/shop/reviews/02.jpg" alt="Review Author">
-        </div>
-        <div class="review-body">
-          <div class="review-meta">
-            <div class="column">
-              <h4 class="review-title">Nice nordic design, afordable price.</h4>
-            </div>
-            <div class="column">
-              <span class="product-rating text-warning">
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star_border"></i>
-                  </span>
-            </div>
-          </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae sequi ipsa fugit officia eos! Sapiente laboriosam
-            molestiae praesentium ducimus culpa. Magnam, odit, optio. Possimus similique eligendi explicabo, dolore, beatae
-            sequi.
-          </p>
-          <cite>Susanna Davis</cite>
-        </div>
-      </div>
-      <!-- .review -->
-      <!-- Review -->
-      <div class="review">
-        <div class="review-author-ava">
-          <img src="img/shop/reviews/03.jpg" alt="Review Author">
-        </div>
-        <div class="review-body">
-          <div class="review-meta">
-            <div class="column">
-              <h4 class="review-title">Godd value for your money.</h4>
-            </div>
-            <div class="column">
-              <span class="product-rating text-warning">
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star"></i>
-                    <i class="material-icons star_border"></i>
-                  </span>
-            </div>
-          </div>
-          <p>Anuo ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.</p>
-          <cite>Donald Murphy</cite>
-        </div>
-      </div>
-      <!-- .review -->
-      <!-- Reviview Form -->
-      <h4 class="padding-top">Leave a review</h4>
-      <form method="post" class="row padding-top">
-        <div class="col-sm-4">
-          <div class="form-element">
-            <input type="text" class="form-control" placeholder="Name*" required="">
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="form-element">
-            <input type="email" class="form-control" placeholder="Email*" required="">
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="form-element form-select">
-            <select class="form-control">
-                  <option>5 stars</option>
-                  <option>4 stars</option>
-                  <option>3 stars</option>
-                  <option>2 stars</option>
-                  <option>1 star</option>
-                </select>
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <div class="form-element">
-            <textarea rows="8" class="form-control" placeholder="Review*" required=""></textarea>
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-lg-offset-9 col-md-offset-8 col-sm-offset-6">
-              <button type="submit" class="btn btn-block btn-primary waves-effect waves-light space-top-none space-bottom-none">Leave Review</button>
-            </div>
-          </div>
-        </div>
-      </form>
-      <!-- .row -->
-    </div>
-    <!-- .tab-pane -->
+
   </div>
   <!-- .tab-content -->
 </section>
-<section class="container padding-top padding-bottom" *ngIf="product?.frequentlyPurchasedWith?.length!=0">
+<section class="container padding-top padding-bottom" *ngIf="product?.frequentlyPurchasedWith && product?.frequentlyPurchasedWith.length!=0">
   <hr>
   <h3 class="padding-top">Frequently Purchsed With</h3>
   <div class="row padding-top">
@@ -293,7 +116,7 @@
   <!-- .row -->
 </section>
 
-<section class="container padding-top padding-bottom" *ngIf="product?.relatedProducts?.length!=0">
+<section class="container padding-top padding-bottom" *ngIf="product?.relatedProducts && product?.relatedProducts?.length!=0">
   <hr>
   <h3 class="padding-top">Related Products</h3>
   <div class="row padding-top">

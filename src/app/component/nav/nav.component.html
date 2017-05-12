@@ -24,19 +24,21 @@
       <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
         <a routerLink="/friends">Friends</a>
       </li>
-      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-        <a routerLink="/logout">Logout</a>
-      </li>
+
       <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
         <a routerLink="/login">Login</a>
       </li>
       <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
         <a routerLink="/register">Register</a>
       </li>
-       <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
         <a routerLink="/account"><i class="material-icons person"></i></a>
         <ul class="sub-menu">
-          <li><a routerLink="/orders">Orders</a></li>
+          <li routerLinkActive="current-menu-item"><a routerLink="/profile">Profile</a></li>
+          <li routerLinkActive="current-menu-item"><a routerLink="/orders">Orders</a></li>
+          <li>
+            <a routerLink="/logout">Logout</a>
+          </li>
         </ul>
       </li>
     </ul>

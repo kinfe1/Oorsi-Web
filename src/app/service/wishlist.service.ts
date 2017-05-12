@@ -39,7 +39,21 @@ export class WishlistService {
         return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', undefined, { search: searchParams }).map((response: Response) => response.json());
     }
 
-    
+    isInWishlist(product: Product): Observable<boolean> {
+        let searchParams = new URLSearchParams();
+
+        if (product.productId && null != product.productId) {
+            searchParams.set('productId', '' + product.productId);
+        } else {
+            searchParams.set('retailer', '' + product.retailerId);
+            searchParams.set('sku', '' + product.sku);
+        }
+
+        return this.http.get(OORSI_API_ENDPOINT + 'wishlist/isInWishList', { search: searchParams }).map((response: Response) => response.json());
+    }
+
+
+
 
 
 }

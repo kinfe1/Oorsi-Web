@@ -11,7 +11,7 @@ export class NewsFeedService {
   constructor(private authHttp: AuthHttp) { }
 
   getNewsFeed(): Observable<any> {
-    return this.authHttp.get(OORSI_API_ENDPOINT + 'news/json');
+    return this.authHttp.get(OORSI_API_ENDPOINT + 'news/json', { withCredentials: true });
   }
 
 

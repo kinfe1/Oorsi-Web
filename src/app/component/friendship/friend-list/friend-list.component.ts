@@ -15,7 +15,12 @@ export class FriendListComponent implements OnInit {
   constructor(private friendshipService: FriendshipService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.friendshipService.getFriends().subscribe(data => this.users = data), err => this.authService.checkError(err);
+    this.friendshipService.getFriends().subscribe(data => {
+      this.users = data;
+      for (let user of this.users) {
+        user.followed = true;
+      }
+    }), err => this.authService.checkError(err);
   }
 
 }

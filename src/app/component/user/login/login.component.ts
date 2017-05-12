@@ -46,6 +46,8 @@ export class LoginComponent implements OnInit {
                     }, err => location.reload);
             }
         }, { scope: 'email,user_friends' });
+
+        
     }
 
 

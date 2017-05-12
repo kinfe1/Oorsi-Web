@@ -44,10 +44,11 @@ export class RegisterComponent implements OnInit {
         }
         else {
           this.authService.getFBUserInfo(queryParam['fbat']).subscribe(user => {
-            this.myForm.setValue({
+            this.myForm.patchValue({
               firstName: user.firstName,
               lastName: user.lastName,
-              fbat: queryParam['fbat'],
+              email: user.email,
+              fbat: queryParam['fbat']
             });
           });
         }
@@ -89,14 +90,11 @@ export class RegisterComponent implements OnInit {
               this.router.navigate(['/']);
             } else {
               this.authService.getFBUserInfo(response.authResponse.accessToken).subscribe(user => {
-                debugger;
                 this.myForm.setValue({
                   firstName: user.firstName,
                   lastName: user.lastName,
                   email: user.email,
-                  fbat: response.authResponse.accessToken,
-                  password: '',
-                  birthDate: '',
+                  fbat: response.authResponse.accessToken
                 });
               });
             }
