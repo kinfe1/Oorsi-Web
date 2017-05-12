@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment.dev';
+import { environment } from './../../../environments/environment';
 import { AuthService } from './../../service/auth/auth.service';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { CartService } from '../../service/cart/cart.service';

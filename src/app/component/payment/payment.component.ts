@@ -1,5 +1,5 @@
 import { AuthService } from './../../service/auth/auth.service';
-import { environment } from '../../../environments/environment.dev';
+import { environment } from '../../../environments/environment';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PaymentService } from '../../service/payment.service';
 import { Card } from '../../model/card';
