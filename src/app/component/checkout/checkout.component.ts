@@ -1,4 +1,3 @@
-import { Address } from 'cluster';
 import { PaymentService } from '../../service/payment.service';
 import { Subscription } from 'rxjs/Rx';
 import { User } from './../../model/user';
@@ -9,6 +8,7 @@ import { CheckoutService } from '../../service/checkout/checkout.service';
 import { AddressService } from '../../service/address/address.service';
 import { Card } from '../../model/card';
 import { AuthService } from '../../service/auth/auth.service';
+import { Address } from '../../model/address';
 
 @Component({
     selector: 'oorsi-web-checkout',

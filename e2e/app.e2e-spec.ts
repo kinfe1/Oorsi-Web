@@ -1,10 +1,10 @@
-import { OORSIWEBPage } from './app.po';
+import { PROJECTNAMEPage } from './app.po';
 
-describe('oorsi-web App', function() {
-  let page: OORSIWEBPage;
+describe('project-name App', () => {
+  let page: PROJECTNAMEPage;
 
   beforeEach(() => {
-    page = new OORSIWEBPage();
+    page = new PROJECTNAMEPage();
   });
 
   it('should display message saying app works', () => {

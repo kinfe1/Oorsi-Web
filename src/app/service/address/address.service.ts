@@ -1,9 +1,9 @@
-import { Address } from 'cluster';
 import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
 import { Headers, Response, URLSearchParams, Http } from '@angular/http';
 import { OORSI_API_ENDPOINT } from '../../const';
 import { Observable } from 'rxjs/Rx';
+import { Address } from '../../model/address';
 
 @Injectable()
 export class AddressService {

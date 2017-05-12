@@ -5,7 +5,6 @@ import { Http, Headers, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { CartProduct } from '../../model/cartProduct';
 import { Observable } from 'rxjs/Rx';
-import { Address } from 'cluster';
 
 @Injectable()
 export class CheckoutService {
