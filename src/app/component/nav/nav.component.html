@@ -2,7 +2,7 @@
 
   <!-- Site Logo -->
   <a routerLink="/" class="site-logo visible-desktop">
-    <span><img src="/assets/logo.png" class="img img-responsive"></span>
+    <span><img src="/assets/logo.png" class="img img-responsive"> <small *ngIf="!env.production">{{env.env}}</small></span>
   </a>
   <!-- site-logo.visible-desktop -->
   <a routerLink="/" class="site-logo visible-mobile">

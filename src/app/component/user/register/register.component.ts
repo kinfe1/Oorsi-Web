@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
               this.router.navigate(['/']);
             } else {
               this.authService.getFBUserInfo(response.authResponse.accessToken).subscribe(user => {
-                this.myForm.setValue({
+                this.myForm.patchValue({
                   firstName: user.firstName,
                   lastName: user.lastName,
                   email: user.email,

@@ -5,6 +5,7 @@
 
 export const environment = {
     production: false,
-    fbAppID: 611971595616628,
-    stripePublishableKey: 'pk_test_vZVuEjNYLemezGBMxLFIYwLj'
+    fbAppID: 839954232818362,
+    stripePublishableKey: 'pk_test_vZVuEjNYLemezGBMxLFIYwLj',
+    env: 'local'
 };

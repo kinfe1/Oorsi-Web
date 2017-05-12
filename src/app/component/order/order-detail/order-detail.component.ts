@@ -11,7 +11,7 @@ import { AuthService } from '../../../service/auth/auth.service';
 })
 export class OrderDetailComponent implements OnInit, OnDestroy {
 
-  private order: any;
+  public order: any;
 
   constructor(private orderService: OrderService, private route: ActivatedRoute, private authService: AuthService) { }
 

@@ -14,7 +14,10 @@ export interface Product {
     thumbnailImage?: string;
     largeImage?: string;
     relatedProducts?: Product[],
-    frequentlyPurchasedWith?: Product[]
+    frequentlyPurchasedWith?: Product[],
+
+    shortDescription?: string,
+    longDescription?: string,
 
 
 }

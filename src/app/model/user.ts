@@ -12,6 +12,8 @@ export class User {
 
     followed: boolean = false;
 
+    profilePictureName: string;
+
 
     constructor(obj) {
         if (undefined != obj) {

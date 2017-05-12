@@ -3,7 +3,7 @@
         <oorsi-web-news-feed-item *ngFor="let wishlistProduct of wishlistProducts " [wishlistProduct]="wishlistProduct"></oorsi-web-news-feed-item>
     </div>
 
-    <div *ngIf="wishlistProducts.size == 0">
+    <div *ngIf="wishlistProducts.length == 0">
         <h1><a>Follow more accounts</a> to see friends and families wishlist and Shopping activity.</h1>
     </div>
 </div>
