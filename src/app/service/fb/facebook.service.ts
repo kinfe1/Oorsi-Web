@@ -12,10 +12,7 @@ export class FacebookService {
   constructor(private http: AuthHttp, private authService: AuthService) { }
 
   public getFBFriends(accessToken: string): Observable<User[]> {
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    this.authService.addAuthHeader(headers);
-    return this.http.get(OORSI_API_ENDPOINT + 'friends/fb/search?accessToken=' + accessToken, { headers: headers }).map((response: Response) => response.json());
+    return this.http.get(OORSI_API_ENDPOINT + 'friends/fb/search?accessToken=' + accessToken).map((response: Response) => response.json());
 
   }
 
