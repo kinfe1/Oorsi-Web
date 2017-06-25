@@ -35,7 +35,7 @@ export class WishlistItemComponent implements OnInit {
   }
 
   addToCart(product: Product, user: User) {
-    this.cartService.addProductToCart(product, user).subscribe(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
+    this.cartService.addProductToCart(product, user).then(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
   }
 
 

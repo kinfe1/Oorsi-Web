@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
   }
 
   onDeleteCartProduct(cartProduct: CartProduct) {
-    this.cartService.deleteCartProduct(cartProduct).subscribe(data => {
+    this.cartService.deleteCartProduct(cartProduct).then(data => {
       cartProduct.forUser.cartProducts.splice(cartProduct.forUser.cartProducts.indexOf(cartProduct), 1);
     }, err => this.authService.checkError(err));
   }

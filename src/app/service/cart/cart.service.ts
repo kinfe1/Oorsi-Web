@@ -2,7 +2,7 @@ import { AuthService } from './../auth/auth.service';
 import { OORSI_API_ENDPOINT } from '../../const';
 import { CartProduct } from '../../model/cartProduct';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
 import { Product } from '../../model/product';
@@ -12,32 +12,42 @@ import { AuthHttp } from 'angular2-jwt';
 @Injectable()
 export class CartService {
 
-  constructor(private http: AuthHttp) { }
+  cartUpdated: EventEmitter<number>;
+
+  constructor(private http: AuthHttp) {
+    this.cartUpdated = new EventEmitter<number>();
+  }
 
   getCart(): Observable<CartProduct[]> {
-    let headers: Headers = new Headers();
 
-    return this.http.get(OORSI_API_ENDPOINT + 'cart/products', { headers: headers }).map((response: Response) => response.json());
+    return this.http.get(OORSI_API_ENDPOINT + 'cart/products').map((response: Response) => response.json());
   }
 
   getCartSize(): Observable<number> {
-    let headers: Headers = new Headers();
 
-    return this.http.get(OORSI_API_ENDPOINT + 'cart/size', { headers: headers }).map((response: Response) => response.json());
+    return this.http.get(OORSI_API_ENDPOINT + 'cart/size').map((response: Response) => response.json());
   }
 
-  deleteCartProduct(cartProduct: CartProduct): Observable<any> {
-    let headers: Headers = new Headers();
+  updateCartSize(): void {
+    this.getCartSize().subscribe(data => this.cartUpdated.emit(data));
+  }
+
+  deleteCartProduct(cartProduct: CartProduct): Promise<any> {
 
     let searchParams = new URLSearchParams();
     searchParams.set('forId', '' + cartProduct.forUser.userID);
     searchParams.set('productId', '' + cartProduct.product.productId);
 
-    return this.http.delete(OORSI_API_ENDPOINT + 'cart/remove', { headers: headers, search: searchParams });
+    return new Promise<any>((resolve, reject) => {
+      this.http.delete(OORSI_API_ENDPOINT + 'cart/remove', { search: searchParams }).subscribe(data => {
+        console.log('CartProvider')
+        this.updateCartSize();
+        resolve(data)
+      });
+    });
   }
 
   addProductToCart(product: Product, to?: User) {
-    let headers: Headers = new Headers();
 
     let searchParams = new URLSearchParams();
 
@@ -52,11 +62,23 @@ export class CartService {
       searchParams.set('to', '' + to.userID);
     }
 
-    return this.http.post(OORSI_API_ENDPOINT + 'cart/add', null, { headers: headers, search: searchParams }).map(
-      (response: Response) => {
-        response.json()
-      });
+    return new Promise<any>((resolve, reject) => {
+      this.http.post(OORSI_API_ENDPOINT + 'cart/add', null, { search: searchParams }).map(
+        (response: Response) => {
+          response.json()
+        }).subscribe(data => {
+          this.updateCartSize();
+          resolve(data);
+        })
+    });
   }
 
-
+  updateCartProduct(item: CartProduct): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.http.post(OORSI_API_ENDPOINT + 'cart/product/update', null, item).subscribe(data => {
+        this.updateCartSize();
+        resolve(data);
+      });
+    })
+  }
 }

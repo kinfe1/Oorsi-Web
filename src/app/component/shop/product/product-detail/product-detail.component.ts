@@ -83,11 +83,11 @@ export class ProductDetailComponent implements OnInit {
     }
 
     addToCart() {
-        this.cartService.addProductToCart(this.product).subscribe(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
+        this.cartService.addProductToCart(this.product).then(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
     }
 
     addToCartForUser() {
-        this.cartService.addProductToCart(this.product, this.forUser).subscribe(data => this.addToCartButtonForUser = ADDED_TO_CART, err => this.authService.checkError(err));
+        this.cartService.addProductToCart(this.product, this.forUser).then(data => this.addToCartButtonForUser = ADDED_TO_CART, err => this.authService.checkError(err));
     }
 
     addToWishlist() {

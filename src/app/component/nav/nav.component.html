@@ -53,7 +53,7 @@
       <a routerLink="/cart">
         <i>
                 <span class="material-icons shopping_basket"></span>
-                                <span class="count">{{cartSize}}</span>
+                                <span class="count" *ngIf="cartSize">{{cartSize}}</span>
               </i>
       </a>
     </div>

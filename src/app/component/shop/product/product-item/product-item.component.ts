@@ -26,7 +26,7 @@ export class ProductItemComponent {
   }
 
   addToCart(product: Product) {
-    this.cartService.addProductToCart(product).subscribe(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
+    this.cartService.addProductToCart(product).then(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
   }
 
 
