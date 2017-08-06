@@ -9,7 +9,6 @@
       "outDir": "webapp",
       "assets": [
         "assets",
-        "favicon.ico",
         "WEB-INF"
       ],
       "index": "index.html",

@@ -1,64 +1,52 @@
 <!-- Site Logo -->
-<a routerLink="/" class="site-logo visible-desktop">
-  <span><img src="/assets/logo.png" class="img img-responsive"> </span>
-</a>
-<!-- site-logo.visible-desktop -->
-<a routerLink="/" class="site-logo visible-mobile">
-  <span><img src="/assets/logo.png" class="img img-responsive"></span>
-</a>
-<!-- site-logo.visible-mobile -->
+<div class="navbar navbar-default">
+  <div>
+    
+    <a routerLink="/">
+      <span><img src="/assets/header-logo.svg" class="header-icon"> </span>
+    </a>
+  </div>
 
+  <ul class="navbar-horizontal float-right hidden-xs">
+    <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/news">News Feed</a>
+      </li>
+      <li routerLinkActive="current-menu-item">
+        <a routerLink="/shop">Shop</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/friends">Friends</a>
+      </li>
 
-<!-- Main Navigation -->
-<!-- Control the position of navigation via modifier classes: "text-left, text-center, text-right" -->
-<nav class="main-navigation text-center">
-  <ul class="menu">
-    <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-      <a routerLink="/news">News Feed</a>
-    </li>
-    <li routerLinkActive="current-menu-item">
-      <a routerLink="/shop">Shop</a>
-    </li>
-    <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-      <a routerLink="/friends">Friends</a>
-    </li>
-
-    <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
-      <a routerLink="/login">Login</a>
-    </li>
-    <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
-      <a routerLink="/register">Register</a>
-    </li>
-    <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-      <a routerLink="/account"><i class="material-icons person"></i></a>
-      <ul class="sub-menu">
-        <li routerLinkActive="current-menu-item"><a routerLink="/profile">Profile</a></li>
-        <li routerLinkActive="current-menu-item"><a routerLink="/orders">Orders</a></li>
-        <li>
-          <a routerLink="/logout">Logout</a>
-        </li>
-      </ul>
-    </li>
+      <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
+        <a routerLink="/login">Login</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
+        <a routerLink="/register">Register</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn" class="dropdown">
+        <a><label routerLink="/account" for="dropdowner-1"><i class="fa fa-angle-down"></i></label></a>
+        <input type="checkbox" class="dropdowner" id="dropdowner-1"/>
+        <ul class="dropdown-list">
+          <li routerLinkActive="current-menu-item"><a routerLink="/profile">Profile</a></li>
+          <li routerLinkActive="current-menu-item"><a routerLink="/orders">Orders</a></li>
+          <li>
+            <a routerLink="/logout">Logout</a>
+          </li>
+        </ul>
+      </li>
   </ul>
-  <!-- .menu -->
-</nav>
-<!-- .main-navigation -->
-
-<!-- Toolbar -->
-<div class="toolbar">
-  <div class="inner">
-    <!--<a href="#menu" class="toolbar-toggle visible-mobile" (click)="open"><i class="material-icons menu"></i></a>-->
-    <a routerLink="/wishlist"><i class="material-icons favorite_border"></i></a>
-    <div class="cart-btn">
+  <ul class="navbar-horizontal">
+    <li>
+      <a routerLink="/wishlist"><i class="fa fa-heart"></i></a>
+    </li>
+    <li class="cart-btn">
       <a routerLink="/cart">
         <i>
-                <span class="material-icons shopping_basket"></span>
-                                <span class="count" *ngIf="cartSize">{{cartSize}}</span>
-              </i>
+          <span class="fa fa-shopping-cart"></span>
+          <span class="count" *ngIf="cartSize">{{cartSize}}</span>
+        </i>
       </a>
-    </div>
-    <!-- .cart-btn -->
-  </div>
-  <!-- .inner -->
+    </li>
+  </ul>
 </div>
-<!-- .toolbar -->

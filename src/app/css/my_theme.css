@@ -1,0 +1,17 @@
+
+
+@font-face {
+    font-family: "google-font";
+    src: url('./fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+    font-family: "google-light-font";
+    src: url('./fonts/Montserrat-Light.ttf');
+}
+
+.p90 {
+    width: 90%;
+    box-sizing: border-box;
+    padding: 2em;
+    margin: auto;
+}
