@@ -12,22 +12,38 @@
     align-items: center;
     font-family: google-light-font;
     padding: .5em 1em .35em;
+    z-index: 5;
+}
+.navbar-default * {
+    z-index: 6;
 }
 .navbar-default::before {
     content: ''; /* To generate the box */
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
-    z-index: -1;
+    z-index: 4;
     width: 90%;
-    height: 5em;
-    /* background: #58a; */
-    background: linear-gradient(90deg,#8ed400,#04af40);
+    height: 5em; 
+     background: linear-gradient(90deg,#8ed400,#04af40); 
     transform: perspective(22em) rotateX(-8deg);
     margin: auto;
+}
+@media (max-width: 768px) {
+    .navbar-default::before {
+        transform: perspective(22em) rotateX(0deg);
+        width: 100%;
+    }
+    .navbar-default {
+        justify-content: space-between;
+    }
 }
 .navbar-default * {
     color: white;
     font-weight: bolder;
+}
+.navbar-default::after {
+    display: none;
+    
 }
 .navbar-nav {
     float: none;
@@ -73,4 +89,76 @@
 }
 .dropdowner:checked + .dropdown-list {
     display: block;
+}
+
+#mobile-collapser + *, sidebar.in {
+    display: block;
+    position: absolute;
+    width: 250px;
+    height: calc(100% - 5em);
+    left: -250px;
+    transition: all .7s ease;
+    top: 5em;
+    z-index: 2;
+    background: linear-gradient(0deg,#052805,#448144);
+    overflow-y: auto;
+    /* background: linear-gradient(-90deg,#8ed400,#04af40); */
+}
+#mobile-collapser:checked + *, sidebar.out {
+    left: 0px;
+}
+.sidebar-default ul  {
+
+    padding: 0;
+}
+.sidebar-default ul li {
+    list-style: none;
+}
+.sidebar-default ul li a {
+    font-size: 1.3em;
+    font-family: google-light-font;
+    padding: .4em 1em;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar-default ul li a:hover {
+    background: rgba(255,255,255,.1);
+}
+
+
+.user-mini {
+    height: 120px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.user-mini::before {
+    content: '';
+    height: 120px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(190,190,190,.0) 70%);
+    position: absolute;
+}
+
+.user-mini .pic-icon {
+    width: 70px;
+    height: 70px;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+    background: white;
+}
+.user-mini .pic-icon img {
+    width: 70px;
+}
+.user-mini .name-tag {
+    font-size: 1.2em;
+    font-family: google-light-font;
+    color: white;
+    padding: 0 1em;
 }

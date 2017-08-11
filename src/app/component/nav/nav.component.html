@@ -1,13 +1,14 @@
 <!-- Site Logo -->
 <div class="navbar navbar-default">
   <div>
-    
-    <a routerLink="/">
-      <span><img src="/assets/header-logo.svg" class="header-icon"> </span>
-    </a>
+    <label for="mobile-collapser">
+      <a routerLink="/">
+        <span><img src="/assets/header-logo.svg" class="header-icon"> </span>
+      </a>
+    </label>
   </div>
-
-  <ul class="navbar-horizontal float-right hidden-xs">
+  
+  <ul class="navbar-horizontal hidden-xs">
     <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
         <a routerLink="/news">News Feed</a>
       </li>
@@ -19,10 +20,10 @@
       </li>
 
       <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
-        <a routerLink="/login">Login</a>
+        <a routerLink="/login">Log In</a>
       </li>
       <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
-        <a routerLink="/register">Register</a>
+        <a routerLink="/register">Sign Up</a>
       </li>
       <li routerLinkActive="current-menu-item" *ngIf="loggedIn" class="dropdown">
         <a><label routerLink="/account" for="dropdowner-1"><i class="fa fa-angle-down"></i></label></a>
@@ -38,15 +39,60 @@
   </ul>
   <ul class="navbar-horizontal">
     <li>
-      <a routerLink="/wishlist"><i class="fa fa-heart"></i></a>
+      <a routerLink="/wishlist"><i class="fa fa-lg fa-heart"></i></a>
     </li>
     <li class="cart-btn">
       <a routerLink="/cart">
         <i>
-          <span class="fa fa-shopping-cart"></span>
+          <span class="fa fa-lg fa-shopping-cart"></span>
           <span class="count" *ngIf="cartSize">{{cartSize}}</span>
         </i>
       </a>
     </li>
+    <li class="visible-xs-inline">
+      <a>
+        <label for="mobile-collapser">
+          <span class="fa fa-lg fa-angle-down"></span>        
+        </label>
+      </a>
+    </li>
+  </ul>
+</div>
+<input type="checkbox" class="hidden" id="mobile-collapser">
+<div class="sidebar sidebar-default visible-xs-block">
+  <div class="user-mini">
+    <div class="pic-icon">
+      <img src="/assets/img/person-icon-grey-no-tie-md.png" alt="">
+    </div>
+    <div class="name-tag">
+      Zemichael Tesfaye
+    </div>
+  </div>
+  <ul>
+    <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/news">News Feed</a>
+      </li>
+      <li routerLinkActive="current-menu-item">
+        <a routerLink="/shop">Shop</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/friends">Friends</a>
+      </li>
+
+      <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
+        <a routerLink="/login">Log In</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
+        <a routerLink="/register">Sign Up</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/profile">Profile</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/orders">Orders</a>
+      </li>
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a routerLink="/logout">Logout</a>
+      </li>
   </ul>
 </div>

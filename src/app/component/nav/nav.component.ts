@@ -15,6 +15,7 @@ export class NavComponent implements OnInit {
   cartSize: number;
   cartUpdatedEmmiter: EventEmitter<number>;
 
+  loggedIn = false;
 
   constructor(private authService: AuthService, private cartService: CartService) {
     // FB.init({
@@ -27,7 +28,6 @@ export class NavComponent implements OnInit {
     this.cartUpdatedEmmiter = this.cartService.cartUpdated;
   }
 
-  loggedIn: boolean = false;
 
   ngOnInit() {
     this.loggedIn = this.authService.isLoggedIn();
