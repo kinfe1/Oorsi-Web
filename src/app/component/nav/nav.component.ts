@@ -52,5 +52,15 @@ export class NavComponent implements OnInit {
 
 
 
+  // ui properties
+  sidebaropen = false;
+
+  // ui methods
+  closeSidebar(): void {
+    this.sidebaropen = false;
+  }
+  toggleSidebar(): void {
+    this.sidebaropen = (this.sidebaropen) ? false : true;
+  }
 
 }

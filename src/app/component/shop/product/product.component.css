@@ -1,0 +1,11 @@
+.search-box *:first-child {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.search-box *:last-child {
+    border-radius: 0 3px 3px 0;
+}
+.search-box {
+    display: flex;
+}

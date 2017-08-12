@@ -1,4 +1,5 @@
 <!-- Site Logo -->
+<div class="navbar-default-bg"></div>
 <div class="navbar navbar-default">
   <div>
     <label for="mobile-collapser">
@@ -50,49 +51,51 @@
       </a>
     </li>
     <li class="visible-xs-inline">
-      <a>
-        <label for="mobile-collapser">
-          <span class="fa fa-lg fa-angle-down"></span>        
-        </label>
+      <a (click)='toggleSidebar()'>
+        <span class="fa fa-lg fa-navicon"></span>        
       </a>
     </li>
   </ul>
 </div>
-<input type="checkbox" class="hidden" id="mobile-collapser">
-<div class="sidebar sidebar-default visible-xs-block">
-  <div class="user-mini">
-    <div class="pic-icon">
-      <img src="/assets/img/person-icon-grey-no-tie-md.png" alt="">
-    </div>
-    <div class="name-tag">
-      Zemichael Tesfaye
+<div class="sidebar-backfill" [class.hidden]='!sidebaropen' (click)='closeSidebar()'></div>
+<div [class.sidebaropen]="sidebaropen"
+    class="sidebar sidebarclosed sidebar-default visible-xs-block">
+  <div *ngIf="loggedIn">
+    <div class="user-mini-bg"></div>
+    <div class="user-mini">
+      <div class="pic-icon">
+        <img src="/assets/img/person-icon-grey-no-tie-md.png" alt="">
+      </div>
+      <div class="name-tag">
+        Zemichael Tesfaye
+      </div>
     </div>
   </div>
   <ul>
     <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-        <a routerLink="/news">News Feed</a>
+        <a routerLink="/news" (click)='closeSidebar()'>News Feed</a>
       </li>
       <li routerLinkActive="current-menu-item">
-        <a routerLink="/shop">Shop</a>
+        <a routerLink="/shop" (click)='closeSidebar()'>Shop</a>
       </li>
       <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-        <a routerLink="/friends">Friends</a>
+        <a routerLink="/friends" (click)='closeSidebar()'>Friends</a>
       </li>
 
       <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
-        <a routerLink="/login">Log In</a>
+        <a routerLink="/login" (click)='closeSidebar()'>Log In</a>
       </li>
       <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
-        <a routerLink="/register">Sign Up</a>
+        <a routerLink="/register" (click)='closeSidebar()'>Sign Up</a>
       </li>
       <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-        <a routerLink="/profile">Profile</a>
+        <a routerLink="/profile" (click)='closeSidebar()'>Profile</a>
       </li>
       <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-        <a routerLink="/orders">Orders</a>
+        <a routerLink="/orders" (click)='closeSidebar()'>Orders</a>
       </li>
       <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
-        <a routerLink="/logout">Logout</a>
+        <a routerLink="/logout" (click)='closeSidebar()'>Logout</a>
       </li>
   </ul>
 </div>

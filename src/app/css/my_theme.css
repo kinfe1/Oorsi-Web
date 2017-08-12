@@ -9,9 +9,30 @@
     src: url('./fonts/Montserrat-Light.ttf');
 }
 
-.p90 {
-    width: 90%;
-    box-sizing: border-box;
-    padding: 2em;
-    margin: auto;
+
+a:hover {
+    cursor: pointer;
+}
+* {
+    font-family: google-light-font;
+}
+body {
+    background: rgba(230,230,230,.3);
+}
+
+
+
+/*
+    basic colors
+    primary #8ed400
+    primary-frined $04af40
+*/
+/* Buttons and coloring  */
+
+.app-btn-primary {
+    border: none;
+    border-style: none;
+    color: white;
+    padding: .2em .7em;
+    background: linear-gradient(180deg, #8ed400, #04af40);
 }
