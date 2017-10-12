@@ -34,7 +34,7 @@ export class CartService {
 
   deleteCartProduct(cartProduct: CartProduct): Promise<any> {
 
-    let searchParams = new URLSearchParams();
+    const searchParams = new URLSearchParams();
     searchParams.set('forId', '' + cartProduct.forUser.userID);
     searchParams.set('productId', '' + cartProduct.product.productId);
 
@@ -49,7 +49,7 @@ export class CartService {
 
   addProductToCart(product: Product, to?: User) {
 
-    let searchParams = new URLSearchParams();
+    const searchParams = new URLSearchParams();
 
     if (null != product.productId) {
       searchParams.set('productId', '' + product.productId);
@@ -75,7 +75,7 @@ export class CartService {
 
   updateCartProduct(item: CartProduct): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.http.post(OORSI_API_ENDPOINT + 'cart/product/update', null, item).subscribe(data => {
+      this.http.post(OORSI_API_ENDPOINT + 'cart/product/update', item).subscribe(data => {
         this.updateCartSize();
         resolve(data);
       });

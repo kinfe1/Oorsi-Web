@@ -15,6 +15,10 @@ export class NavComponent implements OnInit {
   cartSize: number;
   cartUpdatedEmmiter: EventEmitter<number>;
 
+  loggedIn = false;
+
+  environment;
+
 
   constructor(private authService: AuthService, private cartService: CartService) {
     // FB.init({
@@ -25,9 +29,14 @@ export class NavComponent implements OnInit {
     //   version: 'v2.5' // use graph api version 2.5
     // });
     this.cartUpdatedEmmiter = this.cartService.cartUpdated;
+
+    if (environment.production !== true) {
+      debugger;
+      this.environment = environment.env;
+    }
   }
 
-  loggedIn: boolean = false;
+
 
   ngOnInit() {
     this.loggedIn = this.authService.isLoggedIn();
