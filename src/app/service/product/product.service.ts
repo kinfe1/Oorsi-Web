@@ -11,24 +11,22 @@ export class ProductService {
     constructor(private http: Http) { }
 
     public search(s: string): Observable<any> {
-        var headers = new Headers();
-        //  headers.append('Content-Type', 'application/json');
-        headers.append("Origin", "http://localhost:4200/");
-        return this.http.get(OORSI_API_ENDPOINT + 'product/search?s=' + s + '&page=1', headers);
+   
+        return this.http.get(OORSI_API_ENDPOINT + 'product/search?s=' + s + '&page=1');
     }
 
     public getProductById(id?: number): Observable<any> {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+        // let headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
 
-        return this.http.get(OORSI_API_ENDPOINT + 'product/id/' + id, headers).map((response: Response) => response.json());
+        return this.http.get(OORSI_API_ENDPOINT + 'product/id/' + id).map((response: Response) => response.json());
     }
 
     public getProductBySku(retailer: number, sku: string): Observable<any> {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+        // var headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
 
-        return this.http.get(OORSI_API_ENDPOINT + 'product/retailer/' + retailer + "/sku/" + sku, headers).map((response: Response) => response.json());
+        return this.http.get(OORSI_API_ENDPOINT + 'product/retailer/' + retailer + "/sku/" + sku).map((response: Response) => response.json());
     }
 
     public getProducts(products: Product[]): Observable<any> {
