@@ -1,31 +1,33 @@
 import { AuthService } from './../auth/auth.service';
 import { OORSI_API_ENDPOINT } from '../../const';
 import { CartProduct } from '../../model/cartProduct';
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { Injectable, EventEmitter } from '@angular/core';
-import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Rx';
+
+
 import { Product } from '../../model/product';
 import { User } from '../../model/user';
-import { AuthHttp } from 'angular2-jwt';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { HttpParams } from '@angular/common/http';
+
 
 @Injectable()
 export class CartService {
 
   cartUpdated: EventEmitter<number>;
 
-  constructor(private http: AuthHttp) {
+  constructor(private http: HttpClient) {
     this.cartUpdated = new EventEmitter<number>();
   }
 
   getCart(): Observable<CartProduct[]> {
 
-    return this.http.get(OORSI_API_ENDPOINT + 'cart/products').map((response: Response) => response.json());
+    return this.http.get<CartProduct[]>(OORSI_API_ENDPOINT + 'cart/products');
   }
 
   getCartSize(): Observable<number> {
 
-    return this.http.get(OORSI_API_ENDPOINT + 'cart/size').map((response: Response) => response.json());
+    return this.http.get<number>(OORSI_API_ENDPOINT + 'cart/size');
   }
 
   updateCartSize(): void {
@@ -34,12 +36,12 @@ export class CartService {
 
   deleteCartProduct(cartProduct: CartProduct): Promise<any> {
 
-    let searchParams = new URLSearchParams();
+    let searchParams = new HttpParams();
     searchParams.set('forId', '' + cartProduct.forUser.userID);
     searchParams.set('productId', '' + cartProduct.product.productId);
 
     return new Promise<any>((resolve, reject) => {
-      this.http.delete(OORSI_API_ENDPOINT + 'cart/remove', { search: searchParams }).subscribe(data => {
+      this.http.delete(OORSI_API_ENDPOINT + 'cart/remove', { params: searchParams }).subscribe(data => {
         console.log('CartProvider')
         this.updateCartSize();
         resolve(data)
@@ -49,7 +51,7 @@ export class CartService {
 
   addProductToCart(product: Product, to?: User) {
 
-    let searchParams = new URLSearchParams();
+    let searchParams = new HttpParams();
 
     if (null != product.productId) {
       searchParams.set('productId', '' + product.productId);
@@ -63,7 +65,7 @@ export class CartService {
     }
 
     return new Promise<any>((resolve, reject) => {
-      this.http.post(OORSI_API_ENDPOINT + 'cart/add', null, { search: searchParams }).map(
+      this.http.post(OORSI_API_ENDPOINT + 'cart/add', null, { params: searchParams }).map(
         (response: Response) => {
           response.json()
         }).subscribe(data => {

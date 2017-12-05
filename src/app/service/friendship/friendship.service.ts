@@ -1,23 +1,25 @@
-import { AuthHttp } from 'angular2-jwt';
+
 import { AuthService } from './../auth/auth.service';
-import { Observable } from 'rxjs/Rx';
+
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { OORSI_API_ENDPOINT } from '../../const';
 import { User } from '../../model/user';
+import { HttpClient } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class FriendshipService {
 
-    constructor(private authHttp: AuthHttp) { }
+    constructor(private authHttp: HttpClient) { }
 
     public search(s: string): Observable<User[]> {
-        return this.authHttp.get(OORSI_API_ENDPOINT + 'friends/search?s=' + s).map((response: Response) => response.json());
+        return this.authHttp.get<User[]>(OORSI_API_ENDPOINT + 'friends/search?s=' + s);
     }
 
     public getFriends(): Observable<User[]> {
 
-        return this.authHttp.get(OORSI_API_ENDPOINT + 'friends').map((response: Response) => response.json());
+        return this.authHttp.get<User[]>(OORSI_API_ENDPOINT + 'friends');
 
     }
 
@@ -30,8 +32,8 @@ export class FriendshipService {
     }
 
     public sendFollowUnfollowRequest(user: User, url: string) {
-        let searchParams = new URLSearchParams();
+        let searchParams = new HttpParams();
         searchParams.append("friendID", user.userID);
-        return this.authHttp.post(OORSI_API_ENDPOINT + url, undefined, { search: searchParams });
+        return this.authHttp.post(OORSI_API_ENDPOINT + url, undefined, { params: searchParams });
     }
 }

@@ -1,18 +1,19 @@
 import { OORSI_API_ENDPOINT } from './../../const';
-import { Observable } from 'rxjs/Rx';
-import { Http, Headers, Response } from '@angular/http';
+
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../../model/user';
-import { AuthHttp } from 'angular2-jwt';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+
 
 @Injectable()
 export class FacebookService {
 
-  constructor(private http: AuthHttp, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   public getFBFriends(accessToken: string): Observable<User[]> {
-    return this.http.get(OORSI_API_ENDPOINT + 'friends/fb/search?accessToken=' + accessToken).map((response: Response) => response.json());
+    return this.http.get<User[]> (OORSI_API_ENDPOINT + 'friends/fb/search?accessToken=' + accessToken);
 
   }
 

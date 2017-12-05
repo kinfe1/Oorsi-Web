@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth/auth.service';
-import { NgForm } from '@angular/forms/src/directives';
+import { NgForm } from '@angular/forms';
 
 // declare const FB: any;
 
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
     onLogin(ngForm: NgForm) {
 
-        this.authService.login(ngForm.value.email, ngForm.value.password).subscribe(result => {
+        this.authService.login(ngForm.value.email, ngForm.value.password).then(result => {
             this.router.navigate(['/']);
         }, err => {
             this.errors = err.json();

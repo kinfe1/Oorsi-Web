@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 this.productService.search(queryParam['s'])
                     .subscribe(
                     data => {
-                        this.products = data.json();
+                        this.products = data;
                     }
 
                     )

@@ -1,17 +1,19 @@
 import { OORSI_API_ENDPOINT } from './../../const';
-import { Observable } from 'rxjs/Rx';
-import { Headers, Http, Response, URLSearchParams } from '@angular/http';
+
 import { Injectable } from '@angular/core';
 import { Product } from '../../model/product';
+import { HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ProductService {
 
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     public search(s: string): Observable<any> {
-   
+
         return this.http.get(OORSI_API_ENDPOINT + 'product/search?s=' + s + '&page=1');
     }
 
@@ -19,27 +21,24 @@ export class ProductService {
         // let headers = new Headers();
         // headers.append('Content-Type', 'application/json');
 
-        return this.http.get(OORSI_API_ENDPOINT + 'product/id/' + id).map((response: Response) => response.json());
+        return this.http.get(OORSI_API_ENDPOINT + 'product/id/' + id);
     }
 
     public getProductBySku(retailer: number, sku: string): Observable<any> {
         // var headers = new Headers();
         // headers.append('Content-Type', 'application/json');
 
-        return this.http.get(OORSI_API_ENDPOINT + 'product/retailer/' + retailer + "/sku/" + sku).map((response: Response) => response.json());
+        return this.http.get(OORSI_API_ENDPOINT + 'product/retailer/' + retailer + "/sku/" + sku);
     }
 
     public getProducts(products: Product[]): Observable<any> {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-        let params: URLSearchParams = new URLSearchParams();
+        let params: HttpParams = new HttpParams();
 
         for (let product of products) {
-            params.append('sku', '' + product.sku);
+            params.set('sku', '' + product.sku);
         }
 
-        return this.http.get(OORSI_API_ENDPOINT + 'product/list', { headers: headers, search: params });
+        return this.http.get(OORSI_API_ENDPOINT + 'product/list', { params: params });
     }
 
 

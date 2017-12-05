@@ -1,10 +1,10 @@
 import { User } from '../../model/user';
-import { Observable, Subject } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
 import { CanActivate, Router } from '@angular/router';
-import { Http, Jsonp, Response, Headers, URLSearchParams } from '@angular/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { OORSI_API_ENDPOINT } from '../../const';
+import { HttpClient } from '@angular/common/http';
+import { Token } from '../../model/token';
+import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
@@ -18,7 +18,7 @@ export class AuthService {
 
     public loggedInUserId: number;
 
-    constructor(private http: Http, private router: Router) {
+    constructor(private http: HttpClient, private router: Router) {
         this.isLoggedInEmitter = new EventEmitter();
         this.isLoggedInEmitter.emit(this.isLoggedIn());
     }
@@ -45,83 +45,86 @@ export class AuthService {
         }
     }
 
-    login(username: string, password: string): Observable<boolean> {
-        let headers: Headers = new Headers();
-        return this.http.post(OORSI_API_ENDPOINT + 'login', { username: username, password: password })
-            .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let token = response.json() && response.json().token;
-                if (token) {
+    login(username: string, password: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            return this.http.post<Token>(OORSI_API_ENDPOINT + 'login', { username: username, password: password })
+                .map(data => {
+                    // login successful if there's a jwt token in the response
+                    let token = data && data.token;
+                    if (token) {
 
 
-                    // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', token);
+                        // store username and jwt token in local storage to keep user logged in between page refreshes
+                        localStorage.setItem('currentUser', token);
 
-                    this.isLoggedInEmitter.emit(this.isLoggedIn());
+                        this.isLoggedInEmitter.emit(this.isLoggedIn());
 
-                    // return true to indicate successful login
-                    return true;
-                } else {
-                    this.isLoggedInEmitter.emit(this.isLoggedIn());
-                    // return false to indicate failed login
-                    return false;
-                }
-            });
+                        // return true to indicate successful login
+                        resolve(true);
+                    } else {
+                        this.isLoggedInEmitter.emit(this.isLoggedIn());
+                        // return false to indicate failed login
+                        resolve(false);
+                    }
+                });
+        })
     }
 
-    register(loginFormValue): Observable<boolean> {
-        return this.http.post(OORSI_API_ENDPOINT + 'register', loginFormValue)
-            .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let token = response.json() && response.json().token;
-                if (token) {
+    register(loginFormValue): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.http.post<Token>(OORSI_API_ENDPOINT + 'register', loginFormValue)
+                .subscribe(data => {
+                    // login successful if there's a jwt token in the response
+                    let token = data && data.token;
+                    if (token) {
 
 
-                    // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', token);
+                        // store username and jwt token in local storage to keep user logged in between page refreshes
+                        localStorage.setItem('currentUser', token);
 
-                    this.isLoggedInEmitter.emit(this.isLoggedIn());
+                        this.isLoggedInEmitter.emit(this.isLoggedIn());
 
-                    // return true to indicate successful login
-                    return true;
-                } else {
-                    //this.isLoggedIn.emit(this.canActivate());
-                    // return false to indicate failed login
-                    return false;
-                }
-            });
+                        // return true to indicate successful login
+                        resolve(true);
+                    } else {
+                        //this.isLoggedIn.emit(this.canActivate());
+                        // return false to indicate failed login
+                        resolve(false);
+                    }
+                });
+        });
+
     }
 
-    facebookLogin(accessToken: string): Observable<boolean> {
-        return this.http.post(OORSI_API_ENDPOINT + 'fbLogin', accessToken)
-            .map((response: Response) => {
+    facebookLogin(accessToken: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.http.post<Token>(OORSI_API_ENDPOINT + 'fbLogin', accessToken)
+                .subscribe(data => {
 
-                // login successful if there's a jwt token in the response
-                let token = response.json() && response.json().token;
-                if (token) {
+                    // login successful if there's a jwt token in the response
+                    let token = data && data.token;
+                    if (token) {
 
 
-                    // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', token);
+                        // store username and jwt token in local storage to keep user logged in between page refreshes
+                        localStorage.setItem('currentUser', token);
 
-                    this.isLoggedInEmitter.emit(this.isLoggedIn());
+                        this.isLoggedInEmitter.emit(this.isLoggedIn());
 
-                    // return true to indicate successful login
-                    return true;
-                } else {
-                    // this.isLoggedIn.emit(this.canActivate());
-                    // return false to indicate failed login
-                    return false;
-                }
+                        // return true to indicate successful login
+                        resolve(true);
+                    } else {
+                        // this.isLoggedIn.emit(this.canActivate());
+                        // return false to indicate failed login
+                        resolve(false);
+                    }
 
-            });
+                });
+        });
     }
 
     getFBUserInfo(accessToken): Observable<User> {
-        return this.http.post(OORSI_API_ENDPOINT + 'fbUserInfo', accessToken)
-            .map((response: Response) => {
-                return response.json();
-            });
+        return this.http.post<User>(OORSI_API_ENDPOINT + 'fbUserInfo', accessToken);
 
     }
 
@@ -129,10 +132,6 @@ export class AuthService {
         // clear token remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.isLoggedInEmitter.emit(this.isLoggedIn());
-    }
-
-    addAuthHeader(headers: Headers): void {
-        headers.append("jwt-token", localStorage.getItem('currentUser'));
     }
 
 

@@ -22,7 +22,7 @@ export class WishlistComponent implements OnInit {
         this.wishlistService.getWishList()
             .subscribe(
             data => {
-                this.wishlistProducts = data.json();
+                this.wishlistProducts = data;
                 this.loading = false;
             }
 
