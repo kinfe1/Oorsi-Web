@@ -65,10 +65,7 @@ export class CartService {
     }
 
     return new Promise<any>((resolve, reject) => {
-      this.http.post(OORSI_API_ENDPOINT + 'cart/add', null, { params: searchParams }).map(
-        (response: Response) => {
-          response.json()
-        }).subscribe(data => {
+      this.http.post(OORSI_API_ENDPOINT + 'cart/add', null, { params: searchParams }).subscribe(data => {
           this.updateCartSize();
           resolve(data);
         })

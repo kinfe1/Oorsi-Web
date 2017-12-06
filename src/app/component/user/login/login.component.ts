@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         this.authService.login(ngForm.value.email, ngForm.value.password).then(result => {
             this.router.navigate(['/']);
         }, err => {
-            this.errors = err.json();
+            this.errors = err;
         });
     }
 

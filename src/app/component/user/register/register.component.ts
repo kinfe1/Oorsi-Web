@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
       this.authService.register(this.myForm.value).then(
         result => { this.router.navigate(['/news']) },
         err => {
-          let errors: Error[] = err.json();
+          let errors: Error[] = err;
           for (let error of errors) {
             if (this.myForm.controls[error.fieldName]) {
               this.myForm.controls[error.fieldName].setErrors({ remote: error.message });

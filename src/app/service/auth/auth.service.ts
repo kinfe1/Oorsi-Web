@@ -48,7 +48,7 @@ export class AuthService {
     login(username: string, password: string): Promise<boolean> {
         return new Promise((resolve, reject) => {
             return this.http.post<Token>(OORSI_API_ENDPOINT + 'login', { username: username, password: password })
-                .map(data => {
+                .subscribe(data => {
                     // login successful if there's a jwt token in the response
                     let token = data && data.token;
                     if (token) {

@@ -41,6 +41,9 @@ export class ProductService {
         return this.http.get(OORSI_API_ENDPOINT + 'product/list', { params: params });
     }
 
+    public trendingProducts(): Observable<Product[]> {
+        return this.http.get<Product[]>(OORSI_API_ENDPOINT + 'product/trending');
+    }
 
 
 

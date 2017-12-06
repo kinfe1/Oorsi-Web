@@ -47,11 +47,12 @@ import { ProfileService } from './service/profile.service';
 import { LoggedInUserService } from './service/logged-in-user.service';
 import { AuthInterceptor } from './service/auth/auth-interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ShopHomeComponent } from './component/shop/shop-home/shop-home.component';
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/shop", pathMatch: "full" },
-    { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "r/:retailer/sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
+    { path: 'shop', component: ProductComponent, children: [{ path: "", component: ShopHomeComponent },{ path: "search", component: ProductListComponent }, { path: "r/:retailer/sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [LoggedInUserService] },
     { path: 'friends', component: FriendshipComponent, canActivate: [LoggedInUserService], children: [{ path: "", component: FriendListComponent, pathMatch: "full" }, { path: "search", component: FriendSearchComponent }, { path: "fb", component: FriendFbSearchComponent }] },
     { path: 'wishlist', component: WishlistComponent, canActivate: [LoggedInUserService] },
@@ -93,6 +94,7 @@ const appRoutes: Routes = [
         OrderDetailComponent,
         OrderComponent,
         ImageURLPipe,
+        ShopHomeComponent,
 
     ],
     imports: [

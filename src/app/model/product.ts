@@ -1,3 +1,5 @@
+import { ProductImageURL } from "./product-image-url";
+
 export interface Product {
 
     productId?: number;
@@ -15,9 +17,7 @@ export interface Product {
     largeImage?: string;
     relatedProducts?: Product[],
     frequentlyPurchasedWith?: Product[],
-
-    shortDescription?: string,
-    longDescription?: string,
+    productImageURLs: ProductImageURL[];
 
 
 }
