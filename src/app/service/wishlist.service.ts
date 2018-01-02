@@ -1,16 +1,18 @@
-import { AuthHttp } from 'angular2-jwt';
+
 import { Product } from './../model/product';
 import { WishListProduct } from './../model/wishlistproduct';
 import { AuthService } from './auth/auth.service';
 import { Injectable } from '@angular/core';
-import { Http, Headers, URLSearchParams, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+
 import { OORSI_API_ENDPOINT } from '../const';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class WishlistService {
 
-    constructor(private http: AuthHttp) { }
+    constructor(private http: HttpClient) { }
 
     getWishList(): Observable<any> {
         return this.http.get(OORSI_API_ENDPOINT + 'wishlist/list.json');
@@ -18,16 +20,16 @@ export class WishlistService {
 
     deleteWishListProduct(wishlistProduct: WishListProduct): Observable<any> {
 
-        let searchParams = new URLSearchParams();
+        let searchParams = new HttpParams();
         searchParams.set('productId', '' + wishlistProduct.product.productId);
 
-        return this.http.delete(OORSI_API_ENDPOINT + 'wishlist/delete', { search: searchParams });
+        return this.http.delete(OORSI_API_ENDPOINT + 'wishlist/delete', { params: searchParams });
     }
 
     addProductToWishlist(product: Product) {
 
 
-        let searchParams = new URLSearchParams();
+        let searchParams = new HttpParams();
 
         if (null != product.productId) {
             searchParams.set('productId', '' + product.productId);
@@ -36,11 +38,11 @@ export class WishlistService {
             searchParams.set('sku', '' + product.sku);
         }
 
-        return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', undefined, { search: searchParams }).map((response: Response) => response.json());
+        return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', undefined, { params: searchParams });
     }
 
     isInWishlist(product: Product): Observable<boolean> {
-        let searchParams = new URLSearchParams();
+        let searchParams = new HttpParams();
 
         if (product.productId && null != product.productId) {
             searchParams.set('productId', '' + product.productId);
@@ -49,7 +51,7 @@ export class WishlistService {
             searchParams.set('sku', '' + product.sku);
         }
 
-        return this.http.get(OORSI_API_ENDPOINT + 'wishlist/isInWishList', { search: searchParams }).map((response: Response) => response.json());
+        return this.http.get<boolean>(OORSI_API_ENDPOINT + 'wishlist/isInWishList', { params: searchParams });
     }
 
 

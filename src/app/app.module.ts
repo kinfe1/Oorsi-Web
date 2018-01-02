@@ -4,13 +4,10 @@ import { PaymentService } from './service/payment.service';
 import { AddressService } from './service/address/address.service';
 import { FriendSearchComponent } from './component/friendship/friend-search/friend-search.component';
 import { WishlistService } from './service/wishlist.service';
-import { RequestOptionsArgs } from '@angular/http/src/interfaces';
-import { AUTH_PROVIDERS, AuthConfigConsts, AuthHttp, IAuthConfig, provideAuth, AuthConfig } from 'angular2-jwt';
 import { ProductService } from './service/product/product.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, RequestOptions, Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ModalModule } from 'ng2-bootstrap/modal';
 
@@ -48,13 +45,16 @@ import { OrderComponent } from './component/order/order.component';
 import { ImageURLPipe } from './pipe/image-url.pipe';
 import { ProfileService } from './service/profile.service';
 import { LoggedInUserService } from './service/logged-in-user.service';
+import { AuthInterceptor } from './service/auth/auth-interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ShopHomeComponent } from './component/shop/shop-home/shop-home.component';
 
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/shop", pathMatch: "full" },
-    { path: 'shop', component: ProductComponent, children: [{ path: "search", component: ProductListComponent }, { path: "r/:retailer/sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
+    { path: 'shop', component: ProductComponent, children: [{ path: "", component: ShopHomeComponent },{ path: "search", component: ProductListComponent }, { path: "r/:retailer/sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [LoggedInUserService] },
-    { path: 'friends', component: FriendshipComponent, canActivate: [LoggedInUserService], children: [{ path: "", component: FriendListComponent }, { path: "search", component: FriendSearchComponent }, { path: "fb", component: FriendFbSearchComponent }] },
+    { path: 'friends', component: FriendshipComponent, canActivate: [LoggedInUserService], children: [{ path: "", component: FriendListComponent, pathMatch: "full" }, { path: "search", component: FriendSearchComponent }, { path: "fb", component: FriendFbSearchComponent }] },
     { path: 'wishlist', component: WishlistComponent, canActivate: [LoggedInUserService] },
     { path: 'login', component: LoginComponent, canActivate: [AnonymousService] },
     { path: 'logout', component: LogoutComponent },
@@ -65,12 +65,6 @@ const appRoutes: Routes = [
     { path: 'orders/id/:id', component: OrderDetailComponent },
 ];
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-
-    return new AuthHttp(new AuthConfig({
-        tokenGetter: (() => localStorage.getItem('currentUser')), noJwtError: false,
-    }), http, options);
-}
 
 
 @NgModule({
@@ -100,20 +94,21 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         OrderDetailComponent,
         OrderComponent,
         ImageURLPipe,
+        ShopHomeComponent,
 
     ],
     imports: [
         BrowserModule,
         FormsModule,
-        HttpModule,
+        HttpClientModule,
         RouterModule.forRoot(appRoutes), ModalModule.forRoot(), ReactiveFormsModule
     ],
     providers: [ProductService, AuthService, WishlistService, NewsFeedService, CartService, FriendshipService, FacebookService, CheckoutService, AddressService, PaymentService, OrderService, ProfileService, AnonymousService,
-        {
-            provide: AuthHttp,
-            useFactory: authHttpServiceFactory,
-            deps: [Http, RequestOptions]
-        }, LoggedInUserService],
+        LoggedInUserService, {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
