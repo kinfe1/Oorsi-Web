@@ -17,7 +17,7 @@
     <div class="product-gallery">
       <!-- Preview -->
       <ul class="product-gallery-preview">
-        <li id="preview03" class="current"><img class="productImage" src="{{product?.largeFrontImage}}" alt="Product"></li>
+        <li id="preview03" class="current"><img class="productImage" src="{{product?.image}}" alt="Product"></li>
       </ul>
       <!-- .product-gallery-preview -->
 
@@ -31,8 +31,8 @@
   <div class="container">
     <div class="product-info padding-top-2x text-center">
       <h5 class="h5 space-bottom-half"> {{product?.name}}</h5>
-      <h6>{{product?.salePrice| currency:'USD':true:'1.2-2'}}</h6>
-      <s *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency:'USD':true:'1.2-2'}}</s>
+      <h6>{{product?.salePrice| currency:'USD':'1.2-2'}}</h6>
+      <s *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency:'USD':'1.2-2'}}</s>
       <p class="text-sm text-gray">{{product?.shortDescription}}</p>
       <div class="product-meta">
         <div class="product-sku">

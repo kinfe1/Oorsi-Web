@@ -6,7 +6,7 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Error } from '../../../model/error';
 
-declare const FB: any;
+// declare const FB: any;
 
 @Component({
   selector: 'oorsi-web-register',
@@ -63,10 +63,10 @@ export class RegisterComponent implements OnInit {
 
     this.submitAttempt = true;
     if (this.myForm.valid) {
-      this.authService.register(this.myForm.value).subscribe(
+      this.authService.register(this.myForm.value).then(
         result => { this.router.navigate(['/news']) },
         err => {
-          let errors: Error[] = err.json();
+          let errors: Error[] = err;
           for (let error of errors) {
             if (this.myForm.controls[error.fieldName]) {
               this.myForm.controls[error.fieldName].setErrors({ remote: error.message });
@@ -80,27 +80,27 @@ export class RegisterComponent implements OnInit {
 
 
   onFacebookLoginClick() {
-    FB.login(response => {
-      console.log(response);
-      if (response.status === 'connected') {
-        this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
-          data => {
-            if (data === true) {
-              // login successful
-              this.router.navigate(['/']);
-            } else {
-              this.authService.getFBUserInfo(response.authResponse.accessToken).subscribe(user => {
-                this.myForm.patchValue({
-                  firstName: user.firstName,
-                  lastName: user.lastName,
-                  email: user.email,
-                  fbat: response.authResponse.accessToken
-                });
-              });
-            }
-          }, err => location.reload);
-      }
-    }, { scope: 'email,user_friends' });
+    // FB.login(response => {
+    //   console.log(response);
+    //   if (response.status === 'connected') {
+    //     this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
+    //       data => {
+    //         if (data === true) {
+    //           // login successful
+    //           this.router.navigate(['/']);
+    //         } else {
+    //           this.authService.getFBUserInfo(response.authResponse.accessToken).subscribe(user => {
+    //             this.myForm.patchValue({
+    //               firstName: user.firstName,
+    //               lastName: user.lastName,
+    //               email: user.email,
+    //               fbat: response.authResponse.accessToken
+    //             });
+    //           });
+    //         }
+    //       }, err => location.reload);
+    //   }
+    // }, { scope: 'email,user_friends' });
   }
 }
 

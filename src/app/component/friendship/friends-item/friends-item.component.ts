@@ -3,7 +3,6 @@ import { AuthService } from './../../../service/auth/auth.service';
 import { User } from './../../../model/user';
 
 import { Component, Input } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
 import { FriendshipService } from '../../../service/friendship/friendship.service';
 
 @Component({

@@ -75,9 +75,9 @@ export class ProductDetailComponent implements OnInit {
         console.log("loadRelatedProducts");
         if (this.product) {
             if (null != this.product.frequentlyPurchasedWith && this.product.frequentlyPurchasedWith.length > 0)
-                this.productService.getProducts(this.product.frequentlyPurchasedWith).subscribe(data => this.product.frequentlyPurchasedWith = data.json());
+                this.productService.getProducts(this.product.frequentlyPurchasedWith).subscribe(data => this.product.frequentlyPurchasedWith = data);
             if (null != this.product.relatedProducts && this.product.relatedProducts.length > 0)
-                this.productService.getProducts(this.product.relatedProducts).subscribe(data => this.product.relatedProducts = data.json());
+                this.productService.getProducts(this.product.relatedProducts).subscribe(data => this.product.relatedProducts = data);
         }
 
     }
