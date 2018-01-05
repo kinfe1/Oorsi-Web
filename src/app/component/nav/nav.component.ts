@@ -31,7 +31,6 @@ export class NavComponent implements OnInit {
     this.cartUpdatedEmmiter = this.cartService.cartUpdated;
 
     if (environment.production !== true) {
-      debugger;
       this.environment = environment.env;
     }
   }

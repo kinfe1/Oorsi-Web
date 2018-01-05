@@ -4,4 +4,5 @@ export interface CartProduct {
     id: number;
     product: Product;
     forUser: User;
+    quantity: number;
 }

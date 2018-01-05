@@ -18,31 +18,23 @@ export class WishlistService {
         return this.http.get(OORSI_API_ENDPOINT + 'wishlist/list.json');
     }
 
-    deleteWishListProduct(wishlistProduct: WishListProduct): Observable<any> {
-
+    getWishlistItem(wishlistProductID: number): Observable<WishListProduct> {
         let searchParams = new HttpParams();
-        searchParams.set('productId', '' + wishlistProduct.product.productId);
-
-        return this.http.delete(OORSI_API_ENDPOINT + 'wishlist/delete', { params: searchParams });
+        searchParams.append('wishlistProductID', '' + wishlistProductID);
+        return this.http.get<WishListProduct>(OORSI_API_ENDPOINT + 'wishlist', { params: searchParams });
     }
 
+    deleteWishListProduct(wishlistProduct: WishListProduct): Observable<any> {
+        return this.http.post(OORSI_API_ENDPOINT + 'wishlist/delete', wishlistProduct.product, { responseType: 'text' });
+    }
+
+
     addProductToWishlist(product: Product) {
-
-
-        let searchParams = new HttpParams();
-
-        if (null != product.productId) {
-            searchParams.set('productId', '' + product.productId);
-        } else {
-            searchParams.set('retailer', '' + product.retailerId);
-            searchParams.set('sku', '' + product.sku);
-        }
-
-        return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', undefined, { params: searchParams });
+        return this.http.post(OORSI_API_ENDPOINT + 'wishlist/add', product);
     }
 
     isInWishlist(product: Product): Observable<boolean> {
-        let searchParams = new HttpParams();
+        let searchParams = new HttpParams({ 'fromString': '' + product.productId });
 
         if (product.productId && null != product.productId) {
             searchParams.set('productId', '' + product.productId);
@@ -53,8 +45,6 @@ export class WishlistService {
 
         return this.http.get<boolean>(OORSI_API_ENDPOINT + 'wishlist/isInWishList', { params: searchParams });
     }
-
-
 
 
 

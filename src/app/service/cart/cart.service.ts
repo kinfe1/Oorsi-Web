@@ -36,12 +36,14 @@ export class CartService {
 
   deleteCartProduct(cartProduct: CartProduct): Promise<any> {
 
-    let searchParams = new HttpParams();
-    searchParams.set('forId', '' + cartProduct.forUser.userID);
-    searchParams.set('productId', '' + cartProduct.product.productId);
-
     return new Promise<any>((resolve, reject) => {
-      this.http.delete(OORSI_API_ENDPOINT + 'cart/remove', { params: searchParams }).subscribe(data => {
+      this.http.post(OORSI_API_ENDPOINT + 'cart/remove',
+        {
+          forId: cartProduct.forUser.userID,
+          productId: cartProduct.product.productId
+        },
+        { responseType: 'text' }
+      ).subscribe(data => {
         console.log('CartProvider')
         this.updateCartSize();
         resolve(data)
@@ -51,30 +53,29 @@ export class CartService {
 
   addProductToCart(product: Product, to?: User) {
 
-    let searchParams = new HttpParams();
+    let cartProduct;
 
     if (null != product.productId) {
-      searchParams.set('productId', '' + product.productId);
+      cartProduct = { 'productId': product.productId }
     } else {
-      searchParams.set('retailer', '' + product.retailerId);
-      searchParams.set('sku', '' + product.sku);
+      cartProduct = { 'retailer': product.retailerId, 'sku': product.sku }
     }
 
     if (to) {
-      searchParams.set('to', '' + to.userID);
+      cartProduct.to = to.userID;
     }
 
     return new Promise<any>((resolve, reject) => {
-      this.http.post(OORSI_API_ENDPOINT + 'cart/add', null, { params: searchParams }).subscribe(data => {
-          this.updateCartSize();
-          resolve(data);
-        })
+      this.http.post(OORSI_API_ENDPOINT + 'cart/add', cartProduct).subscribe(data => {
+        this.updateCartSize();
+        resolve(data);
+      })
     });
   }
 
-  updateCartProduct(item: CartProduct): Promise<any> {
+  updateCartProduct(cartProduct: CartProduct): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.http.post(OORSI_API_ENDPOINT + 'cart/product/update', item).subscribe(data => {
+      this.http.post(OORSI_API_ENDPOINT + 'cart/product/update', { to: cartProduct.forUser.userID, productId: cartProduct.product.productId, quantity: cartProduct.quantity }).subscribe(data => {
         this.updateCartSize();
         resolve(data);
       });
