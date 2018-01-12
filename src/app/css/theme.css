@@ -4344,10 +4344,6 @@ input[type="button"].btn-block {
   height: 100px;
 }
 
-.shopping-cart .item .item-thumb > img {
-  width: 100%;
-}
-
 .item-title {
   /*font-size: 22px;*/
   font-weight: normal;
