@@ -11,16 +11,26 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class FriendshipService {
 
-    constructor(private authHttp: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
     public search(s: string): Observable<User[]> {
-        return this.authHttp.get<User[]>(OORSI_API_ENDPOINT + 'friends/search?s=' + s);
+        return this.http.get<User[]>(OORSI_API_ENDPOINT + 'friends/search?s=' + s);
     }
 
-    public getFriends(): Observable<User[]> {
+    public getFriends(user?: User): Observable<User[]> {
 
-        return this.authHttp.get<User[]>(OORSI_API_ENDPOINT + 'friends');
+        let searchParams = new HttpParams();
 
+        if (user) {
+            searchParams.append("userID", "" + user.userID);
+        }
+        return this.http.get<User[]>(OORSI_API_ENDPOINT + 'friends', { params: searchParams });
+    }
+
+    public getFollowers(user?: User): Observable<User[]> {
+        let searchParams = new HttpParams();
+        searchParams.append("userID", "" + user.userID);
+        return this.http.get<User[]>(OORSI_API_ENDPOINT + 'friends/followers', { params: searchParams });
     }
 
     public follow(user: User) {
@@ -32,8 +42,7 @@ export class FriendshipService {
     }
 
     public sendFollowUnfollowRequest(user: User, url: string) {
-        let searchParams = new HttpParams();
-        searchParams.append("friendID", user.userID);
-        return this.authHttp.post(OORSI_API_ENDPOINT + url, undefined, { params: searchParams });
+
+        return this.http.post(OORSI_API_ENDPOINT + url, { userID: user.userID });
     }
 }

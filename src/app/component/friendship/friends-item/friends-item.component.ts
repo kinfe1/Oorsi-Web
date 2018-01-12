@@ -29,11 +29,14 @@ export class FriendsItemComponent {
 
   onFollow(user: User) {
     if (!this.user.followed) {
+      this.user.followed = true;
       this.friendshipService.follow(user).subscribe(data => {
         this.user.followed = true;
       }, err => this.authService.checkError(err));
     }
     else {
+      this.user.followed = false;
+
       this.friendshipService.unfollow(user).subscribe(data => {
         this.user.followed = false;
       }, err => this.authService.checkError(err));

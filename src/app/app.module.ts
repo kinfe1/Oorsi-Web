@@ -48,6 +48,7 @@ import { LoggedInUserService } from './service/logged-in-user.service';
 import { AuthInterceptor } from './service/auth/auth-interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ShopHomeComponent } from './component/shop/shop-home/shop-home.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 const appRoutes: Routes = [
@@ -95,6 +96,7 @@ const appRoutes: Routes = [
         OrderComponent,
         ImageURLPipe,
         ShopHomeComponent,
+        UserDetailComponent,
 
     ],
     imports: [
