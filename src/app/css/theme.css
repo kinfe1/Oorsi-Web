@@ -4360,6 +4360,10 @@ input[type="button"].btn-block {
   text-decoration: none;
 }
 
+.product-wrapper oorsi-web-wishlist-item .item .item-thumb img {
+  height: 140px;
+}
+
 .item-price {
   font-size: 18px;
   color: #999;
