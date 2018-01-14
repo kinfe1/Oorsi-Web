@@ -33,7 +33,7 @@
       <h5 class="h5 space-bottom-half"> {{product?.name}}</h5>
       <h6>{{product?.salePrice| currency:'USD':'1.2-2'}}</h6>
       <s *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency:'USD':'1.2-2'}}</s>
-      <p class="text-sm text-gray">{{product?.shortDescription}}</p>
+      <p class="text-sm text-gray" [innerHTML]="product?.shortDescription">{{product?.shortDescription}}</p>
       <div class="product-meta">
         <div class="product-sku">
           <strong>SKU: </strong>
@@ -98,7 +98,7 @@
     <div role="tabpanel" class="tab-pane transition fade in active" id="description">
       <div class="row space-top">
         <div class="col-md-8 col-md-offset-2">
-          <p>{{product?.longDescription}}</p>
+          <p [innerHTML]="product?.longDescription">{{product?.longDescription}}</p>
         </div>
       </div>
     </div>
