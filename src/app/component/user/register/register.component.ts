@@ -5,8 +5,9 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Error } from '../../../model/error';
+import { environment } from '../../../../environments/environment';
 
-// declare const FB: any;
+declare const FB: any;
 
 @Component({
   selector: 'oorsi-web-register',
@@ -57,6 +58,14 @@ export class RegisterComponent implements OnInit {
 
     );
 
+    FB.init({
+      appId: environment.fbAppID,
+      status: true,
+      cookie: true,
+      xfbml: true,
+      version: 'v2.4'
+    });
+
   }
 
   register() {
@@ -80,27 +89,27 @@ export class RegisterComponent implements OnInit {
 
 
   onFacebookLoginClick() {
-    // FB.login(response => {
-    //   console.log(response);
-    //   if (response.status === 'connected') {
-    //     this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
-    //       data => {
-    //         if (data === true) {
-    //           // login successful
-    //           this.router.navigate(['/']);
-    //         } else {
-    //           this.authService.getFBUserInfo(response.authResponse.accessToken).subscribe(user => {
-    //             this.myForm.patchValue({
-    //               firstName: user.firstName,
-    //               lastName: user.lastName,
-    //               email: user.email,
-    //               fbat: response.authResponse.accessToken
-    //             });
-    //           });
-    //         }
-    //       }, err => location.reload);
-    //   }
-    // }, { scope: 'email,user_friends' });
+    FB.login(response => {
+      console.log(response);
+      if (response.status === 'connected') {
+        this.authService.facebookLogin(response.authResponse.accessToken).then(
+          data => {
+            if (data === true) {
+              // login successful
+              this.router.navigate(['/']);
+            } else {
+              this.authService.getFBUserInfo(response.authResponse.accessToken).subscribe(user => {
+                this.myForm.patchValue({
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  email: user.email,
+                  fbat: response.authResponse.accessToken
+                });
+              });
+            }
+          }).catch(err => location.reload);
+      }
+    }, { scope: 'email,public_profile,user_friends' });
   }
 }
 

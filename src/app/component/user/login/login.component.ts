@@ -2,8 +2,9 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth/auth.service';
 import { NgForm } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
-// declare const FB: any;
+declare const FB: any;
 
 @Component({
     selector: 'oorsi-web-login',
@@ -20,7 +21,15 @@ export class LoginComponent implements OnInit {
 
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        FB.init({
+            appId: environment.fbAppID,
+            status: true,
+            cookie: true,
+            xfbml: true,
+            version: 'v2.4'
+        });
+    }
 
     onLogin(ngForm: NgForm) {
 
@@ -32,22 +41,22 @@ export class LoginComponent implements OnInit {
     }
 
     onFacebookLoginClick() {
-        // FB.login(response => {
-        //     console.log(response);
-        //     if (response.status === 'connected') {
-        //         this.authService.facebookLogin(response.authResponse.accessToken).subscribe(
-        //             data => {
-        //                 if (data === true) {
-        //                     // login successful
-        //                     this.router.navigate(['/']);
-        //                 } else {
-        //                     this.router.navigate(['/register'], { queryParams: { fbat: response.authResponse.accessToken } });
-        //                 }
-        //             }, err => location.reload);
-        //     }
-        // }, { scope: 'email,user_friends' });
+        FB.login(response => {
+            console.log(response);
+            if (response.status === 'connected') {
+                this.authService.facebookLogin(response.authResponse.accessToken).then(
+                    data => {
+                        if (data === true) {
+                            // login successful
+                            this.router.navigate(['/']);
+                        } else {
+                            this.router.navigate(['/register'], { queryParams: { fbat: response.authResponse.accessToken } });
+                        }
+                    }).catch(err => location.reload);
+            }
+        }, { scope: 'email,public_profile,user_friends' });
 
-        
+
     }
 
 
