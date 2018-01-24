@@ -18,6 +18,7 @@ export interface Product {
     relatedProducts?: Product[],
     frequentlyPurchasedWith?: Product[],
     productImageURLs: ProductImageURL[];
-
+    shortDescription: string;
+    longDescription: string;
 
 }
