@@ -1,6 +1,5 @@
 import { Product } from '../../../../model/product';
 import { Subscription } from "rxjs/Rx";
-import { SubscriptionLog } from 'rxjs/testing/SubscriptionLog';
 import { ProductService } from './../../../../service/product/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';

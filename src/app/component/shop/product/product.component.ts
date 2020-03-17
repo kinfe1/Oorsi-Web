@@ -1,4 +1,3 @@
-import { NgForm } from '@angular/forms/src/directives';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
