@@ -1,19 +1,14 @@
-<!-- Shop Bar -->
-<div class="shop-bar space-top-half">
-  <!-- .column -->
-  <div class="column">
-    <form class="search-box" (ngSubmit)="onSearch()">
-      <input type="text" class="form-control" placeholder="Search OOrsi shop" [(ngModel)]="searchString" name="s">
-      <button type="submit">
-                  <i class="material-icons search"></i>
-                </button>
-    </form>
-    <!-- form.search-box -->
-  </div>
-  <!-- .column -->
+<!-- Seach Bar on top -->
+<div class="oorsi-search-container">
+  <form class="search-box" (ngSubmit)="onSearch()">
+    <input type="text" class="form-control" placeholder="Search OOrsi shop" [(ngModel)]="searchString" name="s">
+    <button type="submit">
+      <i class="material-icons search"></i>
+    </button>
+  </form>
 </div>
-<!-- .shop-bar -->
 
+<!-- Products List Or Detail (Depending on the route) -->
 <div class="row padding-top">
   <router-outlet></router-outlet>
 </div>
