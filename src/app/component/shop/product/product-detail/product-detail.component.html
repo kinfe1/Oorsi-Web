@@ -1,5 +1,5 @@
 <section class="fw-section bg-gray">
-  
+
   <div class="container padding-top">
 
     <!-- Product Gallery -->
@@ -20,8 +20,9 @@
   <div class="container">
     <div class="product-info padding-top-2x text-center">
       <h5 class="h5 space-bottom-half"> {{product?.name}}</h5>
-      <h6>{{product?.salePrice| currency:'USD':'1.2-2'}}</h6>
-      <s *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency:'USD':'1.2-2'}}</s>
+      <h6>{{product?.salePrice | currency:'USD':'symbol':'1.2-2'}}</h6>
+      <s
+        *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency:'USD':'symbol':'1.2-2'}}</s>
       <p class="text-sm text-gray" [innerHTML]="product?.shortDescription">{{product?.shortDescription}}</p>
       <div class="product-meta">
         <div class="product-sku">
@@ -33,12 +34,12 @@
           <a >Furniture</a>
         </div>-->
         <span class="product-rating text-warning">
-              <i class="material-icons star"></i>
-              <i class="material-icons star"></i>
-              <i class="material-icons star"></i>
-              <i class="material-icons star"></i>
-              <i class="material-icons star_border"></i>
-            </span>
+          <i class="material-icons star"></i>
+          <i class="material-icons star"></i>
+          <i class="material-icons star"></i>
+          <i class="material-icons star"></i>
+          <i class="material-icons star_border"></i>
+        </span>
       </div>
       <!-- .product-meta -->
       <div class="product-tools shop-item">
@@ -57,11 +58,16 @@
         </div>-->
         <!-- .form-element -->
         <a class="add-to-cart" (click)="addToCart()">
-          <em>{{addToCartButton}}</em>
+          <em>{{isAddedToPersonalCart? "Added To Cart" : "Add To Cart"}}</em>
         </a>
 
         <a class="add-to-cart" (click)="addToCartForUser()" *ngIf="forUser">
-          <em>{{addToCartButtonForUser}} for {{forUser.firstName}} {{forUser.lastName}}</em>
+          <em>
+            {{isAddedToFriendCard ? "Added To Cart" : "Add To Cart"}}
+            for
+            {{forUser.firstName}}
+            {{forUser.lastName}}
+          </em>
         </a>
         <!-- .add-to-cart -->
 
@@ -96,20 +102,24 @@
   </div>
   <!-- .tab-content -->
 </section>
-<section class="container padding-top padding-bottom" *ngIf="product?.frequentlyPurchasedWith && product?.frequentlyPurchasedWith.length!=0">
+<section class="container padding-top padding-bottom"
+  *ngIf="product?.frequentlyPurchasedWith && product?.frequentlyPurchasedWith.length!=0">
   <hr>
   <h3 class="padding-top">Frequently Purchsed With</h3>
   <div class="row padding-top">
-    <oorsi-web-product-item *ngFor="let p of product?.frequentlyPurchasedWith; let i = index" [product]="p" [index]="i"></oorsi-web-product-item>
+    <oorsi-web-product-item *ngFor="let p of product?.frequentlyPurchasedWith; let i = index" [product]="p" [index]="i">
+    </oorsi-web-product-item>
   </div>
   <!-- .row -->
 </section>
 
-<section class="container padding-top padding-bottom" *ngIf="product?.relatedProducts && product?.relatedProducts?.length!=0">
+<section class="container padding-top padding-bottom"
+  *ngIf="product?.relatedProducts && product?.relatedProducts?.length!=0">
   <hr>
   <h3 class="padding-top">Related Products</h3>
   <div class="row padding-top">
-    <oorsi-web-product-item *ngFor="let p of product?.relatedProducts; let i = index" [product]="p" [index]="i"></oorsi-web-product-item>
+    <oorsi-web-product-item *ngFor="let p of product?.relatedProducts; let i = index" [product]="p" [index]="i">
+    </oorsi-web-product-item>
   </div>
   <!-- .row -->
 </section>
