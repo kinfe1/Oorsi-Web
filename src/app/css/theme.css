@@ -1358,7 +1358,7 @@ label.hover {
 .search-box {
   position: relative;
   width: 100%;
-  border-right: 2px solid #c1b0b0;
+  /* border-right: 2px solid #c1b0b0; */
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
