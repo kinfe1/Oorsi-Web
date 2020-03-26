@@ -1,38 +1,39 @@
-<section class="fw-section bg-gray">
+<div class="row">
+  <div class="col-md-5 col-sm-12">
 
-  <div class="container padding-top">
-
-    <!-- Product Gallery -->
-    <div class="product-gallery">
-      <!-- Preview -->
-      <ul class="product-gallery-preview">
-        <li id="preview03" class="current"><img class="productImage" src="{{product?.image}}" alt="Product"></li>
-      </ul>
-      <!-- .product-gallery-preview -->
-
-      <!-- .product-gallery-thumblist -->
+    <!-- Product Pictues display -->
+    <div class="padding-top">
+      <div class="product-gallery">
+        <ul class="product-gallery-preview">
+          <li id="preview03" class="current"><img class="productImage" src="{{product?.image}}" alt="Product"></li>
+        </ul>
+      </div>
     </div>
-    <!-- .product-gallery -->
+
   </div>
-  <!-- .container -->
-</section>
-<section class="fw-section bg-gray padding-bottom-3x">
-  <div class="container">
+  <div class="col-md-7 col-sm-12">
+    <!-- product info display -->
     <div class="product-info padding-top-2x text-center">
+      <!-- product name -->
       <h5 class="h5 space-bottom-half"> {{product?.name}}</h5>
+      <!-- product price -->
       <h6>{{product?.salePrice | currency:'USD':'symbol':'1.2-2'}}</h6>
-      <s
-        *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency:'USD':'symbol':'1.2-2'}}</s>
+      <!-- product discounted -->
+      <s *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency:'USD':'symbol':'1.2-2'}}</s>
+      <!-- product description -->
       <p class="text-sm text-gray" [innerHTML]="product?.shortDescription">{{product?.shortDescription}}</p>
+      <!-- other meta datas -->
       <div class="product-meta">
         <div class="product-sku">
           <strong>SKU: </strong>
           <span>146950023</span>
         </div>
+        <!-- category -->
         <!--<div class="product-category">
-          <strong>Category: </strong>
-          <a >Furniture</a>
-        </div>-->
+            <strong>Category: </strong>
+            <a >Furniture</a>
+          </div>-->
+        <!-- ratting button and status -->
         <span class="product-rating text-warning">
           <i class="material-icons star"></i>
           <i class="material-icons star"></i>
@@ -41,26 +42,31 @@
           <i class="material-icons star_border"></i>
         </span>
       </div>
-      <!-- .product-meta -->
+      <!-- product actions -->
       <div class="product-tools shop-item">
+
+        <!-- count increate and decrease -->
         <div class="count-input">
           <a class="incr-btn" data-action="decrease">–</a>
           <input class="quantity" type="text" value="1">
           <a class="incr-btn" data-action="increase">+</a>
         </div>
-        <!-- .count-input -->
+
+        <!-- color selection -->
         <!--<div class="form-element">
-          <select class="form-control form-control-sm color-select">
-                <option value="blue" data-image="preview02">Blue</option>
-                <option value="creme" data-image="preview01">Creme</option>
-                <option value="red" data-image="preview03">Red</option>
-              </select>
-        </div>-->
-        <!-- .form-element -->
+            <select class="form-control form-control-sm color-select">
+                  <option value="blue" data-image="preview02">Blue</option>
+                  <option value="creme" data-image="preview01">Creme</option>
+                  <option value="red" data-image="preview03">Red</option>
+                </select>
+          </div>-->
+
+        <!-- add to cart -->
         <a class="add-to-cart" (click)="addToCart()">
           <em>{{isAddedToPersonalCart? "Added To Cart" : "Add To Cart"}}</em>
         </a>
 
+        <!-- add to user's gift cart -->
         <a class="add-to-cart" (click)="addToCartForUser()" *ngIf="forUser">
           <em>
             {{isAddedToFriendCard ? "Added To Cart" : "Add To Cart"}}
@@ -69,27 +75,27 @@
             {{forUser.lastName}}
           </em>
         </a>
-        <!-- .add-to-cart -->
 
+        <!-- add to users wishlist -->
         <a (click)="addToWishlist()">
           <i class="material-icons favorite_border"></i>
         </a>
       </div>
 
-      <!-- .product-share -->
     </div>
-    <!-- .product-info -->
   </div>
-  <!-- .container -->
-</section>
+</div>
+
+<!-- tabbed views -->
 <section class="container padding-top-2x">
-  <!-- Nav Tabs -->
+  <!-- tab containers -->
   <ul class="nav-tabs text-center" role="tablist">
+    <!-- detail description tab -->
     <li class="active"><a role="tab" data-toggle="tab">Description</a></li>
   </ul>
-  <!-- .nav-tabs -->
-  <!-- Tab panes -->
+  <!-- tab contents -->
   <div class="tab-content">
+    <!-- description tab content -->
     <div role="tabpanel" class="tab-pane transition fade in active" id="description">
       <div class="row space-top">
         <div class="col-md-8 col-md-offset-2">
@@ -97,11 +103,11 @@
         </div>
       </div>
     </div>
-    <!-- .tab-pane -->
 
   </div>
-  <!-- .tab-content -->
 </section>
+
+<!-- frequently purchased -->
 <section class="container padding-top padding-bottom"
   *ngIf="product?.frequentlyPurchasedWith && product?.frequentlyPurchasedWith.length!=0">
   <hr>
@@ -110,9 +116,9 @@
     <oorsi-web-product-item *ngFor="let p of product?.frequentlyPurchasedWith; let i = index" [product]="p" [index]="i">
     </oorsi-web-product-item>
   </div>
-  <!-- .row -->
 </section>
 
+<!-- related products -->
 <section class="container padding-top padding-bottom"
   *ngIf="product?.relatedProducts && product?.relatedProducts?.length!=0">
   <hr>
@@ -121,5 +127,4 @@
     <oorsi-web-product-item *ngFor="let p of product?.relatedProducts; let i = index" [product]="p" [index]="i">
     </oorsi-web-product-item>
   </div>
-  <!-- .row -->
 </section>

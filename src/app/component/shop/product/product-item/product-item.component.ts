@@ -5,6 +5,11 @@ import { Product } from "../../../../model/product";
 import { ADD_TO_CART, ADDED_TO_CART } from "../../../../const";
 import { AuthService } from "../../../../service/auth/auth.service";
 
+/**
+ * is a component that displayed the detail information of a product.
+ * it has views that let the user add to cart or add to another person's gift card,
+ * also has a view to add to user's wish list.
+ */
 @Component({
   selector: "oorsi-web-product-item",
   templateUrl: "./product-item.component.html",
@@ -15,13 +20,13 @@ export class ProductItemComponent {
   /**
    * the product input it will display
    */
-  @Input() product;
+  @Input() public product;
 
   /**
    * the index of the product in the parent list
    * to know the position of the product in the list
    */
-  @Input() index: number;
+  @Input() public index: number;
 
   /**
    * products current status of added to card
