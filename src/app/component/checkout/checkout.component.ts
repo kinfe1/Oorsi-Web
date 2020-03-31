@@ -80,4 +80,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     increase(cartProduct: CartProduct): void {
 
     }
+
+    onDeleteCartProduct(cartProduct: CartProduct): void {
+
+    }
+
 }
