@@ -35,15 +35,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             (param: any) => {
                 this.checkoutService.getCheckoutProducts(param['id'])
                     .subscribe(
-                    data => {
-                        let cartProducts: CartProduct[] = data;
-                        if (cartProducts && null != cartProducts && cartProducts.length > 0) {
-                            this.user = new User(cartProducts[0].forUser);
-                            for (let cartProduct of cartProducts) {
-                                this.user.addCartProduct(cartProduct);
+                        data => {
+                            let cartProducts: CartProduct[] = data;
+                            if (cartProducts && null != cartProducts && cartProducts.length > 0) {
+                                this.user = new User(cartProducts[0].forUser);
+                                for (let cartProduct of cartProducts) {
+                                    this.user.addCartProduct(cartProduct);
+                                }
                             }
-                        }
-                    }, err => this.authService.checkError(err)
+                        }, err => this.authService.checkError(err)
                     )
             }
         );
@@ -68,8 +68,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     submitOrder() {
         this.checkoutService.submitOrder(this.user.userID, this.shipTo, this.shippingAddress, this.paymentMethod)
             .subscribe(
-            data => this.router.navigate(['/orders/id/' + data.id]),
-            err => this.authService.checkError(err)
+                data => this.router.navigate(['/orders/id/' + data.id]),
+                err => this.authService.checkError(err)
             )
+    }
+
+    decrease(cartProduct: CartProduct): void {
+
+    }
+
+    increase(cartProduct: CartProduct): void {
+
     }
 }

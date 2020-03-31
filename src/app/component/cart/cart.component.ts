@@ -47,6 +47,13 @@ export class CartComponent implements OnInit {
     }, err => this.authService.checkError(err));
   }
 
+  decrease(cartProduct: CartProduct): void {
+
+  }
+
+  increase(cartProduct: CartProduct): void {
+
+  }
 
 
 }

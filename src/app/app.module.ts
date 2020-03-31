@@ -53,9 +53,13 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: "/shop", pathMatch: "full" },
-    { path: 'shop', component: ProductComponent, children: [{ path: "", component: ShopHomeComponent },{ path: "search", component: ProductListComponent }, { path: "r/:retailer/sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
+    { path: 'shop', component: ProductComponent, children: [{ path: "", component: ShopHomeComponent }, { path: "search", component: ProductListComponent }, { path: "r/:retailer/sku/:sku", component: ProductDetailComponent }, { path: "id/:id", component: ProductDetailComponent }] },
     { path: 'news', component: NewsFeedComponent, canActivate: [LoggedInUserService] },
-    { path: 'friends', component: FriendshipComponent, canActivate: [LoggedInUserService], children: [{ path: "", component: FriendListComponent, pathMatch: "full" }, { path: "search", component: FriendSearchComponent }, { path: "fb", component: FriendFbSearchComponent }] },
+    {
+        path: 'friends', component: FriendshipComponent, canActivate: [LoggedInUserService],
+        children: [{ path: "", component: FriendListComponent, pathMatch: "full" },
+        { path: "search", component: FriendSearchComponent }, { path: "fb", component: FriendFbSearchComponent }]
+    },
     { path: 'wishlist', component: WishlistComponent, canActivate: [LoggedInUserService] },
     { path: 'login', component: LoginComponent, canActivate: [AnonymousService] },
     { path: 'logout', component: LogoutComponent },

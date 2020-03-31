@@ -4,4 +4,5 @@ export interface WishListProduct {
     id: number;
     product: Product;
     user: User;
+    updated: Date;
 }
