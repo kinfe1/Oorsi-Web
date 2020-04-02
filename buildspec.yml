@@ -17,6 +17,6 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-      - '**/*'
-  base-directory: 'dist*'
+      - 'oorsi-web/*'
+  base-directory: 'dist'
   discard-paths: yes

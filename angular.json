@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gps-service": {
+    "oorsi-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/gps-service",
+            "outputPath": "dist/oorsi-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "gps-service:build"
+            "browserTarget": "oorsi-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "gps-service:build:production"
+              "browserTarget": "oorsi-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gps-service:build"
+            "browserTarget": "oorsi-web:build"
           }
         },
         "test": {
@@ -116,16 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "gps-service:serve"
+            "devServerTarget": "oorsi-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "gps-service:serve:production"
+              "devServerTarget": "oorsi-web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "gps-service"
+  "defaultProject": "oorsi-web"
 }
