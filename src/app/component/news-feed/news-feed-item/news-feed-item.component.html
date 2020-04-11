@@ -1,10 +1,48 @@
-<div *ngIf="wishlistProduct?.product!=null" class="profile-wrapper">
-  <div>
-    <img alt="Item" class="profile-picture-thumbnail img-responsive rounded-circle" src="{{wishlistProduct?.user.profilePictureName | oorsiImgURL}}"></div>
-  <div>
-    <span><a routerLink="/{{wishlistProduct?.user.userID}}" class="h3">{{wishlistProduct?.user.firstName}} {{wishlistProduct?.user.lastName}}</a> added to wishlist </span>
-    <span class="col-sm-6">{{wishlistProduct?.updated | date: 'MMM dd HH:mma'}}</span></div>
+<div *ngIf="activity.activityType == 'WLP'">
+  <div *ngIf="activity?.product!=null" class="profile-wrapper">
+    <div class="pic-container">
+      <img alt="Item" class="profile-picture-thumbnail img-responsive rounded-circle"
+        src="{{activity?.user.profilePictureName | oorsiImgURL}}">
+      </div>
+    <div class="h4">
+      <span>
+        <a routerLink="/{{activity?.user.userID}}" class="h4">
+          {{activity?.user.firstName}}
+          {{activity?.user.lastName}}</a>
+          added to wishlist
+        </span>
+      <div>
+        {{activity?.updated | date: 'MMM dd HH:mma'}}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="activity?.product!=null" class="wl-product-wrapper">
+    <oorsi-web-wishlist-item [wishlistProduct]="activity"></oorsi-web-wishlist-item>
+  </div>
 </div>
-<div *ngIf="wishlistProduct?.product!=null" class="product-wrapper">
-  <oorsi-web-wishlist-item [wishlistProduct]="wishlistProduct"></oorsi-web-wishlist-item>
+
+<div *ngIf="activity.activityType == 'FOLLOW'">
+
+  <div class="profile-wrapper">
+    <div class="pic-container">
+      <img alt="Item" class="profile-picture-thumbnail img-responsive rounded-circle"
+        src="{{activity.user.profilePictureName | oorsiImgURL}}">
+    </div>
+    <div>
+      <span class="h4">
+        <a routerLink="/user/{{activity?.user.userID}}" class="h4">
+          {{activity?.user.firstName}}
+          {{activity?.user.lastName}}
+        </a>
+        started following
+        <a routerLink="/user/{{activity.followed.userID}}" class="h4">
+          {{activity?.followed.firstName}}
+          {{activity?.followed.lastName}}
+        </a>
+      </span>
+      <div>
+        {{activity?.updated | date: 'MMM dd HH:mma'}}
+      </div>
+    </div>
+  </div>
 </div>

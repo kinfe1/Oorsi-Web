@@ -3,6 +3,7 @@ import { WishListProduct } from "./../../model/wishlistproduct";
 import { Component, OnInit } from "@angular/core";
 import { WishlistService } from "../../service/wishlist.service";
 import { AuthService } from "../../service/auth/auth.service";
+import { Activity } from 'src/app/model/activity';
 
 /**
  * this component gets list of news feed and displays them as a list of
@@ -18,7 +19,7 @@ export class NewsFeedComponent implements OnInit {
   /**
    * news feed list container variable defaulted to empty
    */
-  wishlistProducts: WishListProduct[] = [];
+  activities: Activity[] = [];
 
   /**
    *
@@ -34,7 +35,7 @@ export class NewsFeedComponent implements OnInit {
     /** get news feed */
     this.newsFeedService.getNewsFeed().subscribe(
       data => {
-        this.wishlistProducts = data;
+        this.activities = data;
       },
       err => this.authService.checkError(err)
     );
