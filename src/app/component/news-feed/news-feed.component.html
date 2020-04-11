@@ -1,9 +1,18 @@
 <div class="col-sm-8 padding-bottom-2x padding-top-2x col-sm-offset-2">
-    <div class="shopping-cart">
-        <oorsi-web-news-feed-item *ngFor="let wishlistProduct of wishlistProducts " [wishlistProduct]="wishlistProduct"></oorsi-web-news-feed-item>
-    </div>
+  <div class="shopping-cart">
+    <!-- list of news feed -->
+    <oorsi-web-news-feed-item *ngFor="let activity of activities " [activity]="activity">
+    </oorsi-web-news-feed-item>
+  </div>
 
-    <div *ngIf="wishlistProducts.length == 0">
-        <h1><a>Follow more accounts</a> to see friends and families wishlist and Shopping activity.</h1>
-    </div>
+  <!-- show to follow friends when news feed is empty -->
+  <div *ngIf="activities.length == 0">
+    <h1 class="emoji-middle">
+      <span class="material-icons">mood_bad</span>
+    </h1>
+    <h3>
+      <a routerLink="/friends">Follow more accounts</a>
+      to see friends and families wishlist and Shopping activity.
+    </h3>
+  </div>
 </div>

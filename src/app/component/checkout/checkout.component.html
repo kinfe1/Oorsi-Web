@@ -21,12 +21,12 @@
               <h5 class="item-title"><a routerLink="/shop/id/{{cartProduct.product.productId}}">{{cartProduct.product.name}}</a></h5>
               <h6 class="item-price">{{cartProduct.product.salePrice | currency:'USD'}}</h6>
               <div class="count-input">
-                <a class="incr-btn" data-action="decrease" (click)="decrease(cartProduct)">–</a>
-                <input class="quantity" type="text" value="1">
-                <a class="incr-btn" data-action="increase" (click)="increase(cartProduct)">+</a>
+                <a class="incr-btn" (click)="changeProductCount(cartProduct, -1)">–</a>
+                <input class="quantity" type="text" value="{{cartProduct.quantity}}">
+                <a class="incr-btn" (click)="changeProductCount(cartProduct, 1)">+</a>
               </div>
             </div>
-            <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="onDeleteCartProduct(cartProduct)">
+            <a class="item-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove" (click)="actionDeleteCartProduct(cartProduct)">
               <i class="material-icons remove_shopping_cart"></i>
             </a>
           </div>

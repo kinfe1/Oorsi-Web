@@ -1,5 +1,7 @@
-<div class="col-lg-10 col-lg-push-1 col-md-8 col-md-push-2 col-sm-10 col-sm-push-1">
+<!-- Display grid of products -->
+<div class="col-sm-12">
   <div class="row">
-    <oorsi-web-product-item *ngFor="let product of trendingProducts; let i = index" [product]="product" [index]="i"></oorsi-web-product-item>
+    <oorsi-web-product-item *ngFor="let product of trendingProducts; let i = index" [product]="product" [index]="i">
+    </oorsi-web-product-item>
   </div>
 </div>

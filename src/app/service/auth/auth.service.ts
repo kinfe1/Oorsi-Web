@@ -66,6 +66,9 @@ export class AuthService {
                         // return false to indicate failed login
                         resolve(false);
                     }
+                }, (err) => {
+                  console.log('login failed from auth servie', err);
+                  reject(err.error);
                 });
         })
     }
@@ -91,6 +94,8 @@ export class AuthService {
                         // return false to indicate failed login
                         resolve(false);
                     }
+                }, err => {
+                  reject(err.error)
                 });
         });
 

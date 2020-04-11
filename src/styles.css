@@ -16,3 +16,9 @@
   position: relative;
   float: left;
 }
+
+
+.count-input > a {
+  cursor: pointer;
+  user-select: none;
+}

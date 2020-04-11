@@ -3,19 +3,23 @@
 }
 
 .profile-picture-thumbnail{
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     overflow: hidden;
     float: left;
 }
 
-.profile-wrapper{
-    padding: 20px;
-    display: table;
-    text-align: center;
+.profile-wrapper {
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.product-wrapper{
-    margin-left: 100px;
+.profile-wrapper .pic-container {
+  margin-right: 15px;
+}
+.wl-product-wrapper {
+  margin-left: 40px;
 }

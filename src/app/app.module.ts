@@ -8,7 +8,7 @@ import { ProductService } from "./service/product/product.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes, Router } from "@angular/router";
 import { ModalModule } from "ngx-bootstrap";
 
 import { AppComponent } from "./app.component";
@@ -157,7 +157,8 @@ const appRoutes: Routes = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
+      deps: [Router]
     }
   ],
   bootstrap: [AppComponent]

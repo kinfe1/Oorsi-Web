@@ -22,7 +22,7 @@
               <h6 class="item-price">{{cartProduct.product.salePrice | currency:'USD'}}</h6>
               <div class="count-input">
                 <a class="incr-btn" data-action="decrease" (click)="decrease(cartProduct)">–</a>
-                <input class="quantity" type="text" value="1">
+                <input class="quantity" type="text" [value]="cartProduct.quantity">
                 <a class="incr-btn" data-action="increase" (click)="increase(cartProduct)">+</a>
               </div>
             </div>

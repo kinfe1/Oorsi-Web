@@ -1,33 +1,76 @@
-import { CartService } from './../../../../service/cart/cart.service';
-import { WishlistService } from '../../../../service/wishlist.service';
-import { ProductService } from './../../../../service/product/product.service';
-import { Component, Input } from '@angular/core';
-import { Product } from '../../../../model/product';
-import { ADD_TO_CART, ADDED_TO_CART } from '../../../../const';
-import { AuthService } from '../../../../service/auth/auth.service';
+import { CartService } from "./../../../../service/cart/cart.service";
+import { WishlistService } from "../../../../service/wishlist.service";
+import { Component, Input } from "@angular/core";
+import { Product } from "../../../../model/product";
+import { ADD_TO_CART, ADDED_TO_CART } from "../../../../const";
+import { AuthService } from "../../../../service/auth/auth.service";
 
+/**
+ * is a component that displayed the detail information of a product.
+ * it has views that let the user add to cart or add to another person's gift card,
+ * also has a view to add to user's wish list.
+ */
 @Component({
-  selector: 'oorsi-web-product-item',
-  templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.css']
+  selector: "oorsi-web-product-item",
+  templateUrl: "./product-item.component.html",
+  styleUrls: ["./product-item.component.css"]
 })
 export class ProductItemComponent {
 
-  @Input() product;
+  /**
+   * the product input it will display
+   */
+  @Input() public product;
 
-  @Input() index: number;
+  /**
+   * the index of the product in the parent list
+   * to know the position of the product in the list
+   */
+  @Input() public index: number;
 
-  addToCartButton = ADD_TO_CART;
+  /**
+   * products current status of added to card
+   */
+  isAddedToCart = false;
 
-  constructor(private wishlistService: WishlistService, private cartService: CartService, private authService: AuthService) { }
+  /**
+   * products current status of added to wishlist
+   */
+  isAddedToWishList = false;
 
-  addToWishlist(product: Product) {
-    this.wishlistService.addProductToWishlist(product).subscribe(data => { }, err => this.authService.checkError(err));
+  /**
+   *
+   * @param wishlistService used for adding the current product to wishlist
+   * @param cartService used to add the current product to cart
+   * @param authService used for checking errors in the responses of the requests
+   */
+  constructor(
+    private wishlistService: WishlistService,
+    private cartService: CartService,
+    private authService: AuthService
+  ) {}
+
+  /**
+   * action that adds the current product to users wish list
+   */
+  addToWishlist() {
+    this.wishlistService.addProductToWishlist(this.product).subscribe(
+      /** success - it is added to wishlist */
+      data => {this.isAddedToWishList = true},
+      /** error - to be checked by auth service */
+      err => this.authService.checkError(err)
+    );
   }
 
-  addToCart(product: Product) {
-    this.cartService.addProductToCart(product).then(data => this.addToCartButton = ADDED_TO_CART, err => this.authService.checkError(err));
+  /**
+   * action that adds the current product to users cart
+   */
+  addToCart() {
+    this.cartService.addProductToCart(this.product).then(
+      /** success - it is added to cart */
+      data => (this.isAddedToCart = true),
+      /** error - to be checked by auth service */
+      err => this.authService.checkError(err)
+    );
   }
-
-
 }

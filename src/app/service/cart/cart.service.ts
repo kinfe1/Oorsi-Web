@@ -39,8 +39,8 @@ export class CartService {
     return new Promise<any>((resolve, reject) => {
       this.http.post(OORSI_API_ENDPOINT + 'cart/remove',
         {
-          forId: cartProduct.forUser.userID,
-          productId: cartProduct.product.productId
+          to: cartProduct.forUser.userID,
+          productId: cartProduct.product.productId,
         },
         { responseType: 'text' }
       ).subscribe(data => {
