@@ -94,6 +94,8 @@ export class AuthService {
                         // return false to indicate failed login
                         resolve(false);
                     }
+                }, err => {
+                  reject(err.error)
                 });
         });
 
