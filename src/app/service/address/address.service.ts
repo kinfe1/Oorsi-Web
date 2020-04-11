@@ -18,7 +18,7 @@ export class AddressService {
     validateAddress(address: string): Observable<string> {
         let searchParams = new HttpParams();
         searchParams.append("address", address);
-        return this.http.get<string>(OORSI_API_ENDPOINT + 'address/validate', { params: searchParams });
+        return this.http.get<string>('https://maps.googleapis.com/maps/api/geocode/json', { params: searchParams });
     }
 
     saveAddress(address): Observable<Address> {

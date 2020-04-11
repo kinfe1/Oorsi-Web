@@ -38,7 +38,7 @@ export class AuthService {
     }
 
     checkError(err) {
-        if (err && err != null && err.status == 403) {
+        if (err && err != null && (err.status == 403|| err.status == 401)) {
             this.logout();
             this.router.navigate(['login']);
             return true;

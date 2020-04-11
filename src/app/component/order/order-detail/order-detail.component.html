@@ -14,7 +14,7 @@
         </p>
         <p class="col-xs-4">
           <span class="text-gray">Total Charge</span>
-          <span>{{order?.totalPrice | currency:'USD':true:'1.2-2'}}</span>
+          <span>{{order?.totalPrice | currency:'USD'}}</span>
         </p>
         <p class="col-xs-4">
           <span class="text-gray">Ordered Date</span>
@@ -32,9 +32,9 @@
             <img src="{{orderProduct.product.image}}" alt="Item">
           </a>
           <h5 class="item-title col-xs-4"><a routerLink="/shop/id/{{orderProduct.product.productId}}">{{orderProduct.product.name}}</a></h5>
-          <h6 class="item-price col-xs-2">{{orderProduct.soldPrice | currency:'USD':true:'1.2-2'}}</h6>
+          <h6 class="item-price col-xs-2">{{orderProduct.soldPrice | currency:'USD'}}</h6>
           <span class="col-xs-2">{{orderProduct.quantity}}</span>
-          <span class="col-xs-2">{{orderProduct.totalPrice| currency:'USD':true:'1.2-2'}}</span>
+          <span class="col-xs-2">{{orderProduct.totalPrice| currency:'USD'}}</span>
 
         </div>
         <!-- .item -->

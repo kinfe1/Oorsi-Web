@@ -19,7 +19,7 @@
             </a>
             <div class="item-details">
               <h5 class="item-title"><a routerLink="/shop/id/{{cartProduct.product.productId}}">{{cartProduct.product.name}}</a></h5>
-              <h6 class="item-price">{{cartProduct.product.salePrice | currency:'USD':true:'1.2-2'}}</h6>
+              <h6 class="item-price">{{cartProduct.product.salePrice | currency:'USD'}}</h6>
               <div class="count-input">
                 <a class="incr-btn" data-action="decrease" (click)="decrease(cartProduct)">–</a>
                 <input class="quantity" type="text" value="1">
@@ -40,7 +40,7 @@
     <div class="col-md-3 col-md-offset-1 col-sm-4 padding-bottom-2x" *ngIf="undefined!=user.cartProducts && user.cartProducts.length > 0">
       <aside>
         <h3 class="toolbar-title">Cart subtotal:</h3>
-        <h4 class="amount">{{user.totalPrice()| currency:'USD':true:'1.2-2'}}</h4>
+        <h4 class="amount">{{user.totalPrice()| currency:'USD'}}</h4>
         <a href="#" class="btn btn-default btn-block waves-effect waves-light">Update Cart</a>
         <a routerLink="/checkout/for/{{user.userID}}" class="btn btn-primary btn-block waves-effect waves-light space-top-none">Checkout</a>
       </aside>

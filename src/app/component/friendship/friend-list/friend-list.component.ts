@@ -20,7 +20,8 @@ export class FriendListComponent implements OnInit {
       for (let user of this.users) {
         user.followed = true;
       }
-    }), err => this.authService.checkError(err);
+    }), err => { 
+      this.authService.checkError(err) };
   }
 
 }

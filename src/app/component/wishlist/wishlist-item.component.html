@@ -7,7 +7,7 @@
       <h4 class="item-title"><a>{{wishlistProduct?.product.name}}</a></h4>
     </a>
     <span class="shop-item-price">
-                <span class="old-price"  *ngIf="wishlistProduct?.product.regularPrice!=wishlistProduct?.product.salePrice">{{wishlistProduct?.product.regularPrice| currency:'USD':true:'1.2-2'}}</span>    {{wishlistProduct?.product.salePrice| currency:'USD':true:'1.2-2'}}
+                <span class="old-price"  *ngIf="wishlistProduct?.product.regularPrice!=wishlistProduct?.product.salePrice">{{wishlistProduct?.product.regularPrice| currency:'USD'}}</span>    {{wishlistProduct?.product.salePrice| currency:'USD'}}
     </span>
     <a class="add-to-cart" (click)="addToCart(wishlistProduct?.product, wishlistProduct?.user)">
       <em>{{addToCartButton}} <span *ngIf="wishlistProduct?.user">for {{wishlistProduct?.user.firstName}}</span></em>

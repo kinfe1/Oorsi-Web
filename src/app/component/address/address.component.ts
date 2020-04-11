@@ -49,13 +49,14 @@ export class AddressComponent implements OnInit {
         address = address + this.complexForm.value.state + ' ';
         address = address + this.complexForm.value.zip + ' ';
 
-        this.addressService.validateAddress(address).subscribe(data => {
-            let validationStatus: any = data;
-            if (validationStatus.status == 'OK') {
-                this.complexForm.value['formattedAddress'] = validationStatus.results[0].formatted_address;
-            }
-            this.addressService.saveAddress(this.complexForm.value).subscribe(data => this.save.emit(data), err => this.authService.checkError(err));
-        }, err => this.authService.checkError(err));
+        // this.addressService.validateAddress(address).subscribe(data => {
+        //     let validationStatus: any = data;
+        //     if (validationStatus.status == 'OK') {
+        //         this.complexForm.value['formattedAddress'] = validationStatus.results[0].formatted_address;
+        //     }
+        //TODO: Enable Address Validation
+        this.addressService.saveAddress(this.complexForm.value).subscribe(data => this.save.emit(data), err => this.authService.checkError(err));
+        // }, err => this.authService.checkError(err));
     }
 
     onCancel() {

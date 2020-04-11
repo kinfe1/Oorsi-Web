@@ -1,12 +1,14 @@
 <section class="fw-section bg-gray">
-  
+
   <div class="container padding-top">
 
     <!-- Product Gallery -->
     <div class="product-gallery">
       <!-- Preview -->
       <ul class="product-gallery-preview">
-        <li id="preview03" class="current"><img class="productImage" src="{{product?.image}}" alt="Product"></li>
+        <li id="preview03" class="current">
+          <img class="productImage" src="{{product?.image}}" alt="Product">
+        </li>
       </ul>
       <!-- .product-gallery-preview -->
 
@@ -20,8 +22,8 @@
   <div class="container">
     <div class="product-info padding-top-2x text-center">
       <h5 class="h5 space-bottom-half"> {{product?.name}}</h5>
-      <h6>{{product?.salePrice| currency:'USD':'1.2-2'}}</h6>
-      <s *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency:'USD':'1.2-2'}}</s>
+      <h6>{{product?.salePrice| currency}}</h6>
+      <s *ngIf="product?.salePrice != product?.regularPrice">{{product?.regularPrice| currency}}</s>
       <p class="text-sm text-gray" [innerHTML]="product?.shortDescription">{{product?.shortDescription}}</p>
       <div class="product-meta">
         <div class="product-sku">
@@ -33,12 +35,12 @@
           <a >Furniture</a>
         </div>-->
         <span class="product-rating text-warning">
-              <i class="material-icons star"></i>
-              <i class="material-icons star"></i>
-              <i class="material-icons star"></i>
-              <i class="material-icons star"></i>
-              <i class="material-icons star_border"></i>
-            </span>
+          <i class="material-icons star"></i>
+          <i class="material-icons star"></i>
+          <i class="material-icons star"></i>
+          <i class="material-icons star"></i>
+          <i class="material-icons star_border"></i>
+        </span>
       </div>
       <!-- .product-meta -->
       <div class="product-tools shop-item">
@@ -79,7 +81,9 @@
 <section class="container padding-top-2x">
   <!-- Nav Tabs -->
   <ul class="nav-tabs text-center" role="tablist">
-    <li class="active"><a role="tab" data-toggle="tab">Description</a></li>
+    <li class="active">
+      <a role="tab" data-toggle="tab">Description</a>
+    </li>
   </ul>
   <!-- .nav-tabs -->
   <!-- Tab panes -->

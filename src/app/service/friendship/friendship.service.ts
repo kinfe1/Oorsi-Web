@@ -18,9 +18,7 @@ export class FriendshipService {
     }
 
     public getFriends(user?: User): Observable<User[]> {
-
         let searchParams = new HttpParams();
-
         if (user) {
             searchParams.append("userID", "" + user.userID);
         }
@@ -42,7 +40,6 @@ export class FriendshipService {
     }
 
     public sendFollowUnfollowRequest(user: User, url: string) {
-
         return this.http.post(OORSI_API_ENDPOINT + url, { userID: user.userID });
     }
 }
