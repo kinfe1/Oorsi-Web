@@ -42,6 +42,11 @@ export class ProductDetailComponent implements OnInit {
   isAddedToWishlist = false;
 
   /**
+   * product count holder
+   */
+  count = 0;
+
+  /**
    * param subscription to unsubscribe later
    */
   private paramSubscription: Subscription;
@@ -178,5 +183,17 @@ export class ProductDetailComponent implements OnInit {
       data => (this.isAddedToWishlist = true),
       err => this.authService.checkError(err)
     );
+  }
+
+  /**
+   * change product count with given number
+   */
+  actionChangeProductCount(dif) {
+    // non negative value check when decreased
+    if(this.count == 0 && dif == -1) {
+      return
+    }
+    // change value
+    this.count+=dif;
   }
 }

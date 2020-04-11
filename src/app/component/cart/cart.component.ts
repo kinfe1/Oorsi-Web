@@ -57,6 +57,10 @@ export class CartComponent implements OnInit {
   }
 
   decrease(cartProduct: CartProduct) {
+    // prefent negative quantity check
+    if(cartProduct.quantity == 0) {
+      return;
+    }
     cartProduct.quantity--;
   }
   increase(cartProduct: CartProduct) {

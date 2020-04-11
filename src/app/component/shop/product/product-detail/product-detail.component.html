@@ -47,9 +47,9 @@
 
         <!-- count increate and decrease -->
         <div class="count-input">
-          <a class="incr-btn" data-action="decrease">–</a>
-          <input class="quantity" type="text" value="1">
-          <a class="incr-btn" data-action="increase">+</a>
+          <a class="incr-btn" (click)="actionChangeProductCount(-1)">–</a>
+          <input class="quantity" type="text" value="{{count}}">
+          <a class="incr-btn" (click)="actionChangeProductCount(1)">+</a>
         </div>
 
         <!-- color selection -->
