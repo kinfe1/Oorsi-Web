@@ -3,7 +3,7 @@
   <form class="login-form" #f="ngForm" (ngSubmit)="onLogin(f)">
     <input type="text" class="form-control" placeholder="email" required ngModel name="email">
     <input type="password" class="form-control" placeholder="Password" required ngModel name="password">
-    <p *ngFor="let error of errors">{{error.message}}</p>
+    <p *ngFor="let error of errors" class="text-danger">{{error.message}}</p>
     <div class="form-footer">
       <div class="rememberme">
         <label for="rememberme-checkbox" class="checkbox" for="checkbox">
