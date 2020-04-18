@@ -4,7 +4,7 @@ export interface Product {
 
     productId?: number;
     retailerId?: number;
-    sku?: number;
+    sku?: string;
     name?: string;
     regularPrice?: number;
     salePrice?: number;
