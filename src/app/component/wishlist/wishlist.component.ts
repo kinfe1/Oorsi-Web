@@ -21,12 +21,14 @@ export class WishlistComponent implements OnInit {
     ngOnInit() {
         this.wishlistService.getWishList()
             .subscribe(
-            data => {
-                this.wishlistProducts = data;
-                this.loading = false;
-            }
+                data => {
+                    this.wishlistProducts = data;
+                    this.loading = false;
+                }
 
             )
+
+        this.wishlistService.wishlistAddedEvent.subscribe(wishlistProduct => { this.wishlistProducts.unshift(wishlistProduct) })
 
         // this.titleService.setTitle(this.titleService.getTitle() + ": Wishlist");
     }

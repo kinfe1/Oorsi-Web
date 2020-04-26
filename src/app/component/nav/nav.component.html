@@ -29,6 +29,10 @@
         <a routerLink="/friends">Friends</a>
       </li>
 
+      <li routerLinkActive="current-menu-item" *ngIf="loggedIn">
+        <a data-target="#addAmazonProductToWishlistModal" (click)="addAmazonProductToWishlistModal.show()">Add Amazon Product to Wishlist</a>
+      </li>
+
       <li routerLinkActive="current-menu-item" *ngIf="!loggedIn">
         <a routerLink="/login">Login</a>
       </li>
@@ -69,4 +73,11 @@
   </div>
   <!-- .toolbar -->
 
+</div>
+
+
+<div bsModal #addAmazonProductToWishlistModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <app-add-amazon-product-to-wishlist (save)="onSave($event);addAmazonProductToWishlistModal.hide();" (cancel)="addAmazonProductToWishlistModal.hide()">
+  </app-add-amazon-product-to-wishlist>
 </div>

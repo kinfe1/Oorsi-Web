@@ -2,6 +2,9 @@ import { environment } from "./../../../environments/environment";
 import { AuthService } from "./../../service/auth/auth.service";
 import { Component, OnChanges, OnInit, EventEmitter } from "@angular/core";
 import { CartService } from "../../service/cart/cart.service";
+import { Router } from '@angular/router';
+import { WishlistService } from 'src/app/service/wishlist.service';
+import { WishListProduct } from 'src/app/model/wishlistproduct';
 
 // declare const FB: any;
 
@@ -20,7 +23,9 @@ export class NavComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router,
+    private wishlistService: WishlistService
   ) {
     // FB.init({
     //   appId: environment.fbAppID,
@@ -52,6 +57,14 @@ export class NavComponent implements OnInit {
       console.log("cartUpdatedEmmiter cart size:" + data);
       this.cartSize = data;
     });
+  }
+
+  onSave(wishlistProduct: WishListProduct): void {
+    if (this.router.isActive('/wishlist', true)) {
+      this.wishlistService.wishlistAddedEvent.emit(wishlistProduct);
+    } else {
+      this.router.navigate(['/wishlist']);
+    }
   }
 
   // ngOnChanges() {

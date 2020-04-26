@@ -15,8 +15,8 @@ export interface Product {
     mediumImage?: string;
     thumbnailImage?: string;
     largeImage?: string;
-    relatedProducts?: Product[],
-    frequentlyPurchasedWith?: Product[],
+    relatedProducts?: Product[];
+    frequentlyPurchasedWith?: Product[];
     productImageURLs: ProductImageURL[];
     shortDescription: string;
     longDescription: string;
