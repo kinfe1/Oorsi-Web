@@ -48,6 +48,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ShopHomeComponent } from "./component/shop/shop-home/shop-home.component";
 import { UserDetailComponent } from "./user-detail/user-detail.component";
 import { AddAmazonProductToWishlistComponent } from './component/add-amazon-product-to-wishlist/add-amazon-product-to-wishlist.component';
+import { SignupComponent } from './component/wizard/signup/signup.component';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/shop", pathMatch: "full" },
@@ -99,7 +100,13 @@ const appRoutes: Routes = [
     canActivate: [LoggedInUserService]
   },
   { path: "orders", component: OrderComponent },
-  { path: "orders/id/:id", component: OrderDetailComponent }
+  { path: "orders/id/:id", component: OrderDetailComponent },
+  {
+    path: 'welcome',
+    loadChildren: () => import('./component/wizard/wizard.module').then(m => m.WizardModule),
+    // data: { title: 'Catalog', breadcrumb: 'Catalog' },
+    // canActivate: [AuthService]
+  }
 ];
 
 @NgModule({
@@ -131,7 +138,8 @@ const appRoutes: Routes = [
     ImageURLPipe,
     ShopHomeComponent,
     UserDetailComponent,
-    AddAmazonProductToWishlistComponent
+    AddAmazonProductToWishlistComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -165,4 +173,4 @@ const appRoutes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
