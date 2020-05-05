@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="img-container-circle">
+        <img [src]="profile?.profilePictureName ? profile?.profilePictureName : 'https://via.placeholder.com/500'"
+          alt="">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <button class="btn btn-outline-primary">
+        Edit Profile
+      </button>
+      <h2>
+        {{profile?.firstName}}
+        {{profile?.lastName}}
+      </h2>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="text-bold">{{profile.numberOfFollowers}} Followers</h4>
+        </div>
+        <div class="col-md-6">
+          <h4 class="text-bold">{{profile.numberOfFollowed}} Following</h4>
+        </div>
+
+        <div class="col-md-12">
+          <p class="text-gray">
+            Bios
+          </p>
+          <p class="text-body">
+            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+            literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
+            College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and
+            going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum
+            comes from sections.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

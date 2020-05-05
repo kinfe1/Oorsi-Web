@@ -47,8 +47,9 @@ import { AuthInterceptor } from "./service/auth/auth-interceptor";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ShopHomeComponent } from "./component/shop/shop-home/shop-home.component";
 import { UserDetailComponent } from "./user-detail/user-detail.component";
-import { AddAmazonProductToWishlistComponent } from './component/add-amazon-product-to-wishlist/add-amazon-product-to-wishlist.component';
-import { IformsModule } from './l-components/forms/iforms.module';
+import { AddAmazonProductToWishlistComponent } from "./component/add-amazon-product-to-wishlist/add-amazon-product-to-wishlist.component";
+import { IformsModule } from "./l-components/forms/iforms.module";
+import { MyProfileComponent } from "./component/my-profile/my-profile.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/shop", pathMatch: "full" },
@@ -59,13 +60,13 @@ const appRoutes: Routes = [
       { path: "", component: ShopHomeComponent },
       { path: "search", component: ProductListComponent },
       { path: "r/:retailer/sku/:sku", component: ProductDetailComponent },
-      { path: "id/:id", component: ProductDetailComponent }
-    ]
+      { path: "id/:id", component: ProductDetailComponent },
+    ],
   },
   {
     path: "news",
     component: NewsFeedComponent,
-    canActivate: [LoggedInUserService]
+    canActivate: [LoggedInUserService],
   },
   {
     path: "friends",
@@ -74,39 +75,41 @@ const appRoutes: Routes = [
     children: [
       { path: "", component: FriendListComponent, pathMatch: "full" },
       { path: "search", component: FriendSearchComponent },
-      { path: "fb", component: FriendFbSearchComponent }
-    ]
+      { path: "fb", component: FriendFbSearchComponent },
+    ],
   },
   {
     path: "wishlist",
     component: WishlistComponent,
-    canActivate: [LoggedInUserService]
+    canActivate: [LoggedInUserService],
   },
   { path: "login", component: LoginComponent, canActivate: [AnonymousService] },
   { path: "logout", component: LogoutComponent },
   {
     path: "register",
     component: RegisterComponent,
-    canActivate: [AnonymousService]
+    canActivate: [AnonymousService],
   },
   {
     path: "cart",
     component: CartComponent,
-    canActivate: [LoggedInUserService]
+    canActivate: [LoggedInUserService],
   },
   {
     path: "checkout/for/:id",
     component: CheckoutComponent,
-    canActivate: [LoggedInUserService]
+    canActivate: [LoggedInUserService],
   },
   { path: "orders", component: OrderComponent },
   { path: "orders/id/:id", component: OrderDetailComponent },
+  { path: "profile", component: MyProfileComponent },
   {
-    path: 'welcome',
-    loadChildren: () => import('./component/wizard/wizard.module').then(m => m.WizardModule),
+    path: "welcome",
+    loadChildren: () =>
+      import("./component/wizard/wizard.module").then((m) => m.WizardModule),
     // data: { title: 'Catalog', breadcrumb: 'Catalog' },
     // canActivate: [AuthService]
-  }
+  },
 ];
 
 @NgModule({
@@ -139,6 +142,7 @@ const appRoutes: Routes = [
     ShopHomeComponent,
     UserDetailComponent,
     AddAmazonProductToWishlistComponent,
+    MyProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -147,7 +151,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    IformsModule
+    IformsModule,
   ],
   providers: [
     ProductService,
@@ -168,9 +172,9 @@ const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-      deps: [Router]
-    }
+      deps: [Router],
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

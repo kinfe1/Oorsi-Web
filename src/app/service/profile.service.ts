@@ -15,4 +15,8 @@ export class ProfileService {
     return this.authHttp.get<User>(OORSI_API_ENDPOINT + "p/" + id + "/info.json");
   }
 
+  getMyUserInfo(): Observable<User> {
+    return this.authHttp.get<User>(OORSI_API_ENDPOINT + "user/info.json");
+  }
+
 }
