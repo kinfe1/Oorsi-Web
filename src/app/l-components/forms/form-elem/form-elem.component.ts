@@ -17,7 +17,6 @@ export class FormElemComponent implements AfterContentInit {
   @ContentChild(FormElemDirective) formElem: FormElemDirective;
 
   ngAfterContentInit() {
-    this.formElem.subscribe()
   }
 
   get control() {

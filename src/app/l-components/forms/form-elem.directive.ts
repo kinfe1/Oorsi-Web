@@ -15,37 +15,10 @@ import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 })
 export class FormElemDirective implements OnDestroy {
   @Input() public placeholder = "";
-  @Input() private invalidStyle = "invalid";
-
-  private stateSubscription: Subscription;
 
   constructor(
-    private formControlName: FormControlName,
-    private elementRef: ElementRef,
-    private renderer: Renderer2
+    private formControlName: FormControlName
   ) {}
-
-  @HostListener("blur")
-  loseFocus() {
-    this.stateChanged();
-  }
-
-  subscribe() {
-    this.stateSubscription = this.formControlName.control.statusChanges.subscribe(
-      this.stateChanged.bind(this)
-    );
-  }
-
-  stateChanged() {
-    if (this.control.status == "INVALID" && this.control.touched) {
-      this.renderer.addClass(this.elementRef.nativeElement, this.invalidStyle);
-    } else {
-      this.renderer.removeClass(
-        this.elementRef.nativeElement,
-        this.invalidStyle
-      );
-    }
-  }
 
   public get control() {
     return this.formControlName.control;
@@ -56,6 +29,5 @@ export class FormElemDirective implements OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.stateSubscription != null) this.stateSubscription.unsubscribe();
   }
 }
