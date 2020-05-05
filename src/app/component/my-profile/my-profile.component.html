@@ -2,12 +2,12 @@
   <div class="row">
     <div class="col-md-4">
       <div class="img-container-circle">
-        <img [src]="profile?.profilePictureName ? profile?.profilePictureName : 'https://via.placeholder.com/500'"
+        <img [src]="profile?.profilePictureName | oorsiImgURL"
           alt="">
       </div>
     </div>
     <div class="col-md-8">
-      <button class="btn btn-outline-primary">
+      <button class="btn btn-outline-primary" *ngIf="!userId">
         Edit Profile
       </button>
       <h2>

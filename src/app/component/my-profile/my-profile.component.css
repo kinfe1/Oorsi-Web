@@ -5,9 +5,13 @@
   border-radius: 50%;
   z-index: 1;
   overflow: hidden;
+  padding-top: 50%;
+  padding-bottom: 50%;
+  position: relative;
 }
 
 .img-container-circle img {
+  position: absolute;
   min-width: 100%;
   min-height: 100%;
 }

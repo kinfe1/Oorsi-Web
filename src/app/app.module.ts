@@ -103,6 +103,7 @@ const appRoutes: Routes = [
   { path: "orders", component: OrderComponent },
   { path: "orders/id/:id", component: OrderDetailComponent },
   { path: "profile", component: MyProfileComponent },
+  { path: "profile/:userId", component: MyProfileComponent },
   {
     path: "welcome",
     loadChildren: () =>
