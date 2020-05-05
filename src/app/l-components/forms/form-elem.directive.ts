@@ -8,13 +8,13 @@ import {
 } from "@angular/core";
 import { FormControlName, FormControl } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 @Directive({
   selector: "[oorsiFormElem]",
 })
 export class FormElemDirective implements OnDestroy {
-  @Input() public label = "";
+  @Input() public placeholder = "";
   @Input() private invalidStyle = "invalid";
 
   private stateSubscription: Subscription;
@@ -23,12 +23,11 @@ export class FormElemDirective implements OnDestroy {
     private formControlName: FormControlName,
     private elementRef: ElementRef,
     private renderer: Renderer2
-  ) {
-  }
+  ) {}
 
-  @HostListener('blur')
+  @HostListener("blur")
   loseFocus() {
-    this.stateChanged()
+    this.stateChanged();
   }
 
   subscribe() {
@@ -37,13 +36,9 @@ export class FormElemDirective implements OnDestroy {
     );
   }
 
-
   stateChanged() {
-    if (this.control.status == 'INVALID' && this.control.touched) {
-      this.renderer.addClass(
-        this.elementRef.nativeElement,
-        this.invalidStyle
-      );
+    if (this.control.status == "INVALID" && this.control.touched) {
+      this.renderer.addClass(this.elementRef.nativeElement, this.invalidStyle);
     } else {
       this.renderer.removeClass(
         this.elementRef.nativeElement,
@@ -56,7 +51,11 @@ export class FormElemDirective implements OnDestroy {
     return this.formControlName.control;
   }
 
+  public get label() {
+    return this.placeholder;
+  }
+
   ngOnDestroy() {
-    this.stateSubscription.unsubscribe();
+    if (this.stateSubscription != null) this.stateSubscription.unsubscribe();
   }
 }
