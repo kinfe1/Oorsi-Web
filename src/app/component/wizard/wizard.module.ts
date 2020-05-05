@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WizardComponent } from './wizard.component';
 import { SignupComponent } from './signup/signup.component';
-import { RegisterComponent } from '../user/register/register.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AddBirthdayComponent } from './add-birthday/add-birthday.component';
 import { AddAmazonProductComponent } from './add-amazon-product/add-amazon-product.component';
 import { SearchProductComponent } from './search-product/search-product.component';
+import { AddPhonenumberComponent } from './add-phonenumber/add-phonenumber.component';
 
 const wizardRoutes: Routes = [
     {
@@ -17,13 +17,18 @@ const wizardRoutes: Routes = [
         children: [
             {
                 path: 'signup',
-                component: RegisterComponent,
+                component: SignupComponent,
+            },
+            {
+                path: 'add-phone',
+                component: AddPhonenumberComponent,
+            },
+            {
+              path: '',
+              pathMatch: 'full',
+              component: WelcomeComponent
             }
-            , {
-                path: 'welcome',
-                component: WelcomeComponent,
-            }
-            // , 
+            // ,
             // {
             //   path: 'loader',
             //   component: LoaderDialogComponent,

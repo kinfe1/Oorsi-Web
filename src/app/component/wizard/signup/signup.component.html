@@ -1,0 +1,33 @@
+<div class="col-md-6 col-md-offset-3">
+  <h3>Register</h3>
+  <div class="inner">
+    <form class="login-form row" [formGroup]="signupFormGroup" (ngSubmit)="onSubmit()">
+
+      <oorsi-form-elem class="col-sm-6">
+        <input type="text" class="form-control" oorsiFormElem placeholder="First Name" formControlName="firstName">
+      </oorsi-form-elem>
+
+      <oorsi-form-elem class="col-sm-6">
+        <input type="text" class="form-control" oorsiFormElem placeholder="Last Name" formControlName="lastName">
+      </oorsi-form-elem>
+
+      <oorsi-form-elem class="col-sm-12">
+        <input type="text" class="form-control" oorsiFormElem placeholder="Email" formControlName="email">
+      </oorsi-form-elem>
+
+      <oorsi-form-elem class="col-sm-12">
+        <input type="password" class="form-control" oorsiFormElem placeholder="Password" formControlName="password">
+      </oorsi-form-elem>
+
+      <div class="form-footer col-sm-12">
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">
+            Sign up
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>

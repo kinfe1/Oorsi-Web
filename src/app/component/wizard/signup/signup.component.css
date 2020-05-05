@@ -1,18 +1,18 @@
-.invalid{
-    border-color: #f53d3d
+.invalid,
+.ng-touched.ng-invalid {
+  border-color: #f53d3d;
 }
 
- .fieldError{
-        margin-bottom:3px;
-        color: #f53d3d;
-    }
+.fieldError {
+  margin-bottom: 3px;
+  color: #f53d3d;
+}
 
-    .form-content{
-        position: absolute;
-    bottom: 0;
-    left: 0;
-    }
+.form-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
-   .col-sm-5{
-       
-   }
+.col-sm-5 {
+}
