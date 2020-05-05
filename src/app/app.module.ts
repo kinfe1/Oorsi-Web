@@ -48,7 +48,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ShopHomeComponent } from "./component/shop/shop-home/shop-home.component";
 import { UserDetailComponent } from "./user-detail/user-detail.component";
 import { AddAmazonProductToWishlistComponent } from './component/add-amazon-product-to-wishlist/add-amazon-product-to-wishlist.component';
-import { SignupComponent } from './component/wizard/signup/signup.component';
 import { IformsModule } from './l-components/forms/iforms.module';
 
 const appRoutes: Routes = [
@@ -140,7 +139,6 @@ const appRoutes: Routes = [
     ShopHomeComponent,
     UserDetailComponent,
     AddAmazonProductToWishlistComponent,
-    SignupComponent
   ],
   imports: [
     BrowserModule,
