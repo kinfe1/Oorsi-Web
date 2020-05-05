@@ -1,0 +1,14 @@
+<div class="form-container">
+
+  <p class="fieldError" *ngIf="errors?.required && control?.touched">
+    {{formElem?.label}} is required.
+  </p>
+
+  <p class="fieldError" *ngIf="errors?.email && control?.touched">
+    {{formElem?.label}} must be a valid email.
+  </p>
+
+
+
+  <ng-content></ng-content>
+</div>

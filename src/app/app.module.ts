@@ -49,6 +49,7 @@ import { ShopHomeComponent } from "./component/shop/shop-home/shop-home.componen
 import { UserDetailComponent } from "./user-detail/user-detail.component";
 import { AddAmazonProductToWishlistComponent } from './component/add-amazon-product-to-wishlist/add-amazon-product-to-wishlist.component';
 import { SignupComponent } from './component/wizard/signup/signup.component';
+import { IformsModule } from './l-components/forms/iforms.module';
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/shop", pathMatch: "full" },
@@ -147,7 +148,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IformsModule
   ],
   providers: [
     ProductService,
