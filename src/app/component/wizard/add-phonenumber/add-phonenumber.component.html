@@ -1,1 +1,56 @@
-<p>add-birthday works!</p>
+<form [formGroup]="phoneNumberFormGroup" (ngSubmit)="onSubmit()">
+  <div class="col-md-6 col-md-offset-3" *ngIf="!submitted; else submittedForm">
+    <h3>Add Phone Number</h3>
+    <div class="inner">
+      <h4></h4>
+      <div class="login-form row">
+
+        <oorsi-form-elem class="col-sm-12">
+          <input type="number" class="form-control" oorsiFormElem placeholder="Phone Number"
+            formControlName="phoneNumber">
+        </oorsi-form-elem>
+
+
+        <div class="form-footer col-sm-12">
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">
+              Add Phone Number
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #submittedForm>
+    <div class="col-md-6 col-md-offset-3">
+      <h3>Verify Phone Number</h3>
+      <div class="inner">
+        <h4></h4>
+        <div class="login-form row">
+
+          <div class="col-sm-12">
+            <p>A verification code has been sent to the number {{phoneNumberFormGroup.value.phoneNumber}}.</p>
+          </div>
+          <oorsi-form-elem class="col-sm-12">
+            <input type="number" class="form-control" oorsiFormElem placeholder="Verification Code"
+              formControlName="verifyCode">
+          </oorsi-form-elem>
+
+
+          <div class="form-footer col-sm-12">
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">
+                Verify
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+</form>
