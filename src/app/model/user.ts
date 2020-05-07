@@ -30,7 +30,7 @@ export class User {
     totalPrice(): number {
         let sum: number = 0;
         for (let cartProduct of this.cartProducts) {
-            sum += cartProduct.product.salePrice;
+            sum += (cartProduct.product.salePrice * cartProduct.quantity);
         }
         return sum;
     }
