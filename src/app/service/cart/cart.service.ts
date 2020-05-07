@@ -75,7 +75,7 @@ export class CartService {
 
   updateCartProduct(cartProduct: CartProduct): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.http.post(OORSI_API_ENDPOINT + 'cart/product/update', { to: cartProduct.forUser.userID, productId: cartProduct.product.productId, quantity: cartProduct.quantity }).subscribe(data => {
+      this.http.post(OORSI_API_ENDPOINT + 'cart/product/update', { forId: cartProduct.forUser.userID, productId: cartProduct.product.productId, quantity: cartProduct.quantity }).subscribe(data => {
         this.updateCartSize();
         resolve(data);
       });

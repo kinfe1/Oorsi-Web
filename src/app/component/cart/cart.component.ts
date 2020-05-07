@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.cartService.getCart().subscribe(
@@ -58,13 +58,14 @@ export class CartComponent implements OnInit {
 
   decrease(cartProduct: CartProduct) {
     // prefent negative quantity check
-    if(cartProduct.quantity == 0) {
+    if (cartProduct.quantity == 1) {
       return;
     }
     cartProduct.quantity--;
+    this.cartService.updateCartProduct(cartProduct);
   }
   increase(cartProduct: CartProduct) {
     cartProduct.quantity++;
-
+    this.cartService.updateCartProduct(cartProduct);
   }
 }
