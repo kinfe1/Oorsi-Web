@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "oorsi-web"
+  "defaultProject": "oorsi-web",
+  "cli": {
+    "analytics": "02a0b79c-9da3-44df-8b40-498d6105acc4"
+  }
 }

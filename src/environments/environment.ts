@@ -8,5 +8,5 @@ export const environment = {
     fbAppID: 611971595616628,
     stripePublishableKey: 'pk_test_vZVuEjNYLemezGBMxLFIYwLj',
     env: 'local',
-    apiEndpoint: 'http://localhost:8080/oorsi-api/'
+    apiEndpoint: 'http://anteneh-home.asuscomm.com:8080/oorsi-api/'
 };

@@ -19,6 +19,11 @@
         <p class="fieldError" *ngIf="(myForm.controls.password.errors?.required || myForm.controls.password.errors?.minlength) && submitAttempt">Password must be atleast 6 characters</p>
         <input type="password" class="form-control" placeholder="Password" required formControlName="password" [class.invalid]="!myForm.controls.password.valid  && submitAttempt">
       </div>
+      <div class="col-sm-12">
+        <p class="fieldError" *ngIf="myForm.controls.confirm_password.errors?.required  && submitAttempt">Password must be confirmed</p>
+        <p class="fieldError" *ngIf="myForm.controls.confirm_password.errors?.mustMatch ">Password does not much</p>
+        <input type="password" class="form-control" placeholder="confirm Password" required formControlName="confirm_password" >
+      </div>
       <input type="hidden" formControlName="password">
       <div class="form-footer col-sm-12">
         <div class="form-submit">

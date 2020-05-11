@@ -6,6 +6,7 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Error } from '../../../model/error';
 import { environment } from '../../../../environments/environment';
+import { MustMatch } from './confirm.validator';
 
 declare const FB: any;
 
@@ -34,8 +35,11 @@ export class RegisterComponent implements OnInit {
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      confirm_password: ['', [Validators.required]],
       birthDate: [],
       fbat: []
+    }, {
+      validator:MustMatch('password' , 'confirm_password')
     });
 
     this.subscription = this.route.queryParams.subscribe(
